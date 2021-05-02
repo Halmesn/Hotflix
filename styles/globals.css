@@ -14,9 +14,13 @@
 /* global styles */
 
 :root {
-  --white: #fff;
+  font-size: 62.5%;
 }
 
 body {
   font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  color: #333;
 }
