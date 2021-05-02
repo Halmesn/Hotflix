@@ -4,7 +4,8 @@
     "title": "Enjoy Nextflix on your TV.",
     "subTitle": "Watch titles on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
     "image": "/images/misc/home-tv.jpg",
-    "alt": "Tiger King on Netflix",
+    "video": "/videos/misc/home-tv.m4v",
+    "alt": "Nextflix on Tv",
     "direction": "row"
   },
   {
@@ -12,7 +13,8 @@
     "title": "Download your shows to watch them offline.",
     "subTitle": "Save your favorites easily and always have something to watch.",
     "image": "/images/misc/home-mobile.jpg",
-    "alt": "Watch on mobile",
+    "innerImage": "/images/misc/download.png",
+    "alt": "Netflix download",
     "direction": "row-reverse"
   },
   {
@@ -20,7 +22,8 @@
     "title": "Watch Nextflix everywhere.",
     "subTitle": "Stream unlimited movies and TV shows on your phone, tablet, laptop and TV without paying more.",
     "image": "/images/misc/home-imac.jpg",
-    "alt": "Money Heist on Netflix",
+    "video": "/videos/misc/home-imac.m4v",
+    "alt": "Netflix on imac",
     "direction": "row"
   }
 ]
