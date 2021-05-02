@@ -5,7 +5,7 @@ export default function Home() {
       <Head>
         <title>Nextfilx - watch TV shows online, watch movies online</title>
       </Head>
-      <div>Nextfilx</div>
+      <h1>Nextfilx</h1>
     </>
   );
 }

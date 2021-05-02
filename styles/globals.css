@@ -1,0 +1,22 @@
+/*! modern-normalize v1.0.0 https://github.com/sindresorhus/modern-normalize */
+
+@import 'node_modules/modern-normalize/modern-normalize.css';
+
+/* font */
+
+@font-face {
+  font-family: 'Netflix Sans';
+  src: url('./fonts/NetflixSans.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* global styles */
+
+:root {
+  --white: #fff;
+}
+
+body {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

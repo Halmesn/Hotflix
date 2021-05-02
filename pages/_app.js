@@ -2,16 +2,21 @@
 import 'styles/globals.css';
 // components
 import Layout from 'components/layout/Layout';
+import Head from 'next/head';
 //utilities
 
 //dependencies
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="images/favicon.ico" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
-
-export default MyApp;
