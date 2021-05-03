@@ -9,10 +9,7 @@ export const Wrapper = styled.div`
   max-width: 110rem;
   margin: 0 auto;
 
-  @media only screen and (min-width: 550px) and (max-width: 949px),
-    only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+  @media only screen and (max-width: 59.375em) {
     flex-direction: column;
   }
 `;
@@ -23,9 +20,7 @@ export const Card = styled.div`
   padding: 5rem 5%;
   color: #fff;
 
-  @media only screen and (min-width: 550px) and (max-width: 949px),
-    only screen and (min-width: 950px) and (max-width: 1449px),
-    only screen and (min-width: 1450px) {
+  @media only screen and (min-width: 34.375em) {
     padding: 7rem 4.5rem;
   }
 `;
@@ -35,10 +30,7 @@ export const Text = styled.div`
   flex: 0 1 auto;
   padding: ${({ id }) => (id === 2 ? '0 0 0 3rem' : '0 4.8rem 0 0')};
 
-  @media only screen and (min-width: 550px) and (max-width: 949px),
-    only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+  @media only screen and (max-width: 59.375em) {
     width: 100%;
     text-align: center;
     padding: 0;
@@ -51,13 +43,11 @@ export const Title = styled.h1`
   margin-bottom: 0.8rem;
   margin-top: 0;
 
-  @media only screen and (min-width: 550px) and (max-width: 949px) {
+  @media only screen and (max-width: 59.375em) {
     font-size: 4rem;
   }
 
-  @media only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+  @media only screen and (max-width: 34.375em) {
     font-size: 2.6rem;
   }
 `;
@@ -68,13 +58,11 @@ export const SubTitle = styled.h2`
   line-height: normal;
   margin: 1.95rem 0 0.65rem;
 
-  @media only screen and (min-width: 550px) and (max-width: 949px) {
+  @media only screen and (max-width: 59.375em) {
     font-size: 2rem;
   }
 
-  @media only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+  @media only screen and (max-width: 34.375em) {
     font-size: 1.8rem;
   }
 `;
@@ -84,10 +72,7 @@ export const ImageContainer = styled.div`
   display: flex;
   flex: 0 1 auto;
 
-  @media only screen and (min-width: 550px) and (max-width: 949px),
-    only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+  @media only screen and (max-width: 59.375em) {
     width: 100%;
     max-width: 60rem;
     margin-top: 1.6rem;
@@ -100,13 +85,12 @@ export const Image = styled.div`
   position: relative;
   overflow: hidden;
   max-width: 100%;
-  @media only screen and (min-width: 550px) and (max-width: 949px),
-    only screen and (min-width: 400px) and (max-width: 549px),
-    only screen and (min-width: 350px) and (max-width: 399px),
-    only screen and (max-width: 349px) {
+
+  @media only screen and (max-width: 59.375em) {
     margin: ${({ id }) =>
       id === 1 ? '-10% 0 0 0' : id === 2 ? '-8% 0 0 0' : '-5% 0 0 0'};
   }
+
   img {
     z-index: ${({ id }) => (id === 3 ? '2' : '-1')};
   }
@@ -134,11 +118,11 @@ export const AnimationContainer = styled.div`
       display: flex;
       align-items: center;
       width: 60%;
-      min-width: 15em;
+      min-width: 24rem;
       padding: 0.8rem 1.2rem;
       border: 2px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 0 2em 0 #000;
-      border-radius: 0.75em;
+      box-shadow: 0 0 3.2rem 0 #000;
+      border-radius: 1.2rem;
 
       ::after {
         width: 4.8rem;
@@ -155,18 +139,19 @@ export const AnimationContainer = styled.div`
 
 export const AnimationImage = styled.div`
   margin: 0 1.6rem 0 0;
+
   img {
     height: 4.8rem;
 
-    @media only screen and (min-width: 550px) and (max-width: 949px) {
+    @media only screen and (min-width: 34.375em) {
       height: 6.4rem;
     }
 
-    @media only screen and (min-width: 950px) and (max-width: 1449px) {
+    @media only screen and (min-width: 59.375em) {
       height: 7.2rem;
     }
 
-    @media only screen and (min-width: 1450px) {
+    @media only screen and (min-width: 90.625em) {
       height: 8rem;
     }
   }
@@ -175,23 +160,23 @@ export const AnimationImage = styled.div`
 export const AnimationText = styled.div`
   flex: 1;
   margin: 0.48rem 0;
+
   div:first-child {
     color: #fff;
     font-weight: 600;
     font-size: 1.44rem;
-    @media only screen and (min-width: 550px) and (max-width: 949px),
-      only screen and (min-width: 950px) and (max-width: 1449px),
-      only screen and (min-width: 1450px) {
+
+    @media only screen and (min-width: 34.375em) {
       font-size: 1.6rem;
     }
   }
+
   div:last-child {
     color: #0071eb;
     font-size: 1.2rem;
     font-weight: 400;
-    @media only screen and (min-width: 550px) and (max-width: 949px),
-      only screen and (min-width: 950px) and (max-width: 1449px),
-      only screen and (min-width: 1450px) {
+
+    @media only screen and (min-width: 34.375em) {
       font-size: 1.44rem;
     }
   }
