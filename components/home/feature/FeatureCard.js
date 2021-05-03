@@ -2,7 +2,7 @@ import * as styled from './FeatureStyles';
 
 import Image from 'next/image';
 
-export default function FeatureCard({ children, direction = 'row' }) {
+export default function FeatureCard({ children }) {
   return <styled.Card>{children}</styled.Card>;
 }
 
