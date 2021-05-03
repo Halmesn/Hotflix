@@ -23,26 +23,26 @@ FeatureCard.SubTitle = ({ children, ...props }) => (
 );
 
 FeatureCard.Image = ({ ...props }) => (
-  <styled.Image>
-    <styled.AnimationContainer id={props.id}>
-      <Image {...props} width={640} height={480} />
-      {props.id === 2 ? (
-        <styled.Animation id={props.id}>
-          <styled.AnimationImage>
-            <img src={props.innerImage} alt={props.alt} />
-          </styled.AnimationImage>
-          <styled.AnimationText>
-            <div>Stranger Things</div>
-            <div>Downloading</div>
-          </styled.AnimationText>
-        </styled.Animation>
-      ) : (
-        <styled.Animation id={props.id}>
+  <styled.ImageContainer>
+    <styled.Image id={props.id}>
+      <Image {...props} width={640} height={480} layout="responsive" />
+      <styled.AnimationContainer id={props.id}>
+        {props.id === 2 ? (
+          <>
+            <styled.AnimationImage>
+              <img src={props.innerImage} alt={props.alt} />
+            </styled.AnimationImage>
+            <styled.AnimationText>
+              <div>Stranger Things</div>
+              <div>Downloading</div>
+            </styled.AnimationText>
+          </>
+        ) : (
           <styled.Video autoPlay muted loop playsInline>
             <source src={props.video} type="video/mp4" />
           </styled.Video>
-        </styled.Animation>
-      )}
-    </styled.AnimationContainer>
-  </styled.Image>
+        )}
+      </styled.AnimationContainer>
+    </styled.Image>
+  </styled.ImageContainer>
 );

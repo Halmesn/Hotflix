@@ -9,7 +9,10 @@ export const Wrapper = styled.div`
   max-width: 110rem;
   margin: 0 auto;
 
-  @media (max-width: 1000px) {
+  @media only screen and (min-width: 550px) and (max-width: 949px),
+    only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
     flex-direction: column;
   }
 `;
@@ -30,7 +33,16 @@ export const Card = styled.div`
 export const Text = styled.div`
   width: 52%;
   flex: 0 1 auto;
-  padding: ${({ id }) => (id === 2 ? '0 0 0 4.8rem' : '0 4.8rem 0 0')};
+  padding: ${({ id }) => (id === 2 ? '0 0 0 3rem' : '0 4.8rem 0 0')};
+
+  @media only screen and (min-width: 550px) and (max-width: 949px),
+    only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
 `;
 
 export const Title = styled.h1`
@@ -39,8 +51,14 @@ export const Title = styled.h1`
   margin-bottom: 0.8rem;
   margin-top: 0;
 
-  @media (max-width: 37.5em) {
-    font-size: 3.5rem;
+  @media only screen and (min-width: 550px) and (max-width: 949px) {
+    font-size: 4rem;
+  }
+
+  @media only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
+    font-size: 2.6rem;
   }
 `;
 
@@ -50,29 +68,51 @@ export const SubTitle = styled.h2`
   line-height: normal;
   margin: 1.95rem 0 0.65rem;
 
-  @media (max-width: 37.5em) {
+  @media only screen and (min-width: 550px) and (max-width: 949px) {
+    font-size: 2rem;
+  }
+
+  @media only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
     font-size: 1.8rem;
   }
 `;
 
-export const Image = styled.div`
+export const ImageContainer = styled.div`
   width: 48%;
   display: flex;
   flex: 0 1 auto;
-  img {
-    z-index: 2;
+
+  @media only screen and (min-width: 550px) and (max-width: 949px),
+    only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
+    width: 100%;
+    max-width: 60rem;
+    margin-top: 1.6rem;
   }
 `;
 
-export const AnimationContainer = styled.div`
+export const Image = styled.div`
   margin: ${({ id }) =>
     id === 1 ? '-10% -5% -5% 0' : id === 2 ? '-8% 0 -4% -15%' : '-5% -10% 0 0'};
   position: relative;
   overflow: hidden;
   max-width: 100%;
+  @media only screen and (min-width: 550px) and (max-width: 949px),
+    only screen and (min-width: 400px) and (max-width: 549px),
+    only screen and (min-width: 350px) and (max-width: 399px),
+    only screen and (max-width: 349px) {
+    margin: ${({ id }) =>
+      id === 1 ? '-10% 0 0 0' : id === 2 ? '-8% 0 0 0' : '-5% 0 0 0'};
+  }
+  img {
+    z-index: ${({ id }) => (id === 3 ? '2' : '-1')};
+  }
 `;
 
-export const Animation = styled.div`
+export const AnimationContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: ${({ id }) => (id === 1 ? '73%' : id === 2 ? '' : '63%')};
@@ -99,7 +139,6 @@ export const Animation = styled.div`
       border: 2px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 0 2em 0 #000;
       border-radius: 0.75em;
-      z-index: 2;
 
       ::after {
         width: 4.8rem;
