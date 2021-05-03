@@ -8,7 +8,7 @@ export default function Feature() {
   return (
     <styled.Feature>
       {featureData.map(
-        ({ id, title, subTitle, image, alt, innerImage, direction, video }) => (
+        ({ id, title, subTitle, image, alt, post, direction, video }) => (
           <FeatureCard key={id}>
             <FeatureCard.Wrapper direction={direction}>
               <FeatureCard.Text id={id}>
@@ -20,7 +20,7 @@ export default function Feature() {
                 alt={alt}
                 id={id}
                 video={video}
-                innerImage={innerImage}
+                post={post}
               />
             </FeatureCard.Wrapper>
           </FeatureCard>

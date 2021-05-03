@@ -2,7 +2,7 @@ import * as styled from './FeatureStyles';
 
 import Image from 'next/image';
 
-export default function FeatureCard({ children, direction = 'row', ...props }) {
+export default function FeatureCard({ children, direction = 'row' }) {
   return <styled.Card>{children}</styled.Card>;
 }
 
@@ -25,12 +25,12 @@ FeatureCard.SubTitle = ({ children, ...props }) => (
 FeatureCard.Image = ({ ...props }) => (
   <styled.ImageContainer>
     <styled.Image id={props.id}>
-      <Image {...props} width={640} height={480} layout="responsive" />
+      <Image {...props} width={640} height={480} />
       <styled.AnimationContainer id={props.id}>
         {props.id === 2 ? (
           <>
             <styled.AnimationImage>
-              <img src={props.innerImage} alt={props.alt} />
+              <img src={props.post} alt={props.alt} />
             </styled.AnimationImage>
             <styled.AnimationText>
               <div>Stranger Things</div>

@@ -146,7 +146,7 @@ export const AnimationContainer = styled.div`
         outline: 2px solid #000;
         outline-offset: -2px;
         display: block;
-        background: url('/images/misc/download.gif') center center no-repeat;
+        background: url('/images/feature/download.gif') center center no-repeat;
         background-size: 100%;
         content: '';
       }
