@@ -23,3 +23,14 @@ export const positionCenter = css`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const footerLink = css`
+  a {
+    color: #757575;
+    :hover,
+    :focus {
+      text-decoration: underline;
+      outline: none;
+    }
+  }
+`;

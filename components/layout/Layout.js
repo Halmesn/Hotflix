@@ -1,9 +1,11 @@
+import Footer from 'components/footer/Footer';
+
 export default function Layout({ children }) {
   return (
     <>
       <header></header>
       <main>{children}</main>
-      <footer></footer>
+      <Footer />
     </>
   );
 }
