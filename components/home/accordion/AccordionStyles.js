@@ -51,7 +51,7 @@ export const Question = styled.button`
   display: block;
   text-align: left;
   background: #303030;
-  padding: 2.08rem 5.72rem 2.08rem 3.12rem;
+  padding: 0.8em 2.2em 0.8em 1.2em;
   margin-bottom: 1px;
   font-weight: 400;
   position: relative;
@@ -59,34 +59,16 @@ export const Question = styled.button`
   border: 0;
   line-height: 1.3;
   cursor: pointer;
-
-  @media only screen and (max-width: 59.375em) {
-    padding: 1.6rem 4.4rem 1.6rem 2.4rem;
-  }
-
-  @media only screen and (max-width: 34.375em) {
-    padding: 1.44rem 3.96rem 1.44rem 2.16rem;
-  }
 `;
 
 export const Icon = styled(motion.div)`
   position: absolute;
-  right: 2.6rem;
+  right: 1em;
   top: 35%;
   transform: translateY(-50%);
-  height: 2.6rem;
-  width: 2.6rem;
+  height: 1em;
+  width: 1em;
   fill: #fff;
-
-  @media only screen and (max-width: 59.375em) {
-    height: 2rem;
-    width: 2rem;
-  }
-
-  @media only screen and (max-width: 34.375em) {
-    height: 1.8rem;
-    width: 1.8rem;
-  }
 `;
 
 export const Answer = styled(motion.div)`
@@ -96,7 +78,9 @@ export const Answer = styled(motion.div)`
   overflow: hidden;
   span {
     display: inline-block;
-    padding: 3.12rem;
+    padding: 1.2em;
     font-size: inherit;
+    white-space: pre-wrap;
+    line-height: 1.3;
   }
 `;

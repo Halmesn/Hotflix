@@ -7,21 +7,21 @@
   {
     "id": 2,
     "header": "What techs dose Nextflix use?",
-    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, Firebase for database and React Hook Form for form validation."
+    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, and Firebase for database."
   },
   {
     "id": 3,
     "header": "what can I watch on Nextflix?",
-    "body": "Due to copyright issues, you can only watch trailers of the movies or TV shows, sorry about that!"
+    "body": "Due to copyright issues, you can only watch trailers of the movies or TV shows. \n\nSorry about that!"
   },
   {
     "id": 4,
     "header": "Is there any trial account?",
-    "body": "Yes! Definitely! Just login with\nusername:text@nextfilx.com\npassword:nextflix\n and try it out!"
+    "body": "Yes! Definitely! Just login with\n\nusername: guest@nextfilx.com\npassword: nextflix\n\nand try it out!"
   },
   {
     "id": 5,
     "header": "Why bother building Nextflix?",
-    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve."
+    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve.\n\nHope you like it!"
   }
 ]
