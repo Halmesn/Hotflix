@@ -4,11 +4,23 @@ import { Card, Title as title } from '../feature/FeatureStyles';
 
 export const Accordion = styled(Card)`
   text-align: center;
+
+  @media only screen and (max-width: 34.375em) {
+    padding: 5rem 0;
+  }
 `;
 
 export const Wrapper = styled.div`
   font-size: 2.6rem;
   font-weight: 400;
+
+  @media only screen and (max-width: 59.375em) {
+    font-size: 2rem;
+  }
+
+  @media only screen and (max-width: 34.375em) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const Title = styled(title)``;
@@ -36,7 +48,6 @@ export const Item = styled.li`
 
 export const Question = styled.button`
   color: inherit;
-  font: inherit;
   display: block;
   text-align: left;
   background: #303030;
@@ -48,6 +59,14 @@ export const Question = styled.button`
   border: 0;
   line-height: 1.3;
   cursor: pointer;
+
+  @media only screen and (max-width: 59.375em) {
+    padding: 1.6rem 4.4rem 1.6rem 2.4rem;
+  }
+
+  @media only screen and (max-width: 34.375em) {
+    padding: 1.44rem 3.96rem 1.44rem 2.16rem;
+  }
 `;
 
 export const Icon = styled(motion.div)`
@@ -58,6 +77,16 @@ export const Icon = styled(motion.div)`
   height: 2.6rem;
   width: 2.6rem;
   fill: #fff;
+
+  @media only screen and (max-width: 59.375em) {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @media only screen and (max-width: 34.375em) {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
 `;
 
 export const Answer = styled(motion.div)`
@@ -68,5 +97,6 @@ export const Answer = styled(motion.div)`
   span {
     display: inline-block;
     padding: 3.12rem;
+    font-size: inherit;
   }
 `;

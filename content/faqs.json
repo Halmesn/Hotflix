@@ -6,7 +6,7 @@
   },
   {
     "id": 2,
-    "header": "What technologies dose Nextflix use?",
+    "header": "What techs dose Nextflix use?",
     "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, Firebase for database and React Hook Form for form validation."
   },
   {
