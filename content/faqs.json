@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "header": "What is Netflix?",
-    "body": "Netflix is a streaming service that offers a wide variety of award-winning TV programmes, films, anime, documentaries and more – on thousands of internet-connected devices.\n\nYou can watch as much as you want, whenever you want, without a single advert – all for one low monthly price. There's always something new to discover, and new TV programmes and films are added every week!"
+    "header": "What is Nextflix?",
+    "body": "Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers. Users can sign up, login, and watch a wide variety of latest movies and TV shows.\n\nBesides that it's fully responsive"
   },
   {
     "id": 2,
-    "header": "How much does Netflix cost?",
-    "body": "Watch Netflix on your smartphone, tablet, smart TV, laptop or streaming device, all for one low fixed monthly fee. Plans start from £5.99 a month. No extra costs or contracts."
+    "header": "What technologies dose Nextflix use?",
+    "body": "Nextflix use Nextjs for the foundation and SSR(server side rendering), styled-components for the style, framer-motion for the animations, NextAuth for the authentication, Firebase for the database and React Hook Form for form validation."
   },
   {
     "id": 3,
