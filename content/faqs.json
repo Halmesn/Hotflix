@@ -2,26 +2,26 @@
   {
     "id": 1,
     "header": "What is Nextflix?",
-    "body": "Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers. Users can sign up, login, and watch a wide variety of latest movies and TV shows.\n\nBesides that it's fully responsive"
+    "body": "Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers. Users can sign up, log in, and watch a wide variety of latest movies and TV shows.\n\nIn addition, it's also fully responsive."
   },
   {
     "id": 2,
     "header": "What technologies dose Nextflix use?",
-    "body": "Nextflix use Nextjs for the foundation and SSR(server side rendering), styled-components for the style, framer-motion for the animations, NextAuth for the authentication, Firebase for the database and React Hook Form for form validation."
+    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, Firebase for database and React Hook Form for form validation."
   },
   {
     "id": 3,
-    "header": "Where can I watch?",
-    "body": "Watch anywhere, anytime, on an unlimited number of devices. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.\n\nYou can also download your favourite programmes with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere."
+    "header": "what can I watch on Nextflix?",
+    "body": "Due to copyright issues, you can only watch trailers of the movies or TV shows, sorry about that!"
   },
   {
     "id": 4,
-    "header": "How do I cancel?",
-    "body": "Netflix is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account at any time."
+    "header": "Is there any trial account?",
+    "body": "Yes! Definitely! Just login with\nusername:text@nextfilx.com\npassword:nextflix\n and try it out!"
   },
   {
     "id": 5,
-    "header": "What can I watch on Netflix?",
-    "body": "Netflix has an extensive library of feature films, documentaries, TV programmes, anime, award-winning Netflix originals, and more. Watch as much as you want, any time you want."
+    "header": "Why bother building Nextflix?",
+    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve."
   }
 ]

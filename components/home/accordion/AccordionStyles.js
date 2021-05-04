@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import * as mixins from 'styles/mixins';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { Card, Title as title } from '../feature/FeatureStyles';
 
 export const Accordion = styled(Card)`
@@ -47,23 +47,23 @@ export const Question = styled.button`
   width: 100%;
   border: 0;
   line-height: 1.3;
+  cursor: pointer;
 `;
 
-export const Icon = styled.div`
+export const Icon = styled(motion.div)`
   position: absolute;
   right: 2.6rem;
-  top: 50%;
+  top: 35%;
   transform: translateY(-50%);
   height: 2.6rem;
   width: 2.6rem;
   fill: #fff;
 `;
 
-export const Answer = styled.div`
+export const Answer = styled(motion.div)`
   display: block;
   text-align: left;
   background: #303030;
-  max-height: 0;
   overflow: hidden;
   span {
     display: inline-block;
