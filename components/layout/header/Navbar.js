@@ -9,8 +9,9 @@ export default function Navbar() {
         <Image
           src="/images/misc/logo.png"
           alt="Nextflix logo"
-          width={180}
-          height={60}
+          width={200}
+          height={65}
+          layout="responsive"
         />
       </styled.Logo>
       <styled.SignIn href="/login">Sign in</styled.SignIn>

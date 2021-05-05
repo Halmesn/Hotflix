@@ -7,7 +7,10 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
+  transition: all 0.5s;
+
+  background: ${({ showBackground }) => (showBackground ? '#141414' : 'none')};
 `;
 
 export const Nav = styled.nav`
@@ -18,7 +21,22 @@ export const Nav = styled.nav`
   justify-content: space-between;
 `;
 
-export const Logo = styled.div``;
+export const Logo = styled.div`
+  position: relative;
+  width: 20rem;
+
+  @media only screen and (max-width: 90.625em) {
+    width: 15rem;
+  }
+
+  @media only screen and (max-width: 59.375em) {
+    width: 12rem;
+  }
+
+  @media only screen and (max-width: 34.375em) {
+    width: 10rem;
+  }
+`;
 
 const NextLink = ({ children, className, href }) => (
   <Link href={href}>
@@ -36,4 +54,9 @@ export const SignIn = styled(NextLink)`
   cursor: pointer;
   align-self: start;
   margin-top: 0.7rem;
+
+  @media only screen and (max-width: 34.375em) {
+    font-size: 1.2rem;
+    margin-top: 0.3rem;
+  }
 `;
