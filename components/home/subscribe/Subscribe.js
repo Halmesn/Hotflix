@@ -16,6 +16,7 @@ export default function Subscribe() {
             id="email"
             autoComplete="email"
             minLength="5"
+            required
           />
           <styled.Label htmlFor="email">Email address</styled.Label>
           <styled.Error>{null}</styled.Error>
