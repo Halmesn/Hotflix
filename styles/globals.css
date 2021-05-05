@@ -1,7 +1,3 @@
-/*! modern-normalize v1.0.0 https://github.com/sindresorhus/modern-normalize */
-
-@import 'node_modules/modern-normalize/modern-normalize.css';
-
 /* font */
 
 @font-face {
@@ -13,8 +9,17 @@
 
 /* global styles */
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
 :root {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,5 +31,20 @@ body {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }

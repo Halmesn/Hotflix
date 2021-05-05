@@ -1,6 +1,7 @@
 import * as styled from './AccordionStyles';
 
 import AccordionItem from './AccordionItem';
+import Subscribe from '../subscribe/Subscribe';
 
 import faqsData from 'content/faqs';
 
@@ -14,6 +15,7 @@ export default function Accordion() {
             <AccordionItem key={id} header={header} body={body} />
           ))}
         </styled.ItemContainer>
+        <Subscribe />
       </styled.Wrapper>
     </styled.Accordion>
   );

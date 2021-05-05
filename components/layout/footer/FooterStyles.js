@@ -29,26 +29,25 @@ export const Wrapper = styled.div`
 export const LinkContainer = styled.ul`
   max-width: 100rem;
   font-size: 1.3rem;
-  padding: 0;
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media only screen and (max-width: 46.25em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const Link = styled.li`
   display: inline-block;
   margin-bottom: 1.6rem;
   min-width: 10rem;
-  width: 25%;
   padding-right: 1.2rem;
   vertical-align: top;
   line-height: 1.3;
-
-  @media only screen and (max-width: 46.25em) {
-    width: 33%;
-  }
-
-  @media only screen and (max-width: 31.25em) {
-    width: 50%;
-  }
 
   ${mixins.footerLink}
 `;
