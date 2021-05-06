@@ -27,7 +27,7 @@ export default function Subscribe() {
             onChange={onInputChange}
           />
           <styled.Label htmlFor="email">Email address</styled.Label>
-          <styled.Error>{null}</styled.Error>
+          {/* <styled.Error>{null}</styled.Error> */}
         </styled.InputField>
         <styled.SubmitBtn>
           Get Started

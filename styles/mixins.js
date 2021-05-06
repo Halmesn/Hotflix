@@ -42,3 +42,11 @@ export const labelTransition = css`
     font-weight: 700;
   }
 `;
+
+export const labelTransitionSmall = css`
+  & + label {
+    top: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+`;

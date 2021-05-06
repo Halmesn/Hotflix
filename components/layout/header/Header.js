@@ -3,8 +3,12 @@ import * as styled from './styles';
 import Navbar from './Navbar';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+  const router = useRouter();
+  const url = router.pathname;
+
   const [showBackground, setShowBackground] = useState(false);
 
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function Header() {
   }, []);
 
   return (
-    <styled.Header showBackground={showBackground}>
+    <styled.Header showBackground={showBackground} url={url}>
       <Navbar />
     </styled.Header>
   );

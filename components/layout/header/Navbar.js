@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 export default function Navbar() {
   const router = useRouter();
   const url = router.pathname;
-  const href = url === '/signup' || url === '/signin' ? '/' : '#';
+  const href = url === '/account' ? '/' : '#';
 
   return (
     <styled.Nav>
@@ -24,7 +24,7 @@ export default function Navbar() {
           </styled.Logo>
         </a>
       </Link>
-      {url === '/' && <styled.SignIn href="/signup">Sign in</styled.SignIn>}
+      {url === '/' && <styled.SignIn href="/account">Sign in</styled.SignIn>}
     </styled.Nav>
   );
 }

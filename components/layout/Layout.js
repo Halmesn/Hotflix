@@ -11,7 +11,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       <main>{children}</main>
-      {url === '/signup' || url === '/signin' || <Footer />}
+      {url === '/account' || <Footer />}
     </>
   );
 }
