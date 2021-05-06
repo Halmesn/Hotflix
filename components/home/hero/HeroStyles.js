@@ -7,6 +7,14 @@ export const Hero = styled.section`
   display: grid;
   place-items: center;
   color: #fff;
+
+  @media only screen and (max-width: 90.625em) {
+    height: 70rem;
+  }
+
+  @media only screen and (max-width: 34.375em) {
+    height: 52rem;
+  }
 `;
 
 export const Background = styled.div`

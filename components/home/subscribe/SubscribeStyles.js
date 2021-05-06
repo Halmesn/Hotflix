@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { labelTransition } from 'styles/mixins';
 
 export const Subscribe = styled.form`
   padding-bottom: 3rem;
@@ -76,12 +77,10 @@ export const Input = styled.input`
     height: 4.4rem;
   }
 
+  ${({ value }) => value !== '' && labelTransition}
+
   :focus {
-    & + label {
-      top: 1.3rem;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
+    ${labelTransition}
   }
 `;
 

@@ -1,7 +1,7 @@
 import * as styled from './AccordionStyles';
 import { icon, answer } from 'styles/animationVariants';
 
-import { Close } from 'components/icons/AccordionIcon';
+import { Close } from 'components/icons/Close';
 
 import { useState } from 'react';
 

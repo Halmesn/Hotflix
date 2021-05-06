@@ -55,8 +55,15 @@ export const SignIn = styled(NextLink)`
   align-self: start;
   margin-top: 0.7rem;
 
+  @media only screen and (max-width: 90.625em) {
+    margin-top: 0rem;
+  }
+
+  @media only screen and (max-width: 59.375em) {
+    margin-top: -0.5rem;
+  }
+
   @media only screen and (max-width: 34.375em) {
     font-size: 1.2rem;
-    margin-top: 0.3rem;
   }
 `;

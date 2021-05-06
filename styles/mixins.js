@@ -34,3 +34,11 @@ export const footerLink = css`
     }
   }
 `;
+
+export const labelTransition = css`
+  & + label {
+    top: 1.3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+`;

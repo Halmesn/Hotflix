@@ -1,8 +1,16 @@
 import * as styled from './SubscribeStyles';
 
-import { RightArrow } from 'components/icons/SubscribeIcon';
+import { RightArrow } from 'components/icons/RightArrow';
+
+import { useState } from 'react';
 
 export default function Subscribe() {
+  const [inputValue, setInputValue] = useState('');
+
+  const onInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <styled.Subscribe>
       <styled.Title>
@@ -17,6 +25,8 @@ export default function Subscribe() {
             autoComplete="email"
             minLength="5"
             required
+            value={inputValue}
+            onChange={onInputChange}
           />
           <styled.Label htmlFor="email">Email address</styled.Label>
           <styled.Error>{null}</styled.Error>
