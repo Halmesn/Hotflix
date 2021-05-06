@@ -1,10 +1,17 @@
 import * as styled from './styles';
 
-import { useState } from 'react';
+import { FormContext } from './AuthForm';
+
+import { useContext } from 'react';
 
 export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    enteredEmail,
+    setEnteredEmail,
+    enteredPassword,
+    setEnteredPassword,
+    setMode,
+  } = useContext(FormContext);
 
   return (
     <>
@@ -18,9 +25,9 @@ export default function SignUp() {
               autoComplete="email"
               minLength="5"
               required
-              value={email}
+              value={enteredEmail}
               onChange={({ target }) => {
-                setEmail(target.value);
+                setEnteredEmail(target.value);
               }}
             />
             <styled.Label htmlFor="email">Email address</styled.Label>
@@ -31,9 +38,9 @@ export default function SignUp() {
               id="password"
               minLength="4"
               required
-              value={password}
+              value={enteredPassword}
               onChange={({ target }) => {
-                setPassword(target.value);
+                setEnteredPassword(target.value);
               }}
             />
             <styled.Label htmlFor="password">Password</styled.Label>
@@ -44,19 +51,15 @@ export default function SignUp() {
 
       <styled.SubForm>
         <styled.SubTitle>
-          Already a user? <span>Sign in now.</span>
+          Already a user?{' '}
+          <span
+            onClick={() => {
+              setMode('signin');
+            }}
+          >
+            Sign in now.
+          </span>
         </styled.SubTitle>
-        <styled.SubTitle center>Or sign up with</styled.SubTitle>
-        <styled.Social>
-          <styled.SocialBtn>
-            <styled.FacebookIcon />
-            Facebook
-          </styled.SocialBtn>
-          <styled.SocialBtn>
-            <styled.GoogleIcon />
-            Google
-          </styled.SocialBtn>
-        </styled.Social>
       </styled.SubForm>
     </>
   );

@@ -149,6 +149,11 @@ export const SocialBtn = styled.button`
   line-height: 1.7rem;
   text-align: center;
   letter-spacing: 0.05em;
+  transition: all 0.3s ease-out;
+
+  :hover {
+    transform: translateY(-3px);
+  }
 
   svg {
     margin-right: 1rem;
