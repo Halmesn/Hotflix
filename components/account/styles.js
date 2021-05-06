@@ -105,8 +105,19 @@ export const SubTitle = styled.p`
   ${({ center }) =>
     center &&
     css`
-      margin: 2rem auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr max-content 1fr;
+      grid-column-gap: 1.5rem;
+      align-items: center;
+      margin: 2rem 0;
+
+      &::before,
+      &::after {
+        content: '';
+        height: 1px;
+        display: block;
+        background-color: currentColor;
+      }
     `}
 
   span {
@@ -118,11 +129,18 @@ export const SubTitle = styled.p`
   }
 `;
 
-export const Social = styled.div`
+export const BtnContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1.5rem;
   margin-top: 3rem;
+
+  ${({ center }) =>
+    center &&
+    css`
+      grid-template-columns: 1fr;
+      place-items: center;
+    `}
 
   @media only screen and (max-width: 25em) {
     grid-template-columns: 1fr;
@@ -131,20 +149,20 @@ export const Social = styled.div`
   }
 `;
 
-export const SocialBtn = styled.button`
+export const OthersBtn = styled.button`
   appearance: none;
   text-decoration: none;
   background-color: transparent;
   border: 1px solid;
   border-radius: 5px;
-  color: #737373;
+  color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0px 1.2rem;
+  padding: 0 1.2rem;
   min-height: 5rem;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.6rem;
   line-height: 1.7rem;
   text-align: center;
@@ -198,5 +216,24 @@ export const GoogleIcon = () => (
       d="M16.384 2.302l-3.24 2.652a5.948 5.948 0 00-8.767 3.114L1.12 5.401A9.998 9.998 0 0110 0c2.426 0 4.651.864 6.383 2.302z"
       fill="#F14336"
     ></path>
+  </svg>
+);
+
+export const UserIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    width="20"
+    height="20"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
   </svg>
 );

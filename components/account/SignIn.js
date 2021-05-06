@@ -61,16 +61,16 @@ export default function SignIn() {
           </span>
         </styled.SubTitle>
         <styled.SubTitle center>Or sign in with</styled.SubTitle>
-        <styled.Social>
-          <styled.SocialBtn>
+        <styled.BtnContainer>
+          <styled.OthersBtn>
             <styled.FacebookIcon />
             Facebook
-          </styled.SocialBtn>
-          <styled.SocialBtn>
+          </styled.OthersBtn>
+          <styled.OthersBtn>
             <styled.GoogleIcon />
             Google
-          </styled.SocialBtn>
-        </styled.Social>
+          </styled.OthersBtn>
+        </styled.BtnContainer>
       </styled.SubForm>
     </>
   );

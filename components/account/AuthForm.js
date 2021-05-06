@@ -10,6 +10,7 @@ export const FormContext = createContext();
 
 export default function AuthForm() {
   const router = useRouter();
+  // check if query is an empty obj, if it's coming from subscribe component it'll not be empty.
   const fromSubscriber = Object.keys(router.query).length === 0;
   const subscriberEmail = router.query.email;
 

@@ -13,6 +13,12 @@ export default function SignUp() {
     setMode,
   } = useContext(FormContext);
 
+  const onTrialClick = () => {
+    setEnteredEmail('guest@nextflix.com');
+    setEnteredPassword('nextflix');
+    setMode('signin');
+  };
+
   return (
     <>
       <styled.MainForm>
@@ -60,6 +66,13 @@ export default function SignUp() {
             Sign in now.
           </span>
         </styled.SubTitle>
+        <styled.SubTitle center>Don't want to be bothered?</styled.SubTitle>
+        <styled.BtnContainer center>
+          <styled.OthersBtn onClick={onTrialClick}>
+            <styled.UserIcon />
+            Use our trial account!
+          </styled.OthersBtn>
+        </styled.BtnContainer>
       </styled.SubForm>
     </>
   );
