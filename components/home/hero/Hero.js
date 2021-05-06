@@ -1,22 +1,12 @@
-import * as styled from './HeroStyles';
+import * as styled from './styles';
 
 import Subscribe from 'components/home/subscribe/Subscribe';
-import Image from 'next/image';
+import ImageBackground from 'components/layout/background/ImageBackground';
 
 export default function Hero() {
   return (
     <styled.Hero>
-      <styled.Background>
-        <styled.ImageContainer>
-          <Image
-            src="/images/misc/background.jpg"
-            alt="movie and TV shows"
-            layout="fill"
-            objectFit="cover"
-          />
-        </styled.ImageContainer>
-        <styled.Gradient />
-      </styled.Background>
+      <ImageBackground />
       <styled.Text>
         <styled.Title>Unlimited movies, TV shows and more.</styled.Title>
         <styled.SubTitle>Watch anywhere. Cancel at any time.</styled.SubTitle>

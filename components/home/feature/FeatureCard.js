@@ -1,4 +1,4 @@
-import * as styled from './FeatureStyles';
+import * as styled from './styles';
 
 import FeatureImage from './FeatureImage';
 

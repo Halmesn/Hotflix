@@ -1,7 +1,4 @@
-import * as styled from './AccordionStyles';
-import { icon, answer } from 'styles/animationVariants';
-
-import { Close } from 'components/icons/Close';
+import * as styled from './styles';
 
 import { useState } from 'react';
 
@@ -14,11 +11,11 @@ export default function AccordionItem({ header, body }) {
     <styled.Item>
       <styled.Question onClick={toggleOpen}>
         {header}
-        <styled.Icon animate={animation} variants={icon}>
-          <Close />
+        <styled.Icon animate={animation} variants={styled.iconVariants}>
+          <styled.CloseIcon />
         </styled.Icon>
       </styled.Question>
-      <styled.Answer animate={animation} variants={answer}>
+      <styled.Answer animate={animation} variants={styled.answerVariants}>
         <span>{body}</span>
       </styled.Answer>
     </styled.Item>

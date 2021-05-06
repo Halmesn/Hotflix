@@ -1,4 +1,4 @@
-import * as styled from './HeaderStyles';
+import * as styled from './styles';
 
 import Image from 'next/image';
 import Link from 'next/link';

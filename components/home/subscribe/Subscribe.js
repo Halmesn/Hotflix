@@ -1,6 +1,4 @@
-import * as styled from './SubscribeStyles';
-
-import { RightArrow } from 'components/icons/RightArrow';
+import * as styled from './styles';
 
 import { useState } from 'react';
 
@@ -33,7 +31,7 @@ export default function Subscribe() {
         </styled.InputField>
         <styled.SubmitBtn>
           Get Started
-          <RightArrow />
+          <styled.RightArrow />
         </styled.SubmitBtn>
       </styled.Wrapper>
     </styled.Subscribe>

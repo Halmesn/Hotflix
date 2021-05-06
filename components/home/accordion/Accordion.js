@@ -1,4 +1,4 @@
-import * as styled from './AccordionStyles';
+import * as styled from './styles';
 
 import AccordionItem from './AccordionItem';
 import Subscribe from '../subscribe/Subscribe';

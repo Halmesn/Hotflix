@@ -1,4 +1,4 @@
-import * as styled from './FooterStyles';
+import * as styled from './styles';
 import { homeFooterLinks } from 'content/homeFooterLinks';
 
 export default function FooterContent() {
