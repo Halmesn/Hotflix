@@ -9,7 +9,7 @@ export default function Hero() {
       <styled.Background>
         <styled.ImageContainer>
           <Image
-            src="/images/hero/home-bg.jpg"
+            src="/images/misc/background.jpg"
             alt="movie and TV shows"
             layout="fill"
             objectFit="cover"

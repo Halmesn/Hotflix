@@ -7,7 +7,7 @@
   {
     "id": 2,
     "header": "What techs dose Nextflix use?",
-    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, and Firebase for database."
+    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, and MongoDB for database."
   },
   {
     "id": 3,
@@ -17,7 +17,7 @@
   {
     "id": 4,
     "header": "Is there any trial account?",
-    "body": "Yes! Definitely! Just login with\n\nusername: guest@nextfilx.com\npassword: nextflix\n\nand try it out!"
+    "body": "Yes! Definitely! Just log in with\n\nusername: guest@nextfilx.com\npassword: nextflix\n\nand try it out!"
   },
   {
     "id": 5,
