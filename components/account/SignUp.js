@@ -19,9 +19,34 @@ export default function SignUp() {
     setMode('signin');
   };
 
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      email: enteredEmail,
+      password: enteredPassword,
+    };
+
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
-      <styled.MainForm>
+      <styled.MainForm onSubmit={onFormSubmit}>
         <styled.Title>Sign up</styled.Title>
         <styled.Form>
           <styled.InputField>

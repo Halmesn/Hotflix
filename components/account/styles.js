@@ -3,11 +3,12 @@ import { labelTransitionSmall, gridCenter } from 'styles/mixins';
 
 export const Container = styled.section`
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   color: #fff;
 
   ${gridCenter}
+  grid-template-rows:1fr;
 `;
 
 export const FormWrapper = styled.div`
@@ -20,8 +21,8 @@ export const FormWrapper = styled.div`
 
   @media only screen and (max-width: 34.375em) {
     width: 100%;
-    height: 100%;
-    padding: 7rem 1.5rem 1rem;
+    min-height: 55rem;
+    padding: 5rem 1.5rem 1rem;
   }
 `;
 
@@ -46,7 +47,7 @@ export const Input = styled.input`
   width: 100%;
   border: 0;
   outline: none;
-  font-size: 1rem;
+  font-size: 1.6rem;
   background: #333;
   border-radius: 4px;
   height: 5rem;
@@ -180,7 +181,7 @@ export const OthersBtn = styled.button`
 
 export const FacebookIcon = () => (
   <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0)">
+    <g clipPath="url(#clip0)">
       <path
         d="M18.896 0H1.103C.493 0 0 .495 0 1.104v17.793C0 19.507.495 20 1.104 20h17.792c.61 0 1.104-.494 1.104-1.104V1.103C20 .493 19.506 0 18.896 0z"
         fill="#4267B2"
@@ -222,7 +223,6 @@ export const GoogleIcon = () => (
 export const UserIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -230,9 +230,9 @@ export const UserIcon = () => (
     height="20"
   >
     <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
       d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
     />
   </svg>

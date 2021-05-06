@@ -1,5 +1,7 @@
 import Authentication from 'components/account/Authentication';
+
 import Head from 'next/head';
+import { getSession } from 'next-auth/client';
 
 export default function Account() {
   return (
@@ -10,4 +12,19 @@ export default function Account() {
       <Authentication />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/browse',
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: { session } };
 }
