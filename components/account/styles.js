@@ -23,7 +23,7 @@ export const FormWrapper = styled.div`
 
   @media only screen and (max-width: 34.375em) {
     width: 100%;
-    height: 80%;
+    height: 85%;
     padding: 6rem 1.5rem 1rem;
   }
 `;
