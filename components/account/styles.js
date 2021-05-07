@@ -5,11 +5,16 @@ export const Container = styled.section`
   position: relative;
   height: 100vh;
   /* height: calc(var(--vh, 1vh) * 100); */
-  min-height: -webkit-fill-available;
+  /* min-height: -webkit-fill-available; */
   width: 100%;
   color: #fff;
 
   ${gridCenter}
+
+  @media only screen and (max-width: 34.375em) {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
 `;
 
 export const FormWrapper = styled.div`
