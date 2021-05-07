@@ -6,6 +6,7 @@ import Head from 'next/head';
 //utilities
 
 //dependencies
+import { Provider } from 'next-auth/client';
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="images/favicon.ico" />
       </Head>
       <Layout>
-        <Component {...pageProps} />
+        <Provider session={pageProps.session}>
+          <Component {...pageProps} />
+        </Provider>
       </Layout>
     </>
   );

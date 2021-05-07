@@ -77,11 +77,12 @@ export default function AuthForm({ formState }) {
       if (!result.error) {
         setIsLoading(false);
         setError(null);
-        console.log(result);
         router.replace('/browse');
       }
     }
   };
+
+  const onFacebookSignIn = () => {};
 
   return (
     <styled.FormWrapper>
@@ -165,7 +166,7 @@ export default function AuthForm({ formState }) {
                 <styled.FacebookIcon />
                 Facebook
               </styled.OthersBtn>
-              <styled.OthersBtn>
+              <styled.OthersBtn onClick={() => signIn('google')}>
                 <styled.GoogleIcon />
                 Google
               </styled.OthersBtn>

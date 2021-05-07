@@ -7,12 +7,6 @@ export default NextAuth({
   session: {
     jwt: true,
   },
-  // only used  in development
-  callbacks: {
-    async redirect(url, baseUrl) {
-      return url;
-    },
-  },
   providers: [
     Providers.Credentials({
       async authorize({ email, password }) {
@@ -39,6 +33,14 @@ export default NextAuth({
         client.close();
         return { email: account.email };
       },
+    }),
+    Providers.Facebook({
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
+    }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
 });

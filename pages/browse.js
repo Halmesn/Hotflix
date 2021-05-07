@@ -14,7 +14,7 @@ export default function Browse() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getSession(context);
 
   if (!session) {
     return {
