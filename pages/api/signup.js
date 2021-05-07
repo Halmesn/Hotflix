@@ -17,7 +17,7 @@ async function handler(req, res) {
   if (req.method === 'POST') {
     const isExisting = await client
       .db()
-      .collection('users')
+      .collection('accounts')
       .findOne({ email: email });
     if (isExisting) {
       res
@@ -33,7 +33,7 @@ async function handler(req, res) {
     };
 
     try {
-      await insertDocument('users', client, formData);
+      await insertDocument('accounts', client, formData);
       res.status(201).json({ message: 'Successfully signed up!' });
     } catch (error) {
       res

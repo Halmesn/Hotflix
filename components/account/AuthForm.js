@@ -1,6 +1,17 @@
 import * as styled from './styles';
 
+import FormSpinner from './FormSpinner';
+import { signIn } from 'next-auth/client';
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 export default function AuthForm({ formState }) {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
   const {
     enteredEmail,
     setEnteredEmail,
@@ -10,6 +21,11 @@ export default function AuthForm({ formState }) {
     setMode,
   } = formState;
 
+  useEffect(() => {
+    setError(null);
+    setSuccess(null);
+  }, [mode]);
+
   const onTrialClick = () => {
     setEnteredEmail('guest@nextflix.com');
     setEnteredPassword('nextflix');
@@ -18,12 +34,14 @@ export default function AuthForm({ formState }) {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
+
     const formData = {
       email: enteredEmail,
       password: enteredPassword,
     };
 
     if (mode === 'signup') {
+      setIsLoading(true);
       try {
         const response = await fetch('/api/signup', {
           method: 'POST',
@@ -35,10 +53,32 @@ export default function AuthForm({ formState }) {
 
         if (!response.ok) {
           const data = await response.json();
+          setIsLoading(false);
           throw new Error(data.message);
         }
+        setIsLoading(false);
+        setSuccess(true);
       } catch (error) {
-        console.log(error.message);
+        setError(error.message);
+        setIsLoading(false);
+      }
+    }
+
+    if (mode === 'signin') {
+      setIsLoading(true);
+      const result = await signIn('credentials', {
+        redirect: false,
+        ...formData,
+      });
+      if (result.error) {
+        setError(result.error);
+        setIsLoading(false);
+      }
+      if (!result.error) {
+        setIsLoading(false);
+        setError(null);
+        console.log(result);
+        router.replace('/browse');
       }
     }
   };
@@ -47,6 +87,19 @@ export default function AuthForm({ formState }) {
     <styled.FormWrapper>
       <styled.MainForm onSubmit={onFormSubmit}>
         <styled.Title>{mode === 'signin' ? 'Sign in' : 'Sign up'}</styled.Title>
+        {error ? <styled.Error>{error}</styled.Error> : null}
+        {success ? (
+          <styled.Success>
+            Successfully signed up! Now you can{' '}
+            <span
+              onClick={() => {
+                setMode('signin');
+              }}
+            >
+              sign in.
+            </span>
+          </styled.Success>
+        ) : null}
         <styled.Form>
           <styled.InputField>
             <styled.Input
@@ -58,6 +111,9 @@ export default function AuthForm({ formState }) {
               value={enteredEmail}
               onChange={({ target }) => {
                 setEnteredEmail(target.value);
+              }}
+              onFocus={() => {
+                setError(null);
               }}
             />
             <styled.Label htmlFor="email">Email address</styled.Label>
@@ -72,11 +128,20 @@ export default function AuthForm({ formState }) {
               onChange={({ target }) => {
                 setEnteredPassword(target.value);
               }}
+              onFocus={() => {
+                setError(null);
+              }}
             />
             <styled.Label htmlFor="password">Password</styled.Label>
           </styled.InputField>
-          <styled.AuthButton>
-            {mode === 'signin' ? 'Sign in' : 'Sign up'}
+          <styled.AuthButton disabled={isLoading}>
+            {isLoading ? (
+              <FormSpinner />
+            ) : mode === 'signin' ? (
+              'Sign in'
+            ) : (
+              'Sign up'
+            )}
           </styled.AuthButton>
         </styled.Form>
       </styled.MainForm>

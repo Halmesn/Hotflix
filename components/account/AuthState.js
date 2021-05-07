@@ -1,5 +1,3 @@
-import * as Styled from './styles';
-
 import AuthForm from './AuthForm';
 
 import { useState, useEffect } from 'react';

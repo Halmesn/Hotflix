@@ -1,7 +1,16 @@
-import { getSession } from 'next-auth/client';
+import { getSession, signOut } from 'next-auth/client';
 
 export default function Browse() {
-  return <div></div>;
+  return (
+    <div>
+      <button
+        onClick={() => {
+          signOut({ callbackUrl: '/' });
+        }}
+        style={{ width: '20rem', height: '20rem' }}
+      ></button>
+    </div>
+  );
 }
 
 export async function getServerSideProps(context) {

@@ -10,9 +10,6 @@ export const Container = styled.section`
   ${gridCenter}
   @media only screen and (max-width: 34.375em) {
     place-items: start;
-    min-height: -moz-available; /* WebKit-based browsers will ignore this. */
-    min-height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-    min-height: fill-available;
   }
 `;
 
@@ -80,10 +77,21 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.p`
-  color: #ffa00a;
+  background: #e87c03;
+  color: #fff;
+  border-radius: 4px;
   text-align: left;
-  padding: 0.6rem 0.3rem;
-  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+`;
+
+export const Success = styled(Error)`
+  background: #43a047;
+  span {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export const AuthButton = styled.button`
@@ -98,6 +106,13 @@ export const AuthButton = styled.button`
   border-radius: 4px;
   margin-top: 3rem;
   cursor: pointer;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      filter: brightness(0.6);
+      padding: 1.2rem;
+    `}
 `;
 
 export const SubForm = styled.div`
@@ -185,6 +200,45 @@ export const OthersBtn = styled.button`
 
   svg {
     margin-right: 1rem;
+  }
+`;
+
+export const Spinner = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  div {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+
+    :nth-child(1) {
+      animation-delay: -0.45s;
+    }
+
+    :nth-child(2) {
+      animation-delay: -0.3s;
+    }
+
+    :nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
