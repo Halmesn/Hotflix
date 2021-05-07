@@ -1,13 +1,13 @@
 import * as Styled from './styles';
 
 import ImageBackground from 'components/layout/background/ImageBackground';
-import AuthForm from './AuthForm';
+import AuthState from './AuthState';
 
 export default function Authentication() {
   return (
     <Styled.Container>
       <ImageBackground />
-      <AuthForm />
+      <AuthState />
     </Styled.Container>
   );
 }

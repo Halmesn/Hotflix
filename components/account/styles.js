@@ -10,6 +10,9 @@ export const Container = styled.section`
   ${gridCenter}
   @media only screen and (max-width: 34.375em) {
     place-items: start;
+    min-height: -moz-available; /* WebKit-based browsers will ignore this. */
+    min-height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    min-height: fill-available;
   }
 `;
 
@@ -83,7 +86,7 @@ export const Error = styled.p`
   font-size: 1.5rem;
 `;
 
-export const ActionButton = styled.button`
+export const AuthButton = styled.button`
   width: 100%;
   background: #e50914;
   padding: 1.6rem;
