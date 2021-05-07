@@ -20,6 +20,7 @@
 :root {
   font-size: 62.5%;
   box-sizing: border-box;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -28,6 +29,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #000;
   color: #333;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 a {
