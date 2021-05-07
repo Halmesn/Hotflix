@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 export const Header = styled.header`
-  position: fixed;
+  position: ${({ url }) =>
+    url === '/' || url === 'browse' ? 'fixed' : 'absolute'};
   top: 0;
   left: 0;
   width: 100%;

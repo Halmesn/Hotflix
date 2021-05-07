@@ -121,6 +121,10 @@ export const SubTitle = styled.p`
         display: block;
         background-color: currentColor;
       }
+
+      @media only screen and (max-width: 26.25em) {
+        margin-top: 5rem;
+      }
     `}
 
   span {
@@ -138,18 +142,18 @@ export const BtnContainer = styled.div`
   column-gap: 1.5rem;
   margin-top: 3rem;
 
+  @media only screen and (max-width: 25em) {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
   ${({ center }) =>
     center &&
     css`
       grid-template-columns: 1fr;
       place-items: center;
     `}
-
-  @media only screen and (max-width: 25em) {
-    grid-template-columns: 1fr;
-    row-gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
 `;
 
 export const OthersBtn = styled.button`
