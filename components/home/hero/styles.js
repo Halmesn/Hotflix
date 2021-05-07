@@ -29,7 +29,7 @@ export const Title = styled.h1`
   font-size: 6.4rem;
   line-height: 1.1;
   max-width: 80rem;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.1px;
 
   @media only screen and (max-width: 90.625em) {
     font-size: 5rem;
