@@ -5,12 +5,6 @@ async function handler(req, res) {
   const { email, password } = req.body;
   const hashedPassword = await hashPassword(password);
 
-  // some input validation if needed
-  //   if () {
-  //     res.status(422).json({ error: 'Invalid input!' });
-  //     return;
-  //   }
-
   let client;
 
   try {
@@ -26,7 +20,9 @@ async function handler(req, res) {
       .collection('users')
       .findOne({ email: email });
     if (isExisting) {
-      res.status(422).json({ message: 'User exists already!' });
+      res
+        .status(422)
+        .json({ message: 'Account exists already, please try again.' });
       client.close();
       return;
     }
@@ -40,7 +36,9 @@ async function handler(req, res) {
       await insertDocument('users', client, formData);
       res.status(201).json({ message: 'Successfully signed up!' });
     } catch (error) {
-      res.status(500).json({ message: 'Signing up failed' });
+      res
+        .status(500)
+        .json({ message: 'Something went wrong, signing up failed' });
     }
   }
 

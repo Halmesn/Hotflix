@@ -4,11 +4,12 @@ import { labelTransitionSmall, gridCenter } from 'styles/mixins';
 export const Container = styled.section`
   position: relative;
   height: 100vh;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  min-height: -webkit-fill-available;
   width: 100%;
   color: #fff;
 
   ${gridCenter}
-  grid-template-rows:1fr;
 `;
 
 export const FormWrapper = styled.div`
