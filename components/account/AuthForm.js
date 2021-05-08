@@ -75,7 +75,6 @@ export default function AuthForm({ formState }) {
         setIsLoading(false);
       }
       if (!result.error) {
-        setIsLoading(false);
         setError(null);
         router.replace('/browse');
       }

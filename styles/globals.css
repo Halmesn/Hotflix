@@ -7,6 +7,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Netflix Sans';
+  src: url('./fonts/NetflixSansMedium.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* global styles */
 
 *,
