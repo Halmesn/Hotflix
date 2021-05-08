@@ -29,7 +29,6 @@ export const Title = styled.h1`
   font-size: 6.4rem;
   line-height: 1.1;
   max-width: 80rem;
-  letter-spacing: 0.1px;
 
   @media only screen and (max-width: 90.625em) {
     font-size: 5rem;
@@ -38,7 +37,7 @@ export const Title = styled.h1`
 
   @media only screen and (max-width: 34.375em) {
     font-size: 2.8rem;
-    max-width: 40rem;
+    max-width: 30rem;
   }
 `;
 
@@ -49,5 +48,6 @@ export const SubTitle = styled.h2`
 
   @media only screen and (max-width: 34.375em) {
     font-size: 1.8rem;
+    margin: 1.6rem auto;
   }
 `;
