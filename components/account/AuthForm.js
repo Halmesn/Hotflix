@@ -3,6 +3,8 @@ import * as styled from './styles';
 import FormSpinner from './FormSpinner';
 import { signIn } from 'next-auth/client';
 
+import { getInputProps, getDisplayText } from 'utilities/formHelpers';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -28,7 +30,7 @@ export default function AuthForm({ formState }) {
 
   const onTrialClick = () => {
     setEnteredEmail('guest@nextflix.com');
-    setEnteredPassword('nextflix');
+    setEnteredPassword(process.env.NEXT_PUBLIC_TRIAL_ACCOUNT_PASSWORD);
     setMode('signin');
   };
 
@@ -50,7 +52,6 @@ export default function AuthForm({ formState }) {
             'Content-Type': 'application/json',
           },
         });
-
         if (!response.ok) {
           const data = await response.json();
           setIsLoading(false);
@@ -61,6 +62,7 @@ export default function AuthForm({ formState }) {
       } catch (error) {
         setError(error.message);
         setIsLoading(false);
+        setSuccess(null);
       }
     }
 
@@ -73,112 +75,75 @@ export default function AuthForm({ formState }) {
       if (result.error) {
         setError(result.error);
         setIsLoading(false);
+        return;
       }
-      if (!result.error) {
-        setError(null);
-        router.replace('/browse');
-      }
+      setError(null);
+      router.replace('/browse');
     }
   };
 
   return (
     <styled.FormWrapper>
       <styled.MainForm onSubmit={onFormSubmit}>
-        <styled.Title>{mode === 'signin' ? 'Sign in' : 'Sign up'}</styled.Title>
-        {error ? <styled.Error>{error}</styled.Error> : null}
-        {success ? (
+        <styled.Title>{getDisplayText(mode)}</styled.Title>
+        {error && <styled.Error>{error}</styled.Error>}
+        {success && (
           <styled.Success>
             Successfully signed up! Now you can{' '}
-            <span
-              onClick={() => {
-                setMode('signin');
-              }}
-            >
-              sign in.
-            </span>
+            <span onClick={() => setMode('signin')}>sign in.</span>
           </styled.Success>
-        ) : null}
+        )}
         <styled.Form>
           <styled.InputField>
             <styled.Input
-              type="email"
-              id="email"
-              autoComplete="email"
-              minLength="5"
-              required
-              value={enteredEmail}
-              onChange={({ target }) => {
-                setEnteredEmail(target.value);
-              }}
-              onFocus={() => {
-                setError(null);
-              }}
+              {...getInputProps('email', enteredEmail, setError)}
+              onChange={({ target }) => setEnteredEmail(target.value)}
             />
             <styled.Label htmlFor="email">Email address</styled.Label>
           </styled.InputField>
           <styled.InputField>
             <styled.Input
-              type="password"
-              id="password"
-              minLength="4"
-              required
-              value={enteredPassword}
-              onChange={({ target }) => {
-                setEnteredPassword(target.value);
-              }}
-              onFocus={() => {
-                setError(null);
-              }}
+              {...getInputProps('password', enteredPassword, setError)}
+              onChange={({ target }) => setEnteredPassword(target.value)}
             />
             <styled.Label htmlFor="password">Password</styled.Label>
           </styled.InputField>
           <styled.AuthButton disabled={isLoading}>
-            {isLoading ? (
-              <FormSpinner />
-            ) : mode === 'signin' ? (
-              'Sign in'
-            ) : (
-              'Sign up'
-            )}
+            {isLoading ? <FormSpinner /> : getDisplayText(mode)}
           </styled.AuthButton>
         </styled.Form>
       </styled.MainForm>
 
       <styled.SubForm>
         <styled.SubTitle>
-          {mode === 'signin' ? 'New to Nextflix?' : 'Already a user?'}{' '}
+          {getDisplayText(mode, 'subtitle')}
           <span
-            onClick={() => {
-              setMode(mode === 'signin' ? 'signup' : 'signin');
-            }}
+            onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
           >
-            {mode === 'signin' ? 'Sign up' : 'Sign in'} now.
+            {getDisplayText(mode, 'switch')} now.
           </span>
         </styled.SubTitle>
+        <styled.SubTitle center>
+          {getDisplayText(mode, 'option')}
+        </styled.SubTitle>
         {mode === 'signin' ? (
-          <>
-            <styled.SubTitle center>Or sign in with</styled.SubTitle>
-            <styled.BtnContainer>
-              <styled.OthersBtn onClick={() => signIn('google')}>
-                <styled.GoogleIcon />
-                Google
-              </styled.OthersBtn>
-              <styled.OthersBtn onClick={() => signIn('facebook')}>
-                <styled.FacebookIcon />
-                Facebook
-              </styled.OthersBtn>
-            </styled.BtnContainer>
-          </>
+          <styled.BtnContainer>
+            <styled.OthersBtn onClick={() => signIn('google')}>
+              <styled.GoogleIcon />
+              Google
+            </styled.OthersBtn>
+            <styled.OthersBtn onClick={() => signIn('facebook')}>
+              <styled.FacebookIcon />
+              Facebook
+            </styled.OthersBtn>
+          </styled.BtnContainer>
         ) : (
-          <>
-            <styled.SubTitle center>Don't want to be bothered?</styled.SubTitle>
-            <styled.BtnContainer center>
-              <styled.OthersBtn onClick={onTrialClick}>
-                <styled.UserIcon />
-                Use our trial account!
-              </styled.OthersBtn>
-            </styled.BtnContainer>
-          </>
+          <styled.BtnContainer center>
+            <styled.OthersBtn onClick={onTrialClick}>
+              <styled.UserIcon />
+              Use our trial account!
+            </styled.OthersBtn>
+          </styled.BtnContainer>
         )}
       </styled.SubForm>
     </styled.FormWrapper>
