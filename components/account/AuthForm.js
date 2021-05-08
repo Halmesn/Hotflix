@@ -81,8 +81,6 @@ export default function AuthForm({ formState }) {
     }
   };
 
-  const onFacebookSignIn = () => {};
-
   return (
     <styled.FormWrapper>
       <styled.MainForm onSubmit={onFormSubmit}>
@@ -161,13 +159,13 @@ export default function AuthForm({ formState }) {
           <>
             <styled.SubTitle center>Or sign in with</styled.SubTitle>
             <styled.BtnContainer>
-              <styled.OthersBtn>
-                <styled.FacebookIcon />
-                Facebook
-              </styled.OthersBtn>
               <styled.OthersBtn onClick={() => signIn('google')}>
                 <styled.GoogleIcon />
                 Google
+              </styled.OthersBtn>
+              <styled.OthersBtn onClick={() => signIn('facebook')}>
+                <styled.FacebookIcon />
+                Facebook
               </styled.OthersBtn>
             </styled.BtnContainer>
           </>
