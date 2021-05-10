@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const Header = styled.header`
   position: ${({ url }) =>
-    url === '/' || url === 'browse' ? 'fixed' : 'absolute'};
+    url === '/' || url === '/browse' ? 'fixed' : 'absolute'};
   top: 0;
   left: 0;
   width: 100%;
@@ -24,7 +24,7 @@ export const Nav = styled.nav`
 
 export const Logo = styled.div`
   position: relative;
-  width: 20rem;
+  width: ${({ url }) => (url === '/browse' ? '10rem' : '20rem')};
 
   @media only screen and (max-width: 90.625em) {
     width: 15rem;

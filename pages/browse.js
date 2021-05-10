@@ -1,21 +1,13 @@
-import { getSession, signOut } from 'next-auth/client';
+import Content from 'components/browse/Content';
+
+import { getSession } from 'next-auth/client';
 
 export default function Browse() {
-  return (
-    <div>
-      <button
-        onClick={() => {
-          signOut({ callbackUrl: '/' });
-        }}
-        style={{ width: '20rem', height: '20rem' }}
-      ></button>
-    </div>
-  );
+  return <Content />;
 }
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  console.log(session);
 
   if (!session) {
     return {
@@ -25,6 +17,5 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
   return { props: { session } };
 }

@@ -1,17 +1,18 @@
 import Footer from './footer/Footer';
 import Header from './header/Header';
 
-import { useRouter } from 'next/router';
+import { useState, createContext } from 'react';
+
+export const UserState = createContext();
 
 export default function Layout({ children }) {
-  const router = useRouter();
-  const url = router.pathname;
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <>
+    <UserState.Provider value={{ currentUser, setCurrentUser }}>
       <Header />
       <main>{children}</main>
-      {url === '/account' || <Footer />}
-    </>
+      <Footer />
+    </UserState.Provider>
   );
 }

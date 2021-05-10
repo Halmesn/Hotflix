@@ -1,19 +1,23 @@
 import * as styled from './styles';
 
+import { UserState } from 'components/layout/Layout';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 
 export default function Navbar() {
   const router = useRouter();
   const url = router.pathname;
   const href = url === '/account' ? '/' : '#';
+  const { currentUser } = useContext(UserState);
 
   return (
     <styled.Nav>
       <Link href={href}>
         <a>
-          <styled.Logo>
+          <styled.Logo url={url}>
             <Image
               src="/images/misc/logo.png"
               alt="Nextflix logo"

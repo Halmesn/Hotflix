@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as mixins from 'styles/mixins';
 
 export const Footer = styled.footer`
@@ -10,6 +10,14 @@ export const Footer = styled.footer`
   @media only screen and (min-width: 34.375em) {
     padding: 7rem 4.5rem 0 4.5rem;
   }
+
+  ${({ url, currentUser }) => {
+    if ((url === '/browse' && !currentUser) || url === '/account') {
+      return css`
+        display: none;
+      `;
+    }
+  }};
 `;
 
 export const ContentContainer = styled.div`
