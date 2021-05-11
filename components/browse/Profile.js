@@ -11,7 +11,6 @@ export default function Profile({ profile, setProfile }) {
   );
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
-  const [isManaging, setIsManaging] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const isNameExisting = profile.some((item) => item.name === inputValue);
 
@@ -154,7 +153,6 @@ export default function Profile({ profile, setProfile }) {
           <styled.ActionButton
             onClick={() => {
               setProfileState('manage');
-              setIsManaging(true);
             }}
           >
             MANAGE PROFILES
@@ -288,7 +286,6 @@ export default function Profile({ profile, setProfile }) {
                 setProfile(profileCopy);
                 setSelectedAvatar(null);
                 setEditingUser(null);
-                setIsManaging(false);
                 setInputValue('');
                 setProfileState('manage');
               }}
@@ -300,7 +297,6 @@ export default function Profile({ profile, setProfile }) {
                 resetProfilePage(profile, setProfileState);
                 setSelectedAvatar(null);
                 setEditingUser(null);
-                setIsManaging(false);
                 setInputValue('');
               }}
             >
@@ -338,6 +334,7 @@ export default function Profile({ profile, setProfile }) {
                 );
                 profileCopy.splice(index, 1);
                 setEditingUser(null);
+                setInputValue('');
                 setProfile(profileCopy);
                 resetProfilePage(profileCopy, setProfileState);
               }}
