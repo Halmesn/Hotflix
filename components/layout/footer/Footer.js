@@ -10,10 +10,10 @@ import { useContext } from 'react';
 export default function Footer() {
   const router = useRouter();
   const url = router.pathname;
-  const { currentUser } = useContext(UserState);
+  const { selectedProfile } = useContext(UserState);
 
   return (
-    <styled.Footer url={url} currentUser={currentUser}>
+    <styled.Footer url={url} selectedProfile={selectedProfile}>
       <FooterContent />
     </styled.Footer>
   );

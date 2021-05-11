@@ -11,7 +11,7 @@ export default function Navbar() {
   const router = useRouter();
   const url = router.pathname;
   const href = url === '/account' ? '/' : '#';
-  const { currentUser } = useContext(UserState);
+  const { selectedProfile } = useContext(UserState);
 
   return (
     <styled.Nav>

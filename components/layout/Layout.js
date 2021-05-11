@@ -6,10 +6,10 @@ import { useState, createContext } from 'react';
 export const UserState = createContext();
 
 export default function Layout({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
   return (
-    <UserState.Provider value={{ currentUser, setCurrentUser }}>
+    <UserState.Provider value={{ selectedProfile, setSelectedProfile }}>
       <Header />
       <main>{children}</main>
       <Footer />

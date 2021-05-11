@@ -9,8 +9,8 @@ export default function Profile({ profile, setProfile, userEmail }) {
   const [profileState, setProfileState] = useState('empty');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
-  const [inputValue, setInputValue] = useState('');
-  const isNameExisting = profile.some((item) => item.name === inputValue);
+  const [displayName, setDisplayName] = useState('');
+  const isNameExisting = profile.some((item) => item.name === displayName);
 
   useEffect(() => {
     setProfileState(!profile || profile.length === 0 ? 'empty' : 'normal');
@@ -18,7 +18,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
 
   const nameStrictCheck = () => {
     const otherProfiles = profile.filter(({ name }) => name !== editingUser);
-    return otherProfiles.some((item) => item.name === inputValue);
+    return otherProfiles.some((item) => item.name === displayName);
   };
 
   const renderAvatars = () => {
@@ -92,8 +92,8 @@ export default function Profile({ profile, setProfile, userEmail }) {
             <styled.EditIcon />
           </styled.Wrapper>
           <styled.Input
-            value={inputValue}
-            onChange={({ target }) => setInputValue(target.value)}
+            value={displayName}
+            onChange={({ target }) => setDisplayName(target.value)}
             placeholder="Display Name"
           />
           {isNameExisting && (
@@ -109,17 +109,17 @@ export default function Profile({ profile, setProfile, userEmail }) {
           <styled.Wrapper>
             <styled.ActionButton
               white
-              disabled={inputValue === '' || isNameExisting || !selectedAvatar}
+              disabled={displayName === '' || isNameExisting || !selectedAvatar}
               onClick={() => {
                 setProfile([
                   ...profile,
                   {
-                    name: inputValue,
+                    name: displayName,
                     avatar: selectedAvatar || '/images/avatars/placeholder.png',
                   },
                 ]);
                 setSelectedAvatar(null);
-                setInputValue('');
+                setDisplayName('');
                 setProfileState('normal');
               }}
             >
@@ -129,7 +129,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
               onClick={() => {
                 resetProfilePage(profile, setProfileState);
                 setSelectedAvatar(null);
-                setInputValue('');
+                setDisplayName('');
               }}
             >
               CANCEL
@@ -217,7 +217,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
                 key={item.avatar}
                 onClick={() => {
                   setEditingUser(item.name);
-                  setInputValue(item.name);
+                  setDisplayName(item.name);
                   setProfileState('edit');
                 }}
               >
@@ -265,8 +265,8 @@ export default function Profile({ profile, setProfile, userEmail }) {
             <styled.EditIcon />
           </styled.Wrapper>
           <styled.Input
-            value={inputValue}
-            onChange={({ target }) => setInputValue(target.value)}
+            value={displayName}
+            onChange={({ target }) => setDisplayName(target.value)}
           />
           {nameStrictCheck() && (
             <styled.InputError>
@@ -276,19 +276,19 @@ export default function Profile({ profile, setProfile, userEmail }) {
           <styled.Wrapper>
             <styled.ActionButton
               white
-              disabled={inputValue === '' || nameStrictCheck()}
+              disabled={displayName === '' || nameStrictCheck()}
               onClick={() => {
                 const profileCopy = [...profile];
                 const index = profileCopy.findIndex(
                   (item) => item.name === editingUser
                 );
-                profileCopy[index].name = inputValue;
+                profileCopy[index].name = displayName;
                 profileCopy[index].avatar =
                   selectedAvatar || profileCopy[index].avatar;
                 setProfile(profileCopy);
                 setSelectedAvatar(null);
                 setEditingUser(null);
-                setInputValue('');
+                setDisplayName('');
                 setProfileState('manage');
               }}
             >
@@ -299,7 +299,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
                 resetProfilePage(profile, setProfileState);
                 setSelectedAvatar(null);
                 setEditingUser(null);
-                setInputValue('');
+                setDisplayName('');
               }}
             >
               CANCEL
@@ -340,7 +340,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
                   ) || [];
                 profileCopy.splice(index, 1);
                 setEditingUser(null);
-                setInputValue('');
+                setDisplayName('');
                 setProfile(profileCopy);
                 const userToBeUpdated = accountsArray.find(
                   (account) => account.email === userEmail

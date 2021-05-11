@@ -11,8 +11,8 @@ export const Footer = styled.footer`
     padding: 7rem 4.5rem 0 4.5rem;
   }
 
-  ${({ url, currentUser }) => {
-    if ((url === '/browse' && !currentUser) || url === '/account') {
+  ${({ url, selectedProfile }) => {
+    if ((url === '/browse' && !selectedProfile) || url === '/account') {
       return css`
         display: none;
       `;
