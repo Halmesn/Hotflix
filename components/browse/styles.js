@@ -18,36 +18,81 @@ export const Profile = styled.section`
 `;
 
 export const Container = styled.div`
-  display: grid;
-  place-items: center;
+  ${gridCenter}
+  grid-template-columns:min-content;
+  row-gap: 3rem;
   max-width: 80%;
 `;
 
-export const ProfileEdit = styled.div`
-  position: relative;
-  margin-top: 2.5rem;
+export const Title = styled.h1`
+  width: 100%;
+  color: #fff;
+  font-size: 3.5vw;
+  font-weight: 400;
+  text-align: center;
 
-  img {
-    border-radius: 4px !important;
-    cursor: pointer;
-  }
-
-  svg {
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    width: 4.3rem;
-    height: 4.3rem;
-    padding: 0.5rem;
-    background: #000;
-    cursor: pointer;
-    position: absolute;
-    bottom: 2rem;
-    left: 1rem;
+  @media screen and (max-width: 50em) {
+    font-size: 3rem;
   }
 `;
 
-export const AvatarWrapper = styled.div`
+export const Wrapper = styled.div`
+  position: relative;
+
+  &.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 2vw;
+  }
+
+  &.edit-profile {
+    img {
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    svg {
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 4.3rem;
+      height: 4.3rem;
+      padding: 0.5rem;
+      background: #000;
+      cursor: pointer;
+      position: absolute;
+      bottom: 2rem;
+      left: 1rem;
+    }
+  }
+
+  &.placeholder {
+    position: relative;
+    :hover {
+      div:first-child::after {
+        border-color: #e5e5e5;
+      }
+
+      p {
+        color: #e5e5e5;
+      }
+    }
+
+    svg {
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 2.5vw;
+      height: 2.5vw;
+      min-height: 4rem;
+      min-width: 4rem;
+      padding: 0.5rem;
+      ${positionCenter}
+      top:40%;
+      cursor: pointer;
+    }
+  }
+
   &.text {
     h1 {
       font-size: 4rem;
@@ -81,100 +126,14 @@ export const AvatarWrapper = styled.div`
   }
 `;
 
-export const AvatarHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 3rem 8rem;
-  color: #fff;
-`;
-
-export const AvatarGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-gap: 1.6rem;
-  place-content: center;
-  margin: 8rem 12.8rem;
-`;
-export const AvatarItem = styled.div`
-  img {
-    cursor: pointer;
-    border: 3px solid transparent;
-    border-radius: 0.5rem;
-    transition: all 0.1s ease-in;
-
-    :hover {
-      border: 3px solid #fff !important;
-    }
-  }
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  font-size: 1.6rem;
-  height: 6rem;
-  background: #333;
-  color: #fff;
-  padding: 1rem;
-  margin: 3rem 0;
-  border-radius: 0.25rem;
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #333;
-`;
-
-export const ProfileControl = styled.div``;
-
-export const Title = styled.h1`
-  width: 100%;
-  color: #fff;
-  font-size: 3.5vw;
-  font-weight: 400;
-  text-align: center;
-
-  @media screen and (max-width: 50em) {
-    font-size: 3rem;
-  }
-`;
-
-export const AvatarList = styled.ul`
-  list-style: none;
-  margin: 2em 0;
-`;
-
-export const AvatarContainer = styled.li`
-  position: relative;
-
-  :hover {
-    div:first-child::after {
-      border-color: #e5e5e5;
-    }
-
-    p {
-      color: #e5e5e5;
-    }
-  }
-
-  svg {
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    width: 4.8rem;
-    height: 4.8rem;
-    padding: 0.5rem;
-    ${positionCenter}
-    top:40%;
-    cursor: pointer;
-  }
-`;
-
-export const Avatar = styled.div`
+export const Placeholder = styled.div`
   position: relative;
   height: 10vw;
   width: 10vw;
   max-height: 20rem;
   max-width: 20rem;
-  min-height: 8.4rem;
-  min-width: 8.4rem;
+  min-height: 14rem;
+  min-width: 14rem;
   cursor: pointer;
   opacity: 0.5;
   background-size: cover;
@@ -206,6 +165,47 @@ export const Avatar = styled.div`
     left: 0;
     transition: all 0.1s ease-in;
   }
+`;
+
+export const AvatarHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 3rem 8rem;
+  color: #fff;
+`;
+
+export const AvatarGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1.6rem;
+  place-content: center;
+  margin: 8rem 12.8rem;
+`;
+
+export const AvatarItem = styled.div`
+  img {
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 0.5rem;
+    transition: all 0.1s ease-in;
+
+    :hover {
+      border: 3px solid #fff !important;
+    }
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  font-size: 1.6rem;
+  height: 6rem;
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #333;
 `;
 
 export const Description = styled.p`

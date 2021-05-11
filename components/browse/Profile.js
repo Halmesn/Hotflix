@@ -10,6 +10,7 @@ export default function Profile({ profile, setProfile }) {
     !profile || profile.length === 0 ? 'empty' : 'normal'
   );
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [isManaging, setIsManaging] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -46,13 +47,16 @@ export default function Profile({ profile, setProfile }) {
       return (
         <styled.Container>
           <styled.Title>Add a new profile to start</styled.Title>
-          <styled.AvatarList>
-            <styled.AvatarContainer onClick={() => setProfileState('add')}>
-              <styled.Avatar />
+          <styled.Wrapper>
+            <styled.Wrapper
+              onClick={() => setProfileState('add')}
+              className="placeholder"
+            >
+              <styled.Placeholder />
               <styled.Description>Add profile</styled.Description>
               <styled.AddIcon />
-            </styled.AvatarContainer>
-          </styled.AvatarList>
+            </styled.Wrapper>
+          </styled.Wrapper>
         </styled.Container>
       );
     }
@@ -61,10 +65,9 @@ export default function Profile({ profile, setProfile }) {
       return (
         <styled.Container>
           <styled.Title>Edit Profile</styled.Title>
-          <styled.ProfileEdit
-            onClick={() => {
-              setProfileState('avatar');
-            }}
+          <styled.Wrapper
+            onClick={() => setProfileState('avatar')}
+            className="edit-profile"
           >
             <Image
               src={
@@ -72,27 +75,32 @@ export default function Profile({ profile, setProfile }) {
                   ? selectedAvatar
                   : '/images/avatars/placeholder.png'
               }
-              alt="avatar placeholder"
+              alt="avatar image"
               width={250}
               height={250}
             />
             <styled.EditIcon />
-          </styled.ProfileEdit>
+          </styled.Wrapper>
           <styled.Input
             value={inputValue}
             onChange={({ target }) => setInputValue(target.value)}
             placeholder="Display Name"
           />
-          <styled.ProfileControl>
+          <styled.Wrapper>
             <styled.ActionButton
               white
               disabled={inputValue === ''}
               onClick={() => {
                 setProfile([
                   ...profile,
-                  { name: inputValue, avatar: selectedAvatar },
+                  {
+                    name: inputValue,
+                    avatar: selectedAvatar || '/images/avatars/placeholder.png',
+                  },
                 ]);
-                setEditingUser(null);
+                setSelectedAvatar(null);
+                setInputValue('');
+                setProfileState('normal');
               }}
             >
               SAVE
@@ -100,11 +108,13 @@ export default function Profile({ profile, setProfile }) {
             <styled.ActionButton
               onClick={() => {
                 resetProfilePage(profile, setProfileState);
+                setSelectedAvatar(null);
+                setInputValue('');
               }}
             >
               CANCEL
             </styled.ActionButton>
-          </styled.ProfileControl>
+          </styled.Wrapper>
         </styled.Container>
       );
     }
@@ -113,15 +123,15 @@ export default function Profile({ profile, setProfile }) {
       return (
         <styled.Container>
           <styled.Title>Who's watching?</styled.Title>
-          <styled.AvatarList>
+          <styled.Wrapper className="profile-grid">
             {profile.map((item) => (
-              <styled.AvatarContainer key={item.avatar}>
-                <styled.Avatar url={item.avatar} className="light" />
+              <styled.Wrapper className="placeholder" key={item.avatar}>
+                <styled.Placeholder url={item.avatar} className="light" />
                 <styled.Description>{item.name}</styled.Description>
-              </styled.AvatarContainer>
+              </styled.Wrapper>
             ))}
-          </styled.AvatarList>
-          <styled.ActionButton onClick={() => setProfileState('add')}>
+          </styled.Wrapper>
+          <styled.ActionButton onClick={() => setProfileState('manage')}>
             MANAGE PROFILES
           </styled.ActionButton>
         </styled.Container>
@@ -131,10 +141,10 @@ export default function Profile({ profile, setProfile }) {
     if (profileState === 'avatar') {
       return (
         <styled.Container>
-          <styled.AvatarWrapper>
+          <styled.Wrapper>
             <styled.AvatarHeader>
-              <styled.AvatarWrapper className="flex">
-                <styled.AvatarWrapper
+              <styled.Wrapper className="flex">
+                <styled.Wrapper
                   className="arrow"
                   onClick={() => {
                     if (!editingUser) {
@@ -145,22 +155,52 @@ export default function Profile({ profile, setProfile }) {
                   }}
                 >
                   <styled.LeftArrow />
-                </styled.AvatarWrapper>
-                <styled.AvatarWrapper className="text">
+                </styled.Wrapper>
+                <styled.Wrapper className="text">
                   <h1>Edit Profile</h1>
                   <p>Choose a profile icon.</p>
-                </styled.AvatarWrapper>
-              </styled.AvatarWrapper>
-              <styled.AvatarWrapper className="flex"></styled.AvatarWrapper>
+                </styled.Wrapper>
+              </styled.Wrapper>
+              <styled.Wrapper className="flex"></styled.Wrapper>
             </styled.AvatarHeader>
             <styled.AvatarGrid>{renderAvatars()}</styled.AvatarGrid>
-          </styled.AvatarWrapper>
+          </styled.Wrapper>
+        </styled.Container>
+      );
+    }
+
+    if (profileState === 'manage') {
+      return (
+        <styled.Container>
+          <styled.Title>Manage Profiles:</styled.Title>
+          <styled.Wrapper className="profile-grid">
+            {profile.map((item) => (
+              <styled.Wrapper className="placeholder" key={item.avatar}>
+                <styled.Placeholder url={item.avatar} />
+                <styled.Description>{item.name}</styled.Description>
+                <styled.EditIcon />
+              </styled.Wrapper>
+            ))}
+            {profile.length < 5 && (
+              <styled.Wrapper
+                onClick={() => setProfileState('add')}
+                className="placeholder"
+              >
+                <styled.Placeholder />
+                <styled.Description>Add profile</styled.Description>
+                <styled.AddIcon />
+              </styled.Wrapper>
+            )}
+          </styled.Wrapper>
+          <styled.ActionButton onClick={() => setProfileState('normal')}>
+            DONE
+          </styled.ActionButton>
         </styled.Container>
       );
     }
 
     if (profileState === 'edit') {
-      return <div>edit!</div>;
+      return <div>delete!</div>;
     }
 
     if (profileState === 'delete') {
