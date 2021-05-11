@@ -7,3 +7,13 @@ export const resetProfilePage = (profile, setProfileState) => {
     setProfileState('manage');
   }
 };
+
+const profileArray = [{ name: '', avatar: '' }];
+
+const profile = {
+  userEmail: [{ name: '', avatar: '' }],
+  userEmail2: [
+    { name: '', avatar: '' },
+    { name: '', avatar: '' },
+  ],
+};

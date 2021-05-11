@@ -2,17 +2,19 @@ import * as styled from './styles';
 
 import { resetProfilePage } from 'utilities/profileHelps';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function Profile({ profile, setProfile }) {
-  const [profileState, setProfileState] = useState(() =>
-    !profile || profile.length === 0 ? 'empty' : 'normal'
-  );
+export default function Profile({ profile, setProfile, userEmail }) {
+  const [profileState, setProfileState] = useState('empty');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const isNameExisting = profile.some((item) => item.name === inputValue);
+
+  useEffect(() => {
+    setProfileState(!profile || profile.length === 0 ? 'empty' : 'normal');
+  }, [profile]);
 
   const nameStrictCheck = () => {
     const otherProfiles = profile.filter(({ name }) => name !== editingUser);
@@ -332,10 +334,24 @@ export default function Profile({ profile, setProfile }) {
                 const index = profileCopy.findIndex(
                   (item) => item.name === editingUser
                 );
+                const accountsArray =
+                  JSON.parse(
+                    window.localStorage.getItem('nextflix-accounts')
+                  ) || [];
                 profileCopy.splice(index, 1);
                 setEditingUser(null);
                 setInputValue('');
                 setProfile(profileCopy);
+                const userToBeUpdated = accountsArray.find(
+                  (account) => account.email === userEmail
+                );
+                if (userToBeUpdated) {
+                  userToBeUpdated.profiles = profileCopy;
+                }
+                localStorage.setItem(
+                  'nextflix-accounts',
+                  JSON.stringify(accountsArray)
+                );
                 resetProfilePage(profileCopy, setProfileState);
               }}
             >
