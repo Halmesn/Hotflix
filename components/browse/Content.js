@@ -31,6 +31,7 @@ export default function Content() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const localAccounts = getLocalAccounts();
 
     if (profile.length === 0) {
