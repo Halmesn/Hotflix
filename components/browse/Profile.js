@@ -13,6 +13,12 @@ export default function Profile({ profile, setProfile }) {
   const [isManaging, setIsManaging] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  const isNameExisting = profile.some((item) => item.name === inputValue);
+
+  const nameStrictCheck = () => {
+    const otherProfiles = profile.filter(({ name }) => name !== editingUser);
+    return otherProfiles.some((item) => item.name === inputValue);
+  };
 
   const renderAvatars = () => {
     const avatars = [];
@@ -64,7 +70,7 @@ export default function Profile({ profile, setProfile }) {
     if (profileState === 'add') {
       return (
         <styled.Container>
-          <styled.Title>Edit Profile</styled.Title>
+          <styled.Title>Add Profile</styled.Title>
           <styled.Wrapper
             onClick={() => setProfileState('avatar')}
             className="edit-profile"
@@ -86,10 +92,15 @@ export default function Profile({ profile, setProfile }) {
             onChange={({ target }) => setInputValue(target.value)}
             placeholder="Display Name"
           />
+          {isNameExisting && (
+            <styled.InputError>
+              This name is already taken. Please try again.
+            </styled.InputError>
+          )}
           <styled.Wrapper>
             <styled.ActionButton
               white
-              disabled={inputValue === ''}
+              disabled={inputValue === '' || isNameExisting}
               onClick={() => {
                 setProfile([
                   ...profile,
@@ -175,7 +186,15 @@ export default function Profile({ profile, setProfile }) {
           <styled.Title>Manage Profiles:</styled.Title>
           <styled.Wrapper className="profile-grid">
             {profile.map((item) => (
-              <styled.Wrapper className="placeholder" key={item.avatar}>
+              <styled.Wrapper
+                className="placeholder"
+                key={item.avatar}
+                onClick={() => {
+                  setEditingUser(item.name);
+                  setInputValue(item.name);
+                  setProfileState('edit');
+                }}
+              >
                 <styled.Placeholder url={item.avatar} />
                 <styled.Description>{item.name}</styled.Description>
                 <styled.EditIcon />
@@ -192,7 +211,7 @@ export default function Profile({ profile, setProfile }) {
               </styled.Wrapper>
             )}
           </styled.Wrapper>
-          <styled.ActionButton onClick={() => setProfileState('normal')}>
+          <styled.ActionButton white onClick={() => setProfileState('normal')}>
             DONE
           </styled.ActionButton>
         </styled.Container>
@@ -200,7 +219,68 @@ export default function Profile({ profile, setProfile }) {
     }
 
     if (profileState === 'edit') {
-      return <div>delete!</div>;
+      return (
+        <styled.Container>
+          <styled.Title>Edit Profile</styled.Title>
+          <styled.Wrapper
+            onClick={() => setProfileState('avatar')}
+            className="edit-profile"
+          >
+            <Image
+              src={
+                selectedAvatar
+                  ? selectedAvatar
+                  : profile.find((item) => item.name === editingUser).avatar
+              }
+              alt="avatar image"
+              width={250}
+              height={250}
+            />
+            <styled.EditIcon />
+          </styled.Wrapper>
+          <styled.Input
+            value={inputValue}
+            onChange={({ target }) => setInputValue(target.value)}
+          />
+          {nameStrictCheck() && (
+            <styled.InputError>
+              This name is already taken. Please try again.
+            </styled.InputError>
+          )}
+          <styled.Wrapper>
+            <styled.ActionButton
+              white
+              disabled={inputValue === '' || nameStrictCheck()}
+              onClick={() => {
+                const profileCopy = [...profile];
+                const index = profileCopy.findIndex(
+                  (item) => item.name === editingUser
+                );
+                profileCopy[index].name = inputValue;
+                profileCopy[index].avatar =
+                  selectedAvatar || profileCopy[index].avatar;
+                setProfile(profileCopy);
+                setSelectedAvatar(null);
+                setEditingUser(null);
+                setInputValue('');
+                setProfileState('normal');
+              }}
+            >
+              SAVE
+            </styled.ActionButton>
+            <styled.ActionButton
+              onClick={() => {
+                resetProfilePage(profile, setProfileState);
+                setSelectedAvatar(null);
+                setEditingUser(null);
+                setInputValue('');
+              }}
+            >
+              CANCEL
+            </styled.ActionButton>
+          </styled.Wrapper>
+        </styled.Container>
+      );
     }
 
     if (profileState === 'delete') {

@@ -19,7 +19,6 @@ export const Profile = styled.section`
 
 export const Container = styled.div`
   ${gridCenter}
-  grid-template-columns:min-content;
   row-gap: 3rem;
   max-width: 80%;
 `;
@@ -30,6 +29,7 @@ export const Title = styled.h1`
   font-size: 3.5vw;
   font-weight: 400;
   text-align: center;
+  min-width: 100rem;
 
   @media screen and (max-width: 50em) {
     font-size: 3rem;
@@ -40,9 +40,8 @@ export const Wrapper = styled.div`
   position: relative;
 
   &.profile-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 2vw;
+    display: flex;
+    gap: 2vw;
   }
 
   &.edit-profile {
@@ -183,6 +182,7 @@ export const AvatarGrid = styled.div`
 `;
 
 export const AvatarItem = styled.div`
+  width: 100%;
   img {
     cursor: pointer;
     border: 3px solid transparent;
@@ -206,6 +206,13 @@ export const Input = styled.input`
   outline: none;
   border: none;
   border-bottom: 2px solid #333;
+  max-width: 35rem;
+`;
+
+export const InputError = styled.p`
+  margin-top: -1rem;
+  font-size: 1.4rem;
+  color: #e87c03;
 `;
 
 export const Description = styled.p`
