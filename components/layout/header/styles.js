@@ -24,7 +24,7 @@ export const Nav = styled.nav`
 
 export const Logo = styled.div`
   position: relative;
-  width: ${({ url }) => (url === '/browse' ? '10rem' : '20rem')};
+  width: ${({ url }) => (url === '/browse' ? '11rem' : '20rem')};
 
   @media only screen and (max-width: 90.625em) {
     width: 15rem;

@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/client';
 
 export default function Content() {
   const [session, loading] = useSession();
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState([]);
   const [falseLoading, setFalseLoading] = useState(false);
   const { currentUser, setCurrentUser } = useContext(UserState);
 
@@ -31,5 +31,9 @@ export default function Content() {
     setProfile(profile);
   }, []);
 
-  return currentUser ? <Billboard /> : <Profile profile={profile} />;
+  return currentUser ? (
+    <Billboard />
+  ) : (
+    <Profile profile={profile} setProfile={setProfile} />
+  );
 }
