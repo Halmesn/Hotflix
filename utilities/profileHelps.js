@@ -3,5 +3,7 @@ export const resetProfilePage = (profile, setProfileState) => {
     setProfileState('empty');
     return;
   }
-  if (profile) setProfileState('normal');
+  if (profile) {
+    setProfileState('manage');
+  }
 };

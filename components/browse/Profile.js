@@ -2,7 +2,7 @@ import * as styled from './styles';
 
 import { resetProfilePage } from 'utilities/profileHelps';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Profile({ profile, setProfile }) {
@@ -10,8 +10,8 @@ export default function Profile({ profile, setProfile }) {
     !profile || profile.length === 0 ? 'empty' : 'normal'
   );
   const [selectedAvatar, setSelectedAvatar] = useState(null);
-  const [isManaging, setIsManaging] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [isManaging, setIsManaging] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const isNameExisting = profile.some((item) => item.name === inputValue);
 
@@ -21,11 +21,13 @@ export default function Profile({ profile, setProfile }) {
   };
 
   const renderAvatars = () => {
+    const avatarUsed = profile.map((item) => item.avatar);
     const avatars = [];
     for (let count = 1; count <= 11; count++) {
       const src = `/images/avatars/Avatar_${
         count < 10 ? '0' + count : count
       }.png`;
+      const className = avatarUsed.find((item) => item === src) ? 'used' : '';
       avatars.push(
         <styled.AvatarItem key={`${src}_grid`}>
           <Image
@@ -33,6 +35,7 @@ export default function Profile({ profile, setProfile }) {
             alt="nextflix avatar"
             width={200}
             height={200}
+            className={`avatar ${className}`}
             onClick={() => {
               setSelectedAvatar(src);
               if (!editingUser) {
@@ -97,10 +100,15 @@ export default function Profile({ profile, setProfile }) {
               This name is already taken. Please try again.
             </styled.InputError>
           )}
+          {!selectedAvatar && (
+            <styled.InputError>
+              Please choose a unique avatar.
+            </styled.InputError>
+          )}
           <styled.Wrapper>
             <styled.ActionButton
               white
-              disabled={inputValue === '' || isNameExisting}
+              disabled={inputValue === '' || isNameExisting || !selectedAvatar}
               onClick={() => {
                 setProfile([
                   ...profile,
@@ -142,7 +150,13 @@ export default function Profile({ profile, setProfile }) {
               </styled.Wrapper>
             ))}
           </styled.Wrapper>
-          <styled.ActionButton onClick={() => setProfileState('manage')}>
+
+          <styled.ActionButton
+            onClick={() => {
+              setProfileState('manage');
+              setIsManaging(true);
+            }}
+          >
             MANAGE PROFILES
           </styled.ActionButton>
         </styled.Container>
@@ -172,7 +186,19 @@ export default function Profile({ profile, setProfile }) {
                   <p>Choose a profile icon.</p>
                 </styled.Wrapper>
               </styled.Wrapper>
-              <styled.Wrapper className="flex"></styled.Wrapper>
+              {editingUser && (
+                <styled.Wrapper className="flex">
+                  <p>{editingUser}</p>
+                  <Image
+                    src={
+                      profile.find(({ name }) => name === editingUser).avatar
+                    }
+                    alt="avatar image"
+                    width={60}
+                    height={60}
+                  />
+                </styled.Wrapper>
+              )}
             </styled.AvatarHeader>
             <styled.AvatarGrid>{renderAvatars()}</styled.AvatarGrid>
           </styled.Wrapper>
@@ -262,8 +288,9 @@ export default function Profile({ profile, setProfile }) {
                 setProfile(profileCopy);
                 setSelectedAvatar(null);
                 setEditingUser(null);
+                setIsManaging(false);
                 setInputValue('');
-                setProfileState('normal');
+                setProfileState('manage');
               }}
             >
               SAVE
@@ -273,10 +300,18 @@ export default function Profile({ profile, setProfile }) {
                 resetProfilePage(profile, setProfileState);
                 setSelectedAvatar(null);
                 setEditingUser(null);
+                setIsManaging(false);
                 setInputValue('');
               }}
             >
               CANCEL
+            </styled.ActionButton>
+            <styled.ActionButton
+              onClick={() => {
+                setProfileState('delete');
+              }}
+            >
+              DELETE PROFILE
             </styled.ActionButton>
           </styled.Wrapper>
         </styled.Container>
@@ -284,7 +319,41 @@ export default function Profile({ profile, setProfile }) {
     }
 
     if (profileState === 'delete') {
-      return <div>delete!</div>;
+      return (
+        <styled.Container>
+          <styled.Wrapper className="delete">
+            <styled.Title>Confirm Deletion</styled.Title>
+            <p>
+              Are you sure you want to delete this profile? You will not be able
+              to revert this process.
+            </p>
+          </styled.Wrapper>
+          <styled.Wrapper>
+            <styled.ActionButton
+              white
+              onClick={() => {
+                const profileCopy = [...profile];
+                const index = profileCopy.findIndex(
+                  (item) => item.name === editingUser
+                );
+                profileCopy.splice(index, 1);
+                setEditingUser(null);
+                setProfile(profileCopy);
+                resetProfilePage(profileCopy, setProfileState);
+              }}
+            >
+              YES
+            </styled.ActionButton>
+            <styled.ActionButton
+              onClick={() => {
+                setProfileState('edit');
+              }}
+            >
+              CANCEL
+            </styled.ActionButton>
+          </styled.Wrapper>
+        </styled.Container>
+      );
     }
   };
 

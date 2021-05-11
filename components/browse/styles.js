@@ -39,6 +39,19 @@ export const Title = styled.h1`
 export const Wrapper = styled.div`
   position: relative;
 
+  &.delete {
+    max-width: 60rem;
+    text-align: center;
+    h1 {
+      min-width: auto;
+    }
+    p {
+      color: #fff;
+      margin: 3rem 3rem 0;
+      font-size: 2rem;
+    }
+  }
+
   &.profile-grid {
     display: flex;
     gap: 2vw;
@@ -108,6 +121,15 @@ export const Wrapper = styled.div`
   &.flex {
     display: flex;
     align-items: center;
+
+    p {
+      font-size: 2.8rem;
+      margin-right: 1rem;
+    }
+
+    img {
+      border-radius: 4px;
+    }
   }
 
   &.arrow {
@@ -176,21 +198,26 @@ export const AvatarHeader = styled.div`
 export const AvatarGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-gap: 1.6rem;
+  grid-gap: 0.6vw;
   place-content: center;
   margin: 8rem 12.8rem;
 `;
 
 export const AvatarItem = styled.div`
-  width: 100%;
-  img {
+  .avatar {
     cursor: pointer;
-    border: 3px solid transparent;
+    border: 3px solid transparent !important;
     border-radius: 0.5rem;
     transition: all 0.1s ease-in;
 
     :hover {
       border: 3px solid #fff !important;
+    }
+
+    &.used {
+      pointer-events: none;
+      filter: grayscale(1);
+      opacity: 0.5;
     }
   }
 `;
