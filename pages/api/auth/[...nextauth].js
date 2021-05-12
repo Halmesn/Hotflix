@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { verifyPassword } from 'utilities/encryption';
-import { connectDatabase } from 'utilities/MongoDb';
+import { verifyPassword } from 'helpers/passwordHelps';
+import { connectDatabase } from 'helpers/databaseHelps';
 
 export default NextAuth({
   session: {

@@ -1,5 +1,5 @@
-import { hashPassword } from 'utilities/encryption';
-import { connectDatabase, insertDocument } from 'utilities/MongoDb';
+import { hashPassword } from 'helpers/passwordHelps';
+import { connectDatabase, insertDocument } from 'helpers/databaseHelps';
 
 async function handler(req, res) {
   const { email, password } = req.body;

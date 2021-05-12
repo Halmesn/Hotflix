@@ -221,7 +221,7 @@ export const AvatarItem = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const NameInput = styled.input`
   width: 100%;
   font-size: 1.6rem;
   height: 6rem;

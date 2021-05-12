@@ -2,26 +2,26 @@
   {
     "id": 1,
     "header": "What is Nextflix?",
-    "body": "Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers. Users can sign up, log in, and watch a wide variety of latest movies and TV shows.\n\nIn addition, it's also fully responsive."
+    "body": "Nextflix is a Netflix clone that comes with all basic functionalities Netflix offers.\n\nUsers can sign up, sign in, create, edit, delete their profile and watch a wide variety of latest TV shows as well as movies."
   },
   {
     "id": 2,
     "header": "What techs dose Nextflix use?",
-    "body": "Nextflix uses Nextjs for it's foundation and SSR(server side rendering), styled-components for style, framer-motion for animations, NextAuth for authentication, and MongoDB for database."
+    "body": "Nextflix uses React and Nextjs for it's javascript framework, styled-components for css style, framer-motion for animations, NextAuth for authentication and route protection.\n\nIt also utilizes MongoDb along with localStorage to save and retrieve user data."
   },
   {
     "id": 3,
-    "header": "what can I watch on Nextflix?",
-    "body": "Due to copyright issues, you can only watch trailers of the movies or TV shows. \n\nSorry about that!"
+    "header": "What can I watch on Nextflix?",
+    "body": "Due to copyright issues, you can only watch trailers of TV shows and movies."
   },
   {
     "id": 4,
     "header": "Is there any trial account?",
-    "body": "Yes! Definitely! Just log in with\n\nusername: guest@nextfilx.com\npassword: nextflix\n\nand try it out!"
+    "body": "Yes! Just click the 'trial account' button on the sign up page and it will automatically create a trial account for you!"
   },
   {
     "id": 5,
     "header": "Why bother building Nextflix?",
-    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve.\n\nHope you like it!"
+    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve.\n\nI hope you like it!"
   }
 ]

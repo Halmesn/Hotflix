@@ -3,7 +3,7 @@ import * as styled from './styles';
 import FormSpinner from './FormSpinner';
 import { signIn } from 'next-auth/client';
 
-import { getInputProps, getDisplayText } from 'utilities/formHelpers';
+import { getInputProps, getDisplayText } from 'helpers/authFormHelpers';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';

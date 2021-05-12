@@ -1,36 +1,124 @@
 import * as styled from './styles';
 
-import { resetProfilePage } from 'utilities/profileHelps';
+import { updateAccount, getLocalAccounts } from 'helpers/profileHelps';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { signOut } from 'next-auth/client';
 
 export default function Profile({ profile, setProfile, userEmail }) {
-  const [profileState, setProfileState] = useState('empty');
+  const [profileState, setProfileState] = useState('normal');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [displayName, setDisplayName] = useState('');
 
-  useEffect(() => {
-    setProfileState(!profile || profile.length === 0 ? 'empty' : 'normal');
-  }, [profile]);
+  // helper functions, I didn't abstract them to other file because some of them will take heaps of props.
 
-  const isNameExisting = profile.some(({ name }) => name === displayName);
-
-  const nameStrictCheck = () => {
-    const otherProfiles = profile.filter(({ name }) => name !== editingUser);
-    return otherProfiles.some(({ name }) => name === displayName);
+  const isNameExisting = () => {
+    switch (profileState) {
+      case 'add':
+        return profile.some(({ name }) => name === displayName);
+      case 'edit':
+        return profile
+          .filter(({ name }) => name !== editingUser)
+          .some(({ name }) => name === displayName);
+    }
   };
 
+  const resetProfile = (state, clearEditingUser = false) => {
+    setSelectedAvatar(null);
+    setDisplayName('');
+    setProfileState(state);
+    clearEditingUser && setEditingUser(null);
+  };
+
+  const updateProfile = (operation) => {
+    const profileCopy = [...profile];
+    const index = profileCopy.findIndex(({ name }) => name === editingUser);
+
+    switch (operation) {
+      case 'update':
+        profileCopy[index].name = displayName;
+        profileCopy[index].avatar = selectedAvatar || profileCopy[index].avatar;
+        return profileCopy;
+
+      case 'delete':
+        profileCopy.splice(index, 1);
+        return profileCopy;
+    }
+  };
+
+  // button clicks
+
+  const onSaveClick = () => {
+    switch (profileState) {
+      case 'add':
+        const addedProfile = [
+          ...profile,
+          {
+            name: displayName,
+            avatar: selectedAvatar || '/images/avatars/placeholder.png',
+          },
+        ];
+        setProfile(addedProfile);
+        resetProfile('normal');
+        return;
+
+      case 'edit':
+        const updatedProfile = updateProfile('update');
+        const state = !profile || profile.length === 0 ? 'empty' : 'manage';
+
+        setProfile(updatedProfile);
+        resetProfile(state, true);
+    }
+  };
+
+  const onCancelClick = () => {
+    const state = !profile || profile.length === 0 ? 'empty' : 'manage';
+
+    switch (profileState) {
+      case 'add':
+        resetProfile(state);
+
+      case 'edit':
+        resetProfile(state, true);
+    }
+  };
+
+  const onDeleteClick = () => {
+    const updatedProfile = updateProfile('delete');
+    setProfile(updatedProfile);
+
+    const localAccounts = getLocalAccounts();
+    updateAccount(updatedProfile, localAccounts, userEmail);
+
+    const state =
+      !updatedProfile || updatedProfile.length === 0 ? 'empty' : 'manage';
+
+    resetProfile(state, true);
+  };
+
+  const onAvatarClick = (src) => {
+    switch (profileState) {
+      case 'avatar':
+        setSelectedAvatar(src);
+        if (!editingUser) setProfileState('add');
+        else setProfileState('edit');
+
+      case 'normal':
+        return;
+    }
+  };
+
+  // render functions
+
   const renderAvatars = () => {
-    const avatarUsed = profile.map((item) => item.avatar);
     const avatars = [];
+    const avatarUsed = profile.map(({ avatar }) => avatar);
     for (let count = 1; count <= 11; count++) {
       const src = `/images/avatars/Avatar_${
         count < 10 ? '0' + count : count
       }.png`;
-      const className = avatarUsed.find((item) => item === src) ? 'used' : '';
+      const isAvatarUsed = avatarUsed.find((item) => item === src) && 'used';
       avatars.push(
         <styled.AvatarItem key={`${src}_grid`}>
           <Image
@@ -38,15 +126,8 @@ export default function Profile({ profile, setProfile, userEmail }) {
             alt="nextflix avatar"
             width={200}
             height={200}
-            className={`avatar ${className}`}
-            onClick={() => {
-              setSelectedAvatar(src);
-              if (!editingUser) {
-                setProfileState('add');
-              } else {
-                setProfileState('edit');
-              }
-            }}
+            className={`avatar ${isAvatarUsed}`}
+            onClick={() => onAvatarClick(src)}
           />
         </styled.AvatarItem>
       );
@@ -54,181 +135,79 @@ export default function Profile({ profile, setProfile, userEmail }) {
     return avatars;
   };
 
-  const renderContent = () => {
-    if (profileState === 'empty') {
-      return (
-        <styled.Container>
-          <styled.Title>Add a new profile to start</styled.Title>
-          <styled.Wrapper>
-            <styled.Wrapper
-              onClick={() => setProfileState('add')}
-              className="placeholder"
-            >
-              <styled.Placeholder />
-              <styled.Description>Add profile</styled.Description>
-              <styled.AddIcon />
-            </styled.Wrapper>
-          </styled.Wrapper>
-        </styled.Container>
-      );
-    }
+  const renderError = () => {
+    const errorMessage =
+      (isNameExisting() && 'This name is already taken. Please try again.') ||
+      (profileState === 'add' &&
+        !selectedAvatar &&
+        'Please choose a unique avatar.') ||
+      null;
+    return (
+      errorMessage && <styled.InputError>{errorMessage}</styled.InputError>
+    );
+  };
 
-    if (profileState === 'add') {
-      return (
-        <styled.Container>
-          <styled.Title>Add Profile</styled.Title>
-          <styled.Wrapper
-            onClick={() => setProfileState('avatar')}
-            className="edit-profile"
-          >
-            <Image
-              src={
-                selectedAvatar
-                  ? selectedAvatar
-                  : '/images/avatars/placeholder.png'
-              }
-              alt="avatar image"
-              width={250}
-              height={250}
-            />
-            <styled.EditIcon />
-          </styled.Wrapper>
-          <styled.Input
-            value={displayName}
-            onChange={({ target }) => setDisplayName(target.value)}
-            placeholder="Display Name"
+  const renderOperation = () => {
+    return (
+      <styled.Container>
+        <styled.Title>{`${
+          profileState === 'add' ? 'Add' : 'Edit'
+        } Profile`}</styled.Title>
+        <styled.Wrapper
+          onClick={() => setProfileState('avatar')}
+          className="edit-profile"
+        >
+          <Image
+            src={
+              selectedAvatar ||
+              (profileState === 'add'
+                ? '/images/avatars/placeholder.png'
+                : profile.find(({ name }) => name === editingUser).avatar)
+            }
+            alt="avatar image"
+            width={250}
+            height={250}
           />
-          {isNameExisting && (
-            <styled.InputError>
-              This name is already taken. Please try again.
-            </styled.InputError>
-          )}
-          {!selectedAvatar && (
-            <styled.InputError>
-              Please choose a unique avatar.
-            </styled.InputError>
-          )}
-          <styled.Wrapper>
-            <styled.ActionButton
-              white
-              disabled={displayName === '' || isNameExisting || !selectedAvatar}
-              onClick={() => {
-                setProfile([
-                  ...profile,
-                  {
-                    name: displayName,
-                    avatar: selectedAvatar || '/images/avatars/placeholder.png',
-                  },
-                ]);
-                setSelectedAvatar(null);
-                setDisplayName('');
-                setProfileState('normal');
-              }}
-            >
-              SAVE
-            </styled.ActionButton>
-            <styled.ActionButton
-              onClick={() => {
-                resetProfilePage(profile, setProfileState);
-                setSelectedAvatar(null);
-                setDisplayName('');
-              }}
-            >
-              CANCEL
-            </styled.ActionButton>
-          </styled.Wrapper>
-        </styled.Container>
-      );
-    }
-
-    if (profileState === 'normal') {
-      return (
-        <styled.Container>
-          <styled.Title>Who's watching?</styled.Title>
-          <styled.Wrapper className="profile-grid">
-            {profile.map((item) => (
-              <styled.Wrapper className="placeholder" key={item.avatar}>
-                <styled.Placeholder url={item.avatar} className="light" />
-                <styled.Description>{item.name}</styled.Description>
-              </styled.Wrapper>
-            ))}
-          </styled.Wrapper>
-
+          <styled.EditIcon />
+        </styled.Wrapper>
+        <styled.NameInput
+          value={displayName}
+          onChange={({ target }) => setDisplayName(target.value)}
+          placeholder="Display Name"
+        />
+        {renderError()}
+        <styled.Wrapper>
           <styled.ActionButton
-            onClick={() => {
-              setProfileState('manage');
-            }}
+            white
+            disabled={
+              displayName === '' ||
+              isNameExisting() ||
+              (profileState === 'add' && !selectedAvatar)
+            }
+            onClick={() => onSaveClick()}
           >
-            MANAGE PROFILES
+            SAVE
           </styled.ActionButton>
-        </styled.Container>
-      );
-    }
+          <styled.ActionButton onClick={() => onCancelClick()}>
+            CANCEL
+          </styled.ActionButton>
+          {profileState === 'edit' && (
+            <styled.ActionButton onClick={() => setProfileState('delete')}>
+              DELETE PROFILE
+            </styled.ActionButton>
+          )}
+        </styled.Wrapper>
+      </styled.Container>
+    );
+  };
 
-    if (profileState === 'avatar') {
-      return (
-        <styled.Container>
-          <styled.Wrapper>
-            <styled.AvatarHeader>
-              <styled.Wrapper className="flex">
-                <styled.Wrapper
-                  className="arrow"
-                  onClick={() => {
-                    if (!editingUser) {
-                      setProfileState('add');
-                    } else {
-                      setProfileState('edit');
-                    }
-                  }}
-                >
-                  <styled.LeftArrow />
-                </styled.Wrapper>
-                <styled.Wrapper className="text">
-                  <h1>Edit Profile</h1>
-                  <p>Choose a profile icon.</p>
-                </styled.Wrapper>
-              </styled.Wrapper>
-              {editingUser && (
-                <styled.Wrapper className="flex">
-                  <p>{editingUser}</p>
-                  <Image
-                    src={
-                      profile.find(({ name }) => name === editingUser).avatar
-                    }
-                    alt="avatar image"
-                    width={60}
-                    height={60}
-                  />
-                </styled.Wrapper>
-              )}
-            </styled.AvatarHeader>
-            <styled.AvatarGrid>{renderAvatars()}</styled.AvatarGrid>
-          </styled.Wrapper>
-        </styled.Container>
-      );
-    }
-
-    if (profileState === 'manage') {
-      return (
-        <styled.Container>
-          <styled.Title>Manage Profiles:</styled.Title>
-          <styled.Wrapper className="profile-grid">
-            {profile.map((item) => (
-              <styled.Wrapper
-                className="placeholder"
-                key={item.avatar}
-                onClick={() => {
-                  setEditingUser(item.name);
-                  setDisplayName(item.name);
-                  setProfileState('edit');
-                }}
-              >
-                <styled.Placeholder url={item.avatar} />
-                <styled.Description>{item.name}</styled.Description>
-                <styled.EditIcon />
-              </styled.Wrapper>
-            ))}
-            {profile.length < 5 && (
+  const renderContent = () => {
+    switch (profileState) {
+      case 'empty':
+        return (
+          <styled.Container>
+            <styled.Title>Add a new profile to start</styled.Title>
+            <styled.Wrapper>
               <styled.Wrapper
                 onClick={() => setProfileState('add')}
                 className="placeholder"
@@ -237,138 +216,131 @@ export default function Profile({ profile, setProfile, userEmail }) {
                 <styled.Description>Add profile</styled.Description>
                 <styled.AddIcon />
               </styled.Wrapper>
-            )}
-          </styled.Wrapper>
-          <styled.ActionButton white onClick={() => setProfileState('normal')}>
-            DONE
-          </styled.ActionButton>
-        </styled.Container>
-      );
-    }
+            </styled.Wrapper>
+          </styled.Container>
+        );
 
-    if (profileState === 'edit') {
-      return (
-        <styled.Container>
-          <styled.Title>Edit Profile</styled.Title>
-          <styled.Wrapper
-            onClick={() => setProfileState('avatar')}
-            className="edit-profile"
-          >
-            <Image
-              src={
-                selectedAvatar
-                  ? selectedAvatar
-                  : profile.find((item) => item.name === editingUser).avatar
-              }
-              alt="avatar image"
-              width={250}
-              height={250}
-            />
-            <styled.EditIcon />
-          </styled.Wrapper>
-          <styled.Input
-            value={displayName}
-            onChange={({ target }) => setDisplayName(target.value)}
-          />
-          {nameStrictCheck() && (
-            <styled.InputError>
-              This name is already taken. Please try again.
-            </styled.InputError>
-          )}
-          <styled.Wrapper>
+      case 'normal':
+        return (
+          <styled.Container>
+            <styled.Title>Who's watching?</styled.Title>
+            <styled.Wrapper className="profile-grid">
+              {profile.map(({ name, avatar }) => (
+                <styled.Wrapper className="placeholder" key={avatar}>
+                  <styled.Placeholder url={avatar} className="light" />
+                  <styled.Description>{name}</styled.Description>
+                </styled.Wrapper>
+              ))}
+            </styled.Wrapper>
+            <styled.ActionButton onClick={() => setProfileState('manage')}>
+              MANAGE PROFILES
+            </styled.ActionButton>
+          </styled.Container>
+        );
+
+      case 'add':
+      case 'edit':
+        return renderOperation();
+
+      case 'avatar':
+        return (
+          <styled.Container>
+            <styled.Wrapper>
+              <styled.AvatarHeader>
+                <styled.Wrapper className="flex">
+                  <styled.Wrapper
+                    className="arrow"
+                    onClick={() => {
+                      if (!editingUser) setProfileState('add');
+                      else setProfileState('edit');
+                    }}
+                  >
+                    <styled.LeftArrow />
+                  </styled.Wrapper>
+                  <styled.Wrapper className="text">
+                    <h1>Edit Profile</h1>
+                    <p>Choose a profile icon.</p>
+                  </styled.Wrapper>
+                </styled.Wrapper>
+                {editingUser && (
+                  <styled.Wrapper className="flex">
+                    <p>{editingUser}</p>
+                    <Image
+                      src={
+                        profile.find(({ name }) => name === editingUser).avatar
+                      }
+                      alt="avatar image"
+                      width={60}
+                      height={60}
+                    />
+                  </styled.Wrapper>
+                )}
+              </styled.AvatarHeader>
+              <styled.AvatarGrid>{renderAvatars()}</styled.AvatarGrid>
+            </styled.Wrapper>
+          </styled.Container>
+        );
+
+      case 'manage':
+        return (
+          <styled.Container>
+            <styled.Title>Manage Profiles:</styled.Title>
+            <styled.Wrapper className="profile-grid">
+              {profile.map(({ name, avatar }) => (
+                <styled.Wrapper
+                  className="placeholder"
+                  key={avatar}
+                  onClick={() => {
+                    setEditingUser(name);
+                    setDisplayName(name);
+                    setProfileState('edit');
+                  }}
+                >
+                  <styled.Placeholder url={avatar} />
+                  <styled.Description>{name}</styled.Description>
+                  <styled.EditIcon />
+                </styled.Wrapper>
+              ))}
+              {profile.length < 5 && (
+                <styled.Wrapper
+                  onClick={() => setProfileState('add')}
+                  className="placeholder"
+                >
+                  <styled.Placeholder />
+                  <styled.Description>Add profile</styled.Description>
+                  <styled.AddIcon />
+                </styled.Wrapper>
+              )}
+            </styled.Wrapper>
             <styled.ActionButton
               white
-              disabled={displayName === '' || nameStrictCheck()}
-              onClick={() => {
-                const profileCopy = [...profile];
-                const index = profileCopy.findIndex(
-                  (item) => item.name === editingUser
-                );
-                profileCopy[index].name = displayName;
-                profileCopy[index].avatar =
-                  selectedAvatar || profileCopy[index].avatar;
-                setProfile(profileCopy);
-                setSelectedAvatar(null);
-                setEditingUser(null);
-                setDisplayName('');
-                setProfileState('manage');
-              }}
+              onClick={() => setProfileState('normal')}
             >
-              SAVE
+              DONE
             </styled.ActionButton>
-            <styled.ActionButton
-              onClick={() => {
-                resetProfilePage(profile, setProfileState);
-                setSelectedAvatar(null);
-                setEditingUser(null);
-                setDisplayName('');
-              }}
-            >
-              CANCEL
-            </styled.ActionButton>
-            <styled.ActionButton
-              onClick={() => {
-                setProfileState('delete');
-              }}
-            >
-              DELETE PROFILE
-            </styled.ActionButton>
-          </styled.Wrapper>
-        </styled.Container>
-      );
-    }
+          </styled.Container>
+        );
 
-    if (profileState === 'delete') {
-      return (
-        <styled.Container>
-          <styled.Wrapper className="delete">
-            <styled.Title>Confirm Deletion</styled.Title>
-            <p>
-              Are you sure you want to delete this profile? You will not be able
-              to revert this process.
-            </p>
-          </styled.Wrapper>
-          <styled.Wrapper>
-            <styled.ActionButton
-              white
-              onClick={() => {
-                const profileCopy = [...profile];
-                const index = profileCopy.findIndex(
-                  (item) => item.name === editingUser
-                );
-                const accountsArray =
-                  JSON.parse(
-                    window.localStorage.getItem('nextflix-accounts')
-                  ) || [];
-                profileCopy.splice(index, 1);
-                setEditingUser(null);
-                setDisplayName('');
-                setProfile(profileCopy);
-                const userToBeUpdated = accountsArray.find(
-                  (account) => account.email === userEmail
-                );
-                if (userToBeUpdated) {
-                  userToBeUpdated.profiles = profileCopy;
-                }
-                localStorage.setItem(
-                  'nextflix-accounts',
-                  JSON.stringify(accountsArray)
-                );
-                resetProfilePage(profileCopy, setProfileState);
-              }}
-            >
-              YES
-            </styled.ActionButton>
-            <styled.ActionButton
-              onClick={() => {
-                setProfileState('edit');
-              }}
-            >
-              CANCEL
-            </styled.ActionButton>
-          </styled.Wrapper>
-        </styled.Container>
-      );
+      case 'delete':
+        return (
+          <styled.Container>
+            <styled.Wrapper className="delete">
+              <styled.Title>Confirm Deletion</styled.Title>
+              <p>
+                Are you sure you want to delete this profile? You will not be
+                able to revert this process.
+              </p>
+            </styled.Wrapper>
+            <styled.Wrapper>
+              <styled.ActionButton white onClick={() => onDeleteClick()}>
+                YES
+              </styled.ActionButton>
+              <styled.ActionButton onClick={() => setProfileState('edit')}>
+                CANCEL
+              </styled.ActionButton>
+            </styled.Wrapper>
+          </styled.Container>
+        );
     }
   };
 
