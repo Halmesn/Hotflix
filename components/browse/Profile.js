@@ -4,21 +4,23 @@ import { resetProfilePage } from 'utilities/profileHelps';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { signOut } from 'next-auth/client';
 
 export default function Profile({ profile, setProfile, userEmail }) {
   const [profileState, setProfileState] = useState('empty');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [displayName, setDisplayName] = useState('');
-  const isNameExisting = profile.some((item) => item.name === displayName);
 
   useEffect(() => {
     setProfileState(!profile || profile.length === 0 ? 'empty' : 'normal');
   }, [profile]);
 
+  const isNameExisting = profile.some(({ name }) => name === displayName);
+
   const nameStrictCheck = () => {
     const otherProfiles = profile.filter(({ name }) => name !== editingUser);
-    return otherProfiles.some((item) => item.name === displayName);
+    return otherProfiles.some(({ name }) => name === displayName);
   };
 
   const renderAvatars = () => {

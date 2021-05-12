@@ -20,7 +20,6 @@ export default function Content() {
   const userEmail = session.user.email;
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
     const localAccounts = getLocalAccounts();
 
     const profiles = localAccounts.find(({ email }) => email === userEmail)
@@ -31,7 +30,6 @@ export default function Content() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
     const localAccounts = getLocalAccounts();
 
     if (profile.length === 0) {

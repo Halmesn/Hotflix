@@ -29,7 +29,6 @@ export const Title = styled.h1`
   font-size: 3.5vw;
   font-weight: 400;
   text-align: center;
-  min-width: 100rem;
 
   @media screen and (max-width: 50em) {
     font-size: 3rem;
