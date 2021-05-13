@@ -19,6 +19,7 @@ export const Nav = styled.nav`
   margin: 0 auto;
   padding-top: 2rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -66,5 +67,51 @@ export const SignIn = styled(NextLink)`
 
   @media only screen and (max-width: 34.375em) {
     font-size: 1.2rem;
+  }
+`;
+
+export const Menu = styled.div`
+  margin: 0 1rem 0 2.4rem;
+  cursor: pointer;
+
+  img {
+    border-radius: 4px;
+  }
+`;
+
+export const Dropdown = styled.div`
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  position: absolute;
+  top: 6.6rem;
+  right: 4.5rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1.28rem;
+  border: 1px solid #69696979;
+  min-width: 16rem;
+  padding: 1.2rem 0;
+  transition: all 0.1s ease-in;
+
+  ${Menu}:hover & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  ${DropdownOptions}:hover & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+`;
+
+export const DropdownOptions = styled.div`
+  display: flex;
+  place-items: center;
+  padding: 0.1rem 0.25rem;
+  cursor: pointer;
+
+  &.text {
+    font-weight: 600;
+    padding: 0.75rem;
   }
 `;

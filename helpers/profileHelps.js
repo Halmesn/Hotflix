@@ -1,5 +1,5 @@
 export const createAccount = (profile, accounts, userEmail) => {
-  const newUser = {};
+  const newUser = { selectedProfile: null };
   newUser.email = userEmail;
   newUser.profiles = profile;
   const newAccounts = [...accounts, newUser];
@@ -7,10 +7,16 @@ export const createAccount = (profile, accounts, userEmail) => {
   localStorage.setItem('nextflix-accounts', JSON.stringify(newAccounts));
 };
 
-export const updateAccount = (profile, accounts, userEmail) => {
+export const updateAccount = (
+  profile,
+  accounts,
+  userEmail,
+  selectedProfile
+) => {
   const accountToBeUpdated = accounts.find(({ email }) => email === userEmail);
   if (!accountToBeUpdated) return;
   accountToBeUpdated.profiles = profile;
+  accountToBeUpdated.selectedProfile = selectedProfile;
   localStorage.setItem('nextflix-accounts', JSON.stringify(accounts));
 };
 

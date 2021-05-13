@@ -1,4 +1,4 @@
-import * as styled from './styles';
+import * as styled from './profileStyles';
 
 import { updateAccount, getLocalAccounts } from 'helpers/profileHelps';
 
@@ -6,7 +6,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { signOut } from 'next-auth/client';
 
-export default function Profile({ profile, setProfile, userEmail }) {
+export default function Profile({
+  profile,
+  setProfile,
+  userEmail,
+  setSelectedProfile,
+}) {
   const [profileState, setProfileState] = useState(
     !profile || profile.length === 0 ? 'empty' : 'normal'
   );
@@ -101,14 +106,16 @@ export default function Profile({ profile, setProfile, userEmail }) {
     resetProfile(state, true);
   };
 
-  const onAvatarClick = (src) => {
+  const onAvatarClick = (avatar, name) => {
     switch (profileState) {
       case 'avatar':
-        setSelectedAvatar(src);
+        setSelectedAvatar(avatar);
         if (!editingUser) setProfileState('add');
         else setProfileState('edit');
+        return;
 
       case 'normal':
+        setSelectedProfile({ name, avatar });
         return;
     }
   };
@@ -231,7 +238,11 @@ export default function Profile({ profile, setProfile, userEmail }) {
             <styled.Wrapper className="profile-grid">
               {profile.map(({ name, avatar }) => (
                 <styled.Wrapper className="placeholder" key={avatar}>
-                  <styled.Placeholder url={avatar} className="light" />
+                  <styled.Placeholder
+                    url={avatar}
+                    className="light"
+                    onClick={() => onAvatarClick(avatar, name)}
+                  />
                   <styled.Description>{name}</styled.Description>
                 </styled.Wrapper>
               ))}

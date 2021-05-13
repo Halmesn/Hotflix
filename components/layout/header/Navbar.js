@@ -1,5 +1,6 @@
 import * as styled from './styles';
 
+import UserMenu from './UserMenu';
 import { UserState } from 'components/layout/Layout';
 
 import Image from 'next/image';
@@ -28,6 +29,9 @@ export default function Navbar() {
           </styled.Logo>
         </a>
       </Link>
+      {url === '/browse' && selectedProfile && (
+        <UserMenu selectedProfile={selectedProfile} />
+      )}
       {url === '/' && <styled.SignIn href="/account">Sign in</styled.SignIn>}
     </styled.Nav>
   );
