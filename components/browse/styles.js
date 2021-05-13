@@ -57,12 +57,12 @@ export const Wrapper = styled.div`
 
   &.profile-grid {
     display: flex;
+    justify-content: center;
     gap: 2vw;
 
     @media screen and (max-width: 50em) {
-      display: grid;
-      width: 100%;
-      grid-template-columns: repeat(3, 1fr);
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
   }
 
@@ -84,8 +84,10 @@ export const Wrapper = styled.div`
       color: #fff;
       border: 2px solid #fff;
       border-radius: 50%;
-      width: 4.3rem;
-      height: 4.3rem;
+      width: 2.5vw;
+      height: 2.5vw;
+      min-height: 3rem;
+      min-width: 3rem;
       padding: 0.5rem;
       background: #000;
       cursor: pointer;
