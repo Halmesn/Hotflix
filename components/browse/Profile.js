@@ -11,12 +11,13 @@ export default function Profile({ profile, setProfile, userEmail }) {
   const [editingUser, setEditingUser] = useState(null);
   const [displayName, setDisplayName] = useState('');
 
-  // helper functions, I didn't abstract them to other file because some of them will take heaps of props.
+  // helper functions, I didn't abstract them because some of them will take heaps of props.
 
   const isNameExisting = () => {
     switch (profileState) {
       case 'add':
         return profile.some(({ name }) => name === displayName);
+
       case 'edit':
         return profile
           .filter(({ name }) => name !== editingUser)
@@ -176,7 +177,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
           placeholder="Display Name"
         />
         {renderError()}
-        <styled.Wrapper>
+        <styled.Wrapper className="buttons">
           <styled.ActionButton
             white
             disabled={

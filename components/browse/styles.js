@@ -21,6 +21,10 @@ export const Container = styled.div`
   ${gridCenter}
   row-gap: 3rem;
   max-width: 80%;
+
+  @media screen and (max-width: 30em) {
+    max-width: 85%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -54,6 +58,12 @@ export const Wrapper = styled.div`
   &.profile-grid {
     display: flex;
     gap: 2vw;
+
+    @media screen and (max-width: 50em) {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &.edit-profile {
@@ -95,8 +105,8 @@ export const Wrapper = styled.div`
       border-radius: 50%;
       width: 2.5vw;
       height: 2.5vw;
-      min-height: 4rem;
-      min-width: 4rem;
+      min-height: 3rem;
+      min-width: 3rem;
       padding: 0.5rem;
       ${positionCenter}
       top:40%;
@@ -106,14 +116,14 @@ export const Wrapper = styled.div`
 
   &.text {
     h1 {
-      font-size: 4rem;
+      font-size: clamp(2.5rem, 2.3vw, 2.3vw);
       font-weight: 800;
       margin-bottom: 0.5rem;
       text-align: left;
     }
 
     p {
-      font-size: 2.8rem;
+      font-size: clamp(1.3rem, 1.5vw, 1.5vw);
     }
   }
 
@@ -122,12 +132,15 @@ export const Wrapper = styled.div`
     align-items: center;
 
     p {
-      font-size: 2.8rem;
+      font-size: clamp(1.3rem, 1.5vw, 1.5vw);
       margin-right: 1rem;
     }
 
     img {
       border-radius: 4px;
+      @media screen and (max-width: 30em) {
+        max-width: 4.5rem !important;
+      }
     }
   }
 
@@ -135,13 +148,31 @@ export const Wrapper = styled.div`
     font-weight: 800;
 
     svg {
-      width: 6.4rem;
-      height: 6.4rem;
+      width: 4vw;
+      height: 4vw;
       margin-right: 1.6rem;
       color: #fff;
       cursor: pointer;
       user-select: none;
       fill: currentColor;
+
+      @media screen and (max-width: 30em) {
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &.buttons {
+    @media screen and (max-width: 30em) {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
     }
   }
 `;
@@ -152,8 +183,8 @@ export const Placeholder = styled.div`
   width: 10vw;
   max-height: 20rem;
   max-width: 20rem;
-  min-height: 14rem;
-  min-width: 14rem;
+  min-height: 8.4rem;
+  min-width: 8.4rem;
   cursor: pointer;
   opacity: 0.5;
   background-size: cover;
@@ -190,16 +221,30 @@ export const Placeholder = styled.div`
 export const AvatarHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 3rem 8rem;
+  margin-bottom: 4vw;
   color: #fff;
+
+  @media screen and (max-width: 30em) {
+    margin: 0;
+    margin-bottom: 4rem;
+  }
 `;
 
 export const AvatarGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, minmax(8rem, 14rem));
   grid-gap: 0.6vw;
   place-content: center;
-  margin: 8rem 12.8rem;
+
+  @media screen and (max-width: 68.75em) {
+    grid-template-columns: repeat(5, minmax(8rem, 11rem));
+  }
+
+  @media screen and (max-width: 40.315em) {
+    margin: 0;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(3, minmax(8rem, 10rem));
+  }
 `;
 
 export const AvatarItem = styled.div`
@@ -255,6 +300,10 @@ export const Description = styled.p`
 
   @media screen and (min-width: 104.125em) {
     font-size: 2.4rem;
+  }
+
+  @media screen and (max-width: 50em) {
+    font-size: 1.2rem;
   }
 `;
 
