@@ -67,6 +67,14 @@ export const Wrapper = styled.div`
   }
 
   &.edit-profile {
+    @media screen and (max-width: 46.25em) {
+      max-width: 20rem;
+    }
+
+    @media screen and (max-width: 30em) {
+      max-width: 15rem;
+    }
+
     img {
       border-radius: 4px;
       cursor: pointer;
@@ -190,6 +198,13 @@ export const Placeholder = styled.div`
   background-size: cover;
   border-radius: 4px;
   border: none;
+
+  ${({ empty }) =>
+    empty &&
+    css`
+      min-height: 13rem;
+      min-width: 13rem;
+    `}
 
   &.light {
     opacity: 1;

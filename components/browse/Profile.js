@@ -216,7 +216,7 @@ export default function Profile({ profile, setProfile, userEmail }) {
                 onClick={() => setProfileState('add')}
                 className="placeholder"
               >
-                <styled.Placeholder />
+                <styled.Placeholder empty />
                 <styled.Description>Add profile</styled.Description>
                 <styled.AddIcon />
               </styled.Wrapper>
