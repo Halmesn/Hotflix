@@ -13,7 +13,7 @@ import { useSession } from 'next-auth/client';
 
 export default function Content() {
   const [session, loading] = useSession();
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState();
   const [falseLoading, setFalseLoading] = useState(false);
   const { selectedProfile, setSelectedProfile } = useContext(UserState);
 
@@ -22,17 +22,16 @@ export default function Content() {
   useEffect(() => {
     const localAccounts = getLocalAccounts();
 
-    const profiles = localAccounts.find(({ email }) => email === userEmail)
-      ?.profiles;
+    const profiles =
+      localAccounts.find(({ email }) => email === userEmail)?.profiles || [];
 
-    if (!profiles) return;
     setProfile(profiles);
   }, []);
 
   useEffect(() => {
     const localAccounts = getLocalAccounts();
 
-    if (profile.length === 0) {
+    if (profile?.length === 0) {
       createAccount(profile, localAccounts, userEmail);
       return;
     }
@@ -53,6 +52,12 @@ export default function Content() {
   return selectedProfile ? (
     <Billboard />
   ) : (
-    <Profile profile={profile} setProfile={setProfile} userEmail={userEmail} />
+    profile !== undefined && (
+      <Profile
+        profile={profile}
+        setProfile={setProfile}
+        userEmail={userEmail}
+      />
+    )
   );
 }

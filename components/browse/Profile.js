@@ -4,9 +4,12 @@ import { updateAccount, getLocalAccounts } from 'helpers/profileHelps';
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { signOut } from 'next-auth/client';
 
 export default function Profile({ profile, setProfile, userEmail }) {
-  const [profileState, setProfileState] = useState('normal');
+  const [profileState, setProfileState] = useState(
+    !profile || profile.length === 0 ? 'empty' : 'normal'
+  );
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [displayName, setDisplayName] = useState('');
