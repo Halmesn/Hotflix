@@ -20,6 +20,13 @@ export const updateAccount = (
   localStorage.setItem('nextflix-accounts', JSON.stringify(accounts));
 };
 
+export const clearAccount = (accounts) => {
+  accounts.forEach((account) => {
+    account.selectedProfile = null;
+  });
+  localStorage.setItem('nextflix-accounts', JSON.stringify(accounts));
+};
+
 export const getLocalAccounts = () => {
   return JSON.parse(window.localStorage.getItem('nextflix-accounts')) || [];
 };

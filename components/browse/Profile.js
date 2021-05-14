@@ -1,17 +1,15 @@
 import * as styled from './profileStyles';
 
+import { ProfileContext } from 'components/layout/Layout';
 import { updateAccount, getLocalAccounts } from 'helpers/profileHelps';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Image from 'next/image';
-import { signOut } from 'next-auth/client';
 
-export default function Profile({
-  profile,
-  setProfile,
-  userEmail,
-  setSelectedProfile,
-}) {
+export default function Profile() {
+  const { profile, setProfile, setSelectedProfile, userEmail } =
+    useContext(ProfileContext);
+
   const [profileState, setProfileState] = useState(
     !profile || profile.length === 0 ? 'empty' : 'normal'
   );

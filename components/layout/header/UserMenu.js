@@ -1,26 +1,37 @@
 import * as styled from './styles';
 
+import { ProfileContext } from 'components/layout/Layout';
+
+import { useContext } from 'react';
 import Image from 'next/image';
 import { signOut } from 'next-auth/client';
 
-export default function UserMenu({ selectedProfile, setSelectedProfile }) {
+export default function UserMenu() {
+  const { selectedProfile, setSelectedProfile, profile } =
+    useContext(ProfileContext);
   const { avatar, name } = selectedProfile;
+
   return (
     <styled.Wrapper className="menu">
       <styled.Menu>
         <Image src={avatar} alt={`${name}'s avatar`} width={36} height={36} />
         <styled.Dropdown className="dropdown">
-          <styled.DropdownOptions>
-            <styled.Wrapper className="image">
-              <Image
-                src={avatar}
-                alt={`${name}'s avatar`}
-                width={36}
-                height={36}
-              />
-            </styled.Wrapper>
-            {name}
-          </styled.DropdownOptions>
+          {profile.map(({ name, avatar }) => (
+            <styled.DropdownOptions
+              key={name}
+              onClick={() => setSelectedProfile({ name, avatar })}
+            >
+              <styled.Wrapper className="image">
+                <Image
+                  src={avatar}
+                  alt={`${name}'s avatar`}
+                  width={36}
+                  height={36}
+                />
+              </styled.Wrapper>
+              {name}
+            </styled.DropdownOptions>
+          ))}
           <styled.DropdownOptions
             className="text"
             onClick={() => setSelectedProfile(null)}

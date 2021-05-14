@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Link from 'next/link';
 
@@ -71,6 +71,12 @@ export const SignIn = styled(NextLink)`
 `;
 
 export const Wrapper = styled.div`
+  &.primary-nav {
+    display: flex;
+    gap: 4rem;
+  }
+
+  &.secondary-nav,
   &.menu {
     display: flex;
     align-items: center;
@@ -79,6 +85,76 @@ export const Wrapper = styled.div`
   &.image {
     margin: 0.4rem 0.8rem;
   }
+`;
+
+export const Category = styled.ul`
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  gap: 2rem;
+
+  li {
+    cursor: pointer;
+    color: #e5e5e5;
+    :hover {
+      color: #b3b3b3;
+    }
+  }
+
+  ${({ activeCategory }) => css`
+    li: ${activeCategory === 'TV' ? 'first' : 'last'}-child {
+      font-weight: 700;
+      color: #fff;
+    }
+  `}
+`;
+
+export const Search = styled.div`
+  position: relative;
+  width: 25rem;
+
+  @media screen and (max-width: 42.5em) {
+    width: 15rem;
+  }
+
+  svg {
+    fill: currentColor;
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+
+  &.active {
+    svg {
+      transform: translateX(-214px);
+    }
+
+    input {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+`;
+
+export const Input = styled.input`
+  font-family: inherit;
+  font-size: 1.4rem;
+  outline: none;
+  background: rgba(0, 0, 0, 0.85);
+  border: solid 1px rgba(255, 255, 255, 0.85);
+  box-sizing: border-box;
+  padding: 0.7rem 1.4rem 0.7rem 4rem;
+  width: 0%;
+  color: #fff;
+  opacity: 0;
+  float: right;
+  transition: ease width 0.5s, ease opacity 0.5s;
 `;
 
 export const Menu = styled.button`
@@ -90,8 +166,7 @@ export const Menu = styled.button`
   height: 3.6rem;
   position: relative;
 
-  &:hover,
-  &:focus-within {
+  &:hover {
     outline: none;
     ul {
       opacity: 1;
@@ -133,7 +208,7 @@ export const Dropdown = styled.ul`
   padding-bottom: 1.2rem;
   transform: rotateX(-90deg) translateX(-50%);
   transform-origin: top center;
-  transition: all 0.1s ease-in;
+  transition: all 0.1s 0.2s ease-in;
 
   ::before {
     content: '';
@@ -162,3 +237,11 @@ export const DropdownOptions = styled.li`
     padding: 0.75rem;
   }
 `;
+
+// icon
+
+export const SearchIcon = () => (
+  <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+  </svg>
+);

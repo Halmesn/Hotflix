@@ -15,11 +15,11 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="images/favicon.ico" />
       </Head>
-      <Layout>
-        <Provider session={pageProps.session}>
+      <Provider session={pageProps.session}>
+        <Layout>
           <Component {...pageProps} />
-        </Provider>
-      </Layout>
+        </Layout>
+      </Provider>
     </>
   );
 }
