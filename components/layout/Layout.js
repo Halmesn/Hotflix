@@ -3,16 +3,16 @@ import Header from './header/Header';
 
 import { useState, createContext } from 'react';
 
-export const UserState = createContext();
+export const ProfileContext = createContext();
 
 export default function Layout({ children }) {
   const [selectedProfile, setSelectedProfile] = useState(null);
 
   return (
-    <UserState.Provider value={{ selectedProfile, setSelectedProfile }}>
+    <ProfileContext.Provider value={{ selectedProfile, setSelectedProfile }}>
       <Header />
       <main>{children}</main>
       <Footer />
-    </UserState.Provider>
+    </ProfileContext.Provider>
   );
 }

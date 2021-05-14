@@ -1,7 +1,7 @@
 import Profile from './Profile';
 import Content from './Content';
 
-import { UserState } from 'components/layout/Layout';
+import { ProfileContext } from 'components/layout/Layout';
 import {
   createAccount,
   updateAccount,
@@ -15,7 +15,7 @@ export default function Nextflix() {
   const [session, loading] = useSession();
   const [profile, setProfile] = useState();
   const [falseLoading, setFalseLoading] = useState(false);
-  const { selectedProfile, setSelectedProfile } = useContext(UserState);
+  const { selectedProfile, setSelectedProfile } = useContext(ProfileContext);
 
   const userEmail = session.user.email;
 

@@ -70,45 +70,92 @@ export const SignIn = styled(NextLink)`
   }
 `;
 
-export const Menu = styled.div`
-  margin: 0 1rem 0 2.4rem;
-  cursor: pointer;
+export const Wrapper = styled.div`
+  &.menu {
+    display: flex;
+    align-items: center;
+  }
 
-  img {
-    border-radius: 4px;
+  &.image {
+    margin: 0.4rem 0.8rem;
   }
 `;
 
-export const Dropdown = styled.div`
+export const Menu = styled.button`
+  margin: 0 1rem 0 2.4rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 3px;
+  width: 3.6rem;
+  height: 3.6rem;
+  position: relative;
+
+  &:hover,
+  &:focus-within {
+    outline: none;
+    ul {
+      opacity: 1;
+      transform: rotateX(0) translateX(-50%);
+      visibility: visible;
+    }
+
+    & + .caret {
+      transform: rotate(180deg);
+    }
+  }
+
+  img {
+    border-radius: 3px;
+  }
+`;
+
+export const Caret = styled.span`
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+  transition: transform 367ms cubic-bezier(0.21, 0, 0.07, 1);
+`;
+
+export const Dropdown = styled.ul`
+  list-style: none;
   opacity: 0;
-  pointer-events: none;
-  z-index: -1;
   position: absolute;
-  top: 6.6rem;
-  right: 4.5rem;
+  top: 6rem;
+  right: -10rem;
   background: rgba(0, 0, 0, 0.75);
   color: #fff;
   font-size: 1.28rem;
   border: 1px solid #69696979;
   min-width: 16rem;
-  padding: 1.2rem 0;
+  padding-bottom: 1.2rem;
+  transform: rotateX(-90deg) translateX(-50%);
+  transform-origin: top center;
   transition: all 0.1s ease-in;
 
-  ${Menu}:hover & {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  ${DropdownOptions}:hover & {
-    opacity: 1;
-    pointer-events: auto;
+  ::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 7px 0 7px;
+    border-color: #d3d3d3 transparent transparent transparent;
+    transform: rotate(180deg) translate(-4.3rem, 2rem);
   }
 `;
 
-export const DropdownOptions = styled.div`
+export const DropdownOptions = styled.li`
   display: flex;
   place-items: center;
   padding: 0.1rem 0.25rem;
   cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
 
   &.text {
     font-weight: 600;

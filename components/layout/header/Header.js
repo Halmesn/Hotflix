@@ -13,18 +13,13 @@ export default function Header() {
 
   useEffect(() => {
     const scrollHandler = () => {
-      if (window.scrollY > 100) {
-        setShowBackground(true);
-      } else {
-        setShowBackground(false);
-      }
+      if (window.scrollY > 100) setShowBackground(true);
+      else setShowBackground(false);
     };
 
     window.addEventListener('scroll', scrollHandler);
 
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
+    return () => window.removeEventListener('scroll', scrollHandler);
   }, []);
 
   return (

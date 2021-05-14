@@ -1,7 +1,7 @@
 import * as styled from './styles';
 
 import UserMenu from './UserMenu';
-import { UserState } from 'components/layout/Layout';
+import { ProfileContext } from 'components/layout/Layout';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ export default function Navbar() {
   const router = useRouter();
   const url = router.pathname;
   const href = url === '/account' ? '/' : '#';
-  const { selectedProfile } = useContext(UserState);
+  const { selectedProfile, setSelectedProfile } = useContext(ProfileContext);
 
   return (
     <styled.Nav>
@@ -30,7 +30,10 @@ export default function Navbar() {
         </a>
       </Link>
       {url === '/browse' && selectedProfile && (
-        <UserMenu selectedProfile={selectedProfile} />
+        <UserMenu
+          selectedProfile={selectedProfile}
+          setSelectedProfile={setSelectedProfile}
+        />
       )}
       {url === '/' && <styled.SignIn href="/account">Sign in</styled.SignIn>}
     </styled.Nav>
