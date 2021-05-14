@@ -38,6 +38,10 @@ export const Logo = styled.div`
   @media only screen and (max-width: 34.375em) {
     width: 10rem;
   }
+
+  @media screen and (max-width: 31.25em) {
+    display: none;
+  }
 `;
 
 const NextLink = ({ children, className, href }) => (
@@ -74,6 +78,10 @@ export const Wrapper = styled.div`
   &.primary-nav {
     display: flex;
     gap: 4rem;
+
+    @media screen and (max-width: 42.5em) {
+      gap: 1rem;
+    }
   }
 
   &.secondary-nav,
@@ -118,6 +126,10 @@ export const Search = styled.div`
     width: 15rem;
   }
 
+  @media screen and (max-width: 31.25em) {
+    width: 10rem;
+  }
+
   svg {
     fill: currentColor;
     position: absolute;
@@ -132,7 +144,11 @@ export const Search = styled.div`
 
   &.active {
     svg {
-      transform: translateX(-214px);
+      transform: translateX(-21.4rem);
+
+      @media screen and (max-width: 42.5em) {
+        display: none;
+      }
     }
 
     input {
@@ -155,6 +171,10 @@ export const Input = styled.input`
   opacity: 0;
   float: right;
   transition: ease width 0.5s, ease opacity 0.5s;
+
+  @media screen and (max-width: 42.5em) {
+    padding: 0.7rem 1.4rem 0.7rem 1rem;
+  }
 `;
 
 export const Menu = styled.button`
