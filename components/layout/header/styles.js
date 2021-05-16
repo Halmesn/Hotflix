@@ -17,7 +17,7 @@ export const Header = styled.header`
 export const Nav = styled.nav`
   width: 95%;
   margin: 0 auto;
-  padding-top: 2rem;
+  padding: 1.7rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,8 +110,8 @@ export const Category = styled.ul`
     }
   }
 
-  ${({ activeCategory }) => css`
-    li: ${activeCategory === 'TV' ? 'first' : 'last'}-child {
+  ${({ category }) => css`
+    li: ${category === 'TVShows' ? 'first' : 'last'}-child {
       font-weight: 700;
       color: #fff;
     }

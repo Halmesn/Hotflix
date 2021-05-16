@@ -1,3 +1,5 @@
+import * as styled from './contentStyles';
+
 import Billboard from './Billboard';
 import FalseLoading from 'components/layout/background/FalseLoading';
 
@@ -18,9 +20,9 @@ export default function Content() {
   }, [avatar]);
 
   return (
-    <>
+    <styled.Content>
       {falseLoading ? <FalseLoading src={avatar} /> : <FalseLoading.Finished />}
       <Billboard />
-    </>
+    </styled.Content>
   );
 }

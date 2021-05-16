@@ -7,16 +7,14 @@ import { ProfileContext } from 'components/layout/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 
 export default function Navbar() {
   const router = useRouter();
   const url = router.pathname;
   const href = url === '/account' ? '/' : '#';
-  const { selectedProfile, setSelectedProfile } = useContext(ProfileContext);
-  const [activeCategory, setActiveCategory] = useState('TV');
-
-  const onCategoryClick = (category) => setActiveCategory(category);
+  const { selectedProfile, setSelectedProfile, category, setCategory } =
+    useContext(ProfileContext);
 
   return (
     <styled.Nav>
@@ -35,9 +33,9 @@ export default function Navbar() {
           </a>
         </Link>
         {url === '/browse' && selectedProfile && (
-          <styled.Category activeCategory={activeCategory}>
-            <li onClick={() => onCategoryClick('TV')}>TV Shows</li>
-            <li onClick={() => onCategoryClick('movie')}>Movies</li>
+          <styled.Category category={category}>
+            <li onClick={() => setCategory('TVShows')}>TV Shows</li>
+            <li onClick={() => setCategory('movies')}>Movies</li>
           </styled.Category>
         )}
       </styled.Wrapper>

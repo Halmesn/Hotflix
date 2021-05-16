@@ -17,6 +17,7 @@ export default function Layout({ children }) {
   const [session, loading] = useSession();
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [profile, setProfile] = useState();
+  const [category, setCategory] = useState('TVShows');
 
   const userEmail = session?.user.email;
 
@@ -25,6 +26,8 @@ export default function Layout({ children }) {
     setProfile,
     selectedProfile,
     setSelectedProfile,
+    category,
+    setCategory,
     userEmail,
   };
 
