@@ -55,8 +55,8 @@ export const Video = styled.div`
 
 export const Mute = styled.div`
   position: absolute;
-  top: 75vh;
-  right: 6rem;
+  bottom: 25%;
+  right: 12rem;
   color: #ffffff9f;
   width: 5.8rem;
   height: 5.8rem;
@@ -66,6 +66,10 @@ export const Mute = styled.div`
   transition: all 0.35s;
   cursor: pointer;
 
+  :hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
   svg {
     fill: currentColor;
     width: 100%;
@@ -73,6 +77,88 @@ export const Mute = styled.div`
     display: inline-block;
     user-select: none;
     padding: 1.35rem;
+  }
+`;
+
+export const Banner = styled.div`
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+
+  @media (max-width: 62.5em) {
+    height: 50vh;
+  }
+  @media (max-width: 37.5em) {
+    height: 30vh;
+  }
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  background: ${({ fullOverlay }) =>
+    (fullOverlay
+      ? `linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95)), `
+      : '') +
+    'linear-gradient(0.25turn, rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0))'};
+
+  @media (max-width: 1000px) {
+    height: 50vh;
+  }
+  @media (max-width: 600px) {
+    height: 30vh;
+  }
+`;
+
+export const DetailContainer = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 35%;
+  left: 4%;
+  width: 36%;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+`;
+
+export const Title = styled.h1`
+  &.big {
+    font-size: 7rem;
+  }
+
+  &.small {
+    font-size: 5rem;
+    transform-origin: left bottom;
+    transform: scale(0.6) translate3d(0px, 125px, 0px);
+    transition-duration: 1300ms;
+  }
+  line-height: 1.15;
+  margin-bottom: 2.5rem;
+  text-shadow: 0px 4px 3px rgb(20 20 20 / 40%), 0px 8px 13px rgb(20 20 20 / 10%),
+    0px 18px 23px rgb(20 20 20 / 10%);
+  transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5000ms;
+`;
+
+export const Description = styled.p`
+  color: #fff;
+  font-weight: 400;
+  line-height: normal;
+  width: 100%;
+  font-size: 1.4vw;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+  transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5000ms;
+  opacity: 1;
+
+  &.no-desc {
+    opacity: 0;
+    transform-origin: left bottom;
+    transform: translate3d(0px, 125px, 0px);
+    transition-duration: 1300ms;
   }
 `;
 
