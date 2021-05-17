@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// Billboard
 export const Billboard = styled.div`
   color: #fff;
   z-index: 0;

@@ -17,12 +17,12 @@ export const getBillboard = async (category) => {
     ({ original_language }) => original_language === 'en'
   );
   const banner = filteredResults[chooseRandomBillboard(filteredResults.length)];
+
+  // get trailer
   const trailerEndpoint = TMDB[category].helpers[method].replace(
     '_id',
     banner.id
   );
-
-  // get trailer
   let trailer = null;
   const { data: trailerData } = await tmdb.get(trailerEndpoint);
   const { results: trailerResults } = trailerData;
@@ -36,4 +36,54 @@ export const getBillboard = async (category) => {
   }
 
   return { banner, trailer };
+};
+
+export const getDetails = async (category, id) => {
+  const getMethod = (method) => {
+    switch (method) {
+      case 'trailer':
+        return category === 'TVShows'
+          ? 'fetchTVTrailers'
+          : 'fetchMovieTrailers';
+      case 'details':
+        return category === 'TVShows' ? 'fetchTVDetails' : 'fetchMovieDetails';
+      case 'credits':
+        return category === 'TVShows'
+          ? 'fetchTVAggregateCredits'
+          : 'fetchMovieCredits';
+    }
+  };
+
+  const getEndPoint = (method) => {
+    switch (method) {
+      case 'trailer':
+        return TMDB[category].helpers[getMethod('trailer')].replace('_id', id);
+      case 'details':
+        return TMDB[category].helpers[getMethod('details')].replace('_id', id);
+      case 'credits':
+        return TMDB[category].helpers[getMethod('credits')].replace('_id', id);
+    }
+  };
+
+  const { data: details } = await tmdb.get(getEndPoint('details'));
+  const { data: castData } = await tmdb.get(getEndPoint('credits'));
+  const { cast } = castData;
+
+  let trailer = null;
+  const { data: trailerData } = await tmdb.get(getEndPoint('trailer'));
+  const { results: trailerResults } = trailerData;
+  if (trailerResults.length > 0) {
+    const trailerDetails = trailerResults
+      .reverse()
+      .find(({ site, type }) => site === 'YouTube' && type === 'Trailer');
+    if (trailerDetails) {
+      trailer = trailerDetails.key;
+    }
+  }
+
+  return { details, cast, trailer };
+
+  // get detail
+
+  // get banner
 };

@@ -7,15 +7,20 @@ import { useState, useContext, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
 
-export default function Billboard({ setPlayerVideo }) {
+export default function Billboard({
+  setPlayerVideo,
+  setSelectedItem,
+  mute,
+  setMute,
+  showTrailer,
+  setShowTrailer,
+}) {
   const { TVBanner, TVTrailer, movieBanner, movieTrailer } =
     useContext(NextflixContext);
   const { category } = useContext(ProfileContext);
 
   const [trailer, setTrailer] = useState(TVTrailer);
   const [banner, setBanner] = useState(TVBanner);
-  const [mute, setMute] = useState(true);
-  const [showTrailer, setShowTrailer] = useState(false);
 
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -119,7 +124,15 @@ export default function Billboard({ setPlayerVideo }) {
             <styled.PlayIcon />
             <span>Play</span>
           </styled.PlayButton>
-          <styled.InfoButton>
+          <styled.InfoButton
+            onClick={() => {
+              setSelectedItem({
+                id: banner.id,
+                key: trailer,
+                start: playerRef.current?.getCurrentTime() || 0,
+              });
+            }}
+          >
             <styled.InfoIcon />
             <span>More Info</span>
           </styled.InfoButton>
