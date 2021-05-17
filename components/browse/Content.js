@@ -25,7 +25,11 @@ export default function Content() {
     <section>
       {falseLoading ? <FalseLoading src={avatar} /> : <FalseLoading.Finished />}
       {playerVideo && (
-        <Player playerVideo={playerVideo} setPlayerVideo={setPlayerVideo} />
+        <Player
+          playerVideo={playerVideo}
+          setPlayerVideo={setPlayerVideo}
+          setVideoCurrentTime={setVideoCurrentTime}
+        />
       )}
       <Billboard setPlayerVideo={setPlayerVideo} />
     </section>

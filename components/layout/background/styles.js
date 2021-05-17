@@ -41,7 +41,7 @@ export const Spinner = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    background-image: url(/images/misc/Spinner.png);
+    background-image: url(images/misc/spinner.png);
     background-size: contain;
     background-repeat: no-repeat;
     margin-top: -15.2rem;
