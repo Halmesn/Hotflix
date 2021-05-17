@@ -21,12 +21,21 @@ export default function Details({
   const [details, setDetails] = useState(null);
   const [cast, setCast] = useState(null);
   const [trailer, setTrailer] = useState(null);
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner, setShowBanner] = useState(false);
 
-  const modalRef = useRef(null);
+  const modalRef = useRef();
   const playerRef = useRef(null);
 
   useEffect(() => setShowTrailer(false), []);
+
+  useEffect(() => {
+    const onOutsideClick = (e) =>
+      (modalRef.current && modalRef.current.contains(e.target)) ||
+      setSelectedItem(null);
+
+    document.addEventListener('click', onOutsideClick);
+    return () => document.removeEventListener('click', onOutsideClick);
+  }, []);
 
   useEffect(() => {
     const getDetails = async () => {
@@ -44,19 +53,21 @@ export default function Details({
     trailer && (
       <styled.Details>
         <styled.FullScreen />
-        <styled.Wrapper>
-          <styled.Video>
-            <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${key}`}
-              className="details"
-              width="100%"
-              height="100%"
-              playing
-              muted={mute}
-              onEnded={() => setShowBanner(true)}
-              config={{ playerVars: { start: Math.floor(start) } }}
-            />
-          </styled.Video>
+        <styled.Wrapper ref={modalRef}>
+          {!showBanner && (
+            <styled.Video>
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${key}`}
+                className="details"
+                width="100%"
+                height="100%"
+                playing
+                muted={mute}
+                onEnded={() => setShowBanner(true)}
+                config={{ playerVars: { start: Math.floor(start) } }}
+              />
+            </styled.Video>
+          )}
           {details.backdrop_path && (showBanner || !key) && (
             <styled.Banner>
               <Image
@@ -70,7 +81,7 @@ export default function Details({
           <styled.Close onClick={() => setSelectedItem(null)}>
             <styled.CloseIcon />
           </styled.Close>
-          <styled.Overlay showOverlay={showBanner} />
+          <styled.Overlay />
           <styled.Summary>
             <styled.Panel className="major-details">
               <styled.Title>

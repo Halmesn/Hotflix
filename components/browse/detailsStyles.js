@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Video = styled(BillboardVideo)`
-  height: 32rem;
+  height: 51.2rem;
   width: 100%;
   .details {
     pointer-events: none;
@@ -56,7 +56,7 @@ export const Video = styled(BillboardVideo)`
         top: 50%;
         left: 50%;
         width: 125%;
-        height: 50rem;
+        height: 80rem;
         pointer-events: none;
         z-index: 0;
         transform: translate(-50%, -50%);
@@ -64,35 +64,37 @@ export const Video = styled(BillboardVideo)`
     }
   }
   @media (max-width: 600px) {
-    height: 18rem;
+    height: 28.8rem;
     iframe {
       width: 128%;
-      height: 20rem;
+      height: 32rem;
     }
   }
 `;
 
 export const Banner = styled.div`
   width: 100%;
-  height: 32rem;
+  height: 51.2rem;
+  position: relative;
 
   @media (max-width: 600px) {
-    height: 18rem;
+    height: 28.8rem;
   }
 `;
 
 export const Close = styled.div`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.6rem;
+  right: 1.6rem;
   z-index: 10;
   cursor: pointer;
   svg {
     background-color: #181818;
     border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     padding: 0.35rem;
+    fill: white;
   }
   @media (max-width: 600px) {
     top: 0.5rem;
@@ -102,37 +104,37 @@ export const Close = styled.div`
 
 export const Overlay = styled(BillboardOverlay)`
   width: 100%;
-  height: 32rem;
+  height: 51.2rem;
   background: linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95));
 
   @media (max-width: 600px) {
-    height: 18rem;
+    height: 28.8rem;
   }
 `;
 
 export const Summary = styled.div`
-  padding: 1rem 2rem 0;
+  padding: 1.6rem 3.2rem 0;
   display: flex;
   @media (max-width: 600px) {
-    padding: 1rem 1rem 0;
+    padding: 1.6rem 1.6rem 0;
   }
 `;
 
 export const Panel = styled.div`
-  padding: 1rem 1rem 0;
+  padding: 1.6rem 1.6rem 0;
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.6rem;
   }
   &.major-details {
     flex: 5;
     .air-date {
       span {
-        margin-right: 1rem;
+        margin-right: 1.6rem;
       }
     }
     .overview {
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1.6rem;
       line-height: 1.5;
     }
   }
@@ -141,39 +143,37 @@ export const Panel = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: 0.5rem 0.5rem 0;
+    padding: 0.8rem 0.8rem 0;
     p {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
     }
     &.major-details {
       .air-date {
         span {
-          margin-right: 0.5rem;
+          margin-right: 0.8rem;
         }
       }
       .overview {
         font-weight: 400;
-        font-size: 0.8rem;
+        font-size: 1.28rem;
       }
-    }
-    &.minor-details {
     }
   }
 `;
 
 export const Title = styled.div`
-  margin: 0 0 0.5rem;
-  font-size: 2rem;
+  margin: 0 0 0.8rem;
+  font-size: 3.2rem;
 `;
 
 export const MinorDetails = styled.p`
-  font-size: 0.9rem;
+  font-size: 1.44rem;
   line-height: 1.5;
   span {
     color: #777;
   }
   @media (max-width: 600px) {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     line-height: 1.25;
   }
 `;
