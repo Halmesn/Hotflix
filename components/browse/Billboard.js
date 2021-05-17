@@ -109,7 +109,10 @@ export default function Billboard({ setPlayerVideo }) {
         <styled.ButtonWrapper>
           <styled.PlayButton
             onClick={() => {
-              setPlayerVideo(trailer);
+              setPlayerVideo({
+                trailer,
+                start: playerRef.current?.getCurrentTime() || 0,
+              });
               setShowTrailer(false);
             }}
           >

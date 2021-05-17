@@ -2,14 +2,19 @@ import * as styled from './playerStyles';
 import ReactPlayer from 'react-player/youtube';
 
 export default function Player({ playerVideo, setPlayerVideo }) {
+  const { trailer, start } = playerVideo;
+
+  console.log(start);
   return (
     <styled.Player>
       <styled.Wrapper>
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${playerVideo}`}
+          url={`https://www.youtube.com/watch?v=${trailer}`}
           width="100%"
           height="100%"
           playing
+          controls
+          config={{ playerVars: { start: Math.floor(start) } }}
         />
       </styled.Wrapper>
       <styled.BackButton onClick={() => setPlayerVideo(null)}>

@@ -10,6 +10,8 @@ export default function Content() {
   const { selectedProfile } = useContext(ProfileContext);
   const [falseLoading, setFalseLoading] = useState(true);
   const [playerVideo, setPlayerVideo] = useState(null);
+  const [details, setDetails] = useState(null);
+  const [videoCurrentTime, setVideoCurrentTime] = useState(0);
   const { avatar } = selectedProfile;
 
   useEffect(() => {
@@ -22,10 +24,10 @@ export default function Content() {
   return (
     <section>
       {falseLoading ? <FalseLoading src={avatar} /> : <FalseLoading.Finished />}
-      <Billboard setPlayerVideo={setPlayerVideo} />
       {playerVideo && (
         <Player playerVideo={playerVideo} setPlayerVideo={setPlayerVideo} />
       )}
+      <Billboard setPlayerVideo={setPlayerVideo} />
     </section>
   );
 }

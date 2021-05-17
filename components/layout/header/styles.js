@@ -40,7 +40,11 @@ export const Logo = styled.div`
   }
 
   @media screen and (max-width: 31.25em) {
-    display: none;
+    ${({ url }) =>
+      url === '/browse' &&
+      css`
+        display: none;
+      `}
   }
 `;
 
