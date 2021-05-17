@@ -1,5 +1,5 @@
-import tmdb from '/api/tmdb';
-import { TMDB } from '/api/tmdbEndpoints';
+import tmdb from '/data/tmdb';
+import { TMDB } from '/data/tmdbEndpoints';
 
 export const chooseRandomBillboard = (dataLength) =>
   Math.floor(Math.random() * dataLength);
