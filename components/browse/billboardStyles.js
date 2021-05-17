@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Content = styled.section``;
-
+// Billboard
 export const Billboard = styled.div`
   color: #fff;
   z-index: 0;
@@ -58,8 +57,8 @@ export const Mute = styled.div`
   bottom: 25%;
   right: 12rem;
   color: #ffffff9f;
-  width: 5.8rem;
-  height: 5.8rem;
+  width: 5.3rem;
+  height: 5.3rem;
   border-radius: 50%;
   border: 1px solid #ffffff9f;
   z-index: 1;
@@ -100,16 +99,16 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 0;
-  background: ${({ fullOverlay }) =>
-    (fullOverlay
+  background: ${({ showOverlay }) =>
+    (showOverlay
       ? `linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95)), `
       : '') +
     'linear-gradient(0.25turn, rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0))'};
 
-  @media (max-width: 1000px) {
+  @media (max-width: 62.5em) {
     height: 50vh;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     height: 30vh;
   }
 `;
@@ -117,31 +116,28 @@ export const Overlay = styled.div`
 export const DetailContainer = styled.div`
   position: absolute;
   top: 0;
-  bottom: 35%;
-  left: 4%;
+  bottom: 26.2%;
+  left: 3%;
   width: 36%;
-  z-index: 10;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
 `;
 
 export const Title = styled.h1`
-  &.big {
-    font-size: 7rem;
-  }
-
-  &.small {
-    font-size: 5rem;
-    transform-origin: left bottom;
-    transform: scale(0.6) translate3d(0px, 125px, 0px);
-    transition-duration: 1300ms;
-  }
   line-height: 1.15;
   margin-bottom: 2.5rem;
   text-shadow: 0px 4px 3px rgb(20 20 20 / 40%), 0px 8px 13px rgb(20 20 20 / 10%),
     0px 18px 23px rgb(20 20 20 / 10%);
-  transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5000ms;
+  transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-size: 7rem;
+
+  &.small {
+    transform-origin: left bottom;
+    transform: scale(0.8) translate3d(0px, var(--height), 0px);
+    transition-duration: 1300ms;
+    transition-delay: 4000ms;
+  }
 `;
 
 export const Description = styled.p`
@@ -151,14 +147,65 @@ export const Description = styled.p`
   width: 100%;
   font-size: 1.4vw;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
-  transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) 5000ms;
+  transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
 
   &.no-desc {
     opacity: 0;
     transform-origin: left bottom;
-    transform: translate3d(0px, 125px, 0px);
-    transition-duration: 1300ms;
+    transform: translate3d(0px, var(--height), 0px) scaleY(0);
+    transition-duration: 1.3s;
+    transition-delay: 4000ms;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 1.5vw;
+  white-space: nowrap;
+  display: flex;
+  line-height: 88%;
+`;
+
+export const PlayButton = styled.button`
+  align-items: center;
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 1.15rem 3.5rem 1.15rem 2.9rem;
+  margin-right: 1.44rem;
+  user-select: none;
+  word-break: break-word;
+  white-space: nowrap;
+  background-color: white;
+  color: black;
+
+  :hover {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
+  svg {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 1.6rem;
+  }
+
+  span {
+    display: block;
+    font-size: 2.3rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+  }
+`;
+
+export const InfoButton = styled(PlayButton)`
+  background-color: rgba(109, 109, 110, 0.7);
+  color: white;
+
+  :hover {
+    background-color: rgba(109, 109, 110, 0.4);
   }
 `;
 
@@ -172,5 +219,20 @@ export const MuteIcon = () => (
 export const NotMuteIcon = () => (
   <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"></path>
+  </svg>
+);
+
+export const PlayIcon = () => (
+  <svg viewBox="0 0 24 24">
+    <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+  </svg>
+);
+
+export const InfoIcon = () => (
+  <svg viewBox="0 0 24 24">
+    <path
+      d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
+      fill="currentColor"
+    ></path>
   </svg>
 );

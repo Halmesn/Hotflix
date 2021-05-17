@@ -23,7 +23,7 @@ export const getBillboard = async (category) => {
   );
 
   // get trailer
-  let trailer;
+  let trailer = null;
   const { data: trailerData } = await tmdb.get(trailerEndpoint);
   const { results: trailerResults } = trailerData;
   if (trailerResults.length > 0) {
