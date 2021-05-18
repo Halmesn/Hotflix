@@ -4,12 +4,12 @@ export const TMDB = {
   TVShows: {
     sections: [
       {
-        title: 'Popular on Nextflix',
-        endpoint: `/tv/popular?api_key=${API_KEY}`,
-      },
-      {
         title: 'Trending Now',
         endpoint: `/trending/tv/day?api_key=${API_KEY}`,
+      },
+      {
+        title: 'Popular on Nextflix',
+        endpoint: `/tv/popular?api_key=${API_KEY}`,
       },
       {
         title: 'War Politics',

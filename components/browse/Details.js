@@ -20,7 +20,7 @@ export default function Details({
   setPlayerVideo,
 }) {
   const { category } = useContext(ProfileContext);
-  const { id, key, start } = selectedItem;
+  const { id, key, start, placeholder } = selectedItem;
 
   const [details, setDetails] = useState(null);
   const [cast, setCast] = useState(null);
@@ -37,8 +37,8 @@ export default function Details({
       (modalRef.current && modalRef.current.contains(e.target)) ||
       setSelectedItem(null);
 
-    document.addEventListener('click', onOutsideClick);
-    return () => document.removeEventListener('click', onOutsideClick);
+    document.body.addEventListener('click', onOutsideClick);
+    return () => document.body.removeEventListener('click', onOutsideClick);
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,11 @@ export default function Details({
             </styled.Panel>
           </styled.Summary>
           {category === 'TVShows' && (
-            <Episode id={id} seasons={details.seasons} />
+            <Episode
+              id={id}
+              seasons={details.seasons}
+              placeholder={placeholder}
+            />
           )}
         </styled.Wrapper>
       </styled.Details>

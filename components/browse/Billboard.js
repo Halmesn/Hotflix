@@ -154,6 +154,7 @@ export default function Billboard({
                 id: banner.id,
                 key: trailer,
                 start: playerRef.current?.getCurrentTime() || 0,
+                placeholder: banner.backdrop_path,
               });
               setDistracted(true);
               setDonePlay(true);
