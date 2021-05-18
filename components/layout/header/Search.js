@@ -7,13 +7,13 @@ export default function Search() {
   const searchRef = useRef();
 
   useEffect(() => {
-    const onBodyClick = (e) =>
+    const onOutsideClick = (e) =>
       (searchRef.current && searchRef.current.contains(e.target)) ||
       setIsActive(false);
 
-    document.body.addEventListener('click', onBodyClick);
+    document.addEventListener('click', onOutsideClick);
 
-    return () => document.body.removeEventListener('click', onBodyClick);
+    return () => document.removeEventListener('click', onOutsideClick);
   }, []);
 
   return (

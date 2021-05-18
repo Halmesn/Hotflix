@@ -1,11 +1,8 @@
-//styles
 import 'styles/globals.css';
-// components
+
 import Layout from 'components/layout/Layout';
 import Head from 'next/head';
-//utilities
 
-//dependencies
 import { Provider } from 'next-auth/client';
 
 export default function MyApp({ Component, pageProps }) {

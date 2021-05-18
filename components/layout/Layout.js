@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/client';
 export const ProfileContext = createContext();
 
 export default function Layout({ children }) {
-  const [session, loading] = useSession();
+  const [session] = useSession();
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [profile, setProfile] = useState();
   const [category, setCategory] = useState('TVShows');

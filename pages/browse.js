@@ -18,7 +18,7 @@ export default function Browse({ ...props }) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  // fetch data from tmdb
+  // fetch billboards from tmdb
   const { banner: TVBanner, trailer: TVTrailer } = await getBillboard(
     'TVShows'
   );

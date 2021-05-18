@@ -46,7 +46,7 @@ export default function Billboard({
         break;
     }
 
-    setTimeout(() => setShowTrailer(true), 3000);
+    setTimeout(() => setShowTrailer(true), 2000);
     return () => clearTimeout();
   }, [category]);
 

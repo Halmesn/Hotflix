@@ -82,8 +82,4 @@ export const getDetails = async (category, id) => {
   }
 
   return { details, cast, trailer };
-
-  // get detail
-
-  // get banner
 };
