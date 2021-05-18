@@ -21,7 +21,9 @@ export const getBanner = async (category) => {
   const resultsPools = [...results1, ...results2];
   const filteredResults = resultsPools.filter(
     ({ original_language, title }) =>
-      original_language === 'en' && title !== 'Mortal Kombat'
+      original_language === 'en' &&
+      title !== 'Mortal Kombat' &&
+      title !== 'The Walking Dead'
   );
   const banner = filteredResults[chooseRandomBillboard(filteredResults.length)];
 

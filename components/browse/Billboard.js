@@ -2,6 +2,7 @@ import * as styled from './billboardStyles';
 
 import { ProfileContext } from 'components/layout/Layout';
 
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { getBanner, getTrailer, shortDescription } from 'helpers/browseHelpers';
 
 import { useState, useContext, useRef, useEffect } from 'react';
@@ -23,6 +24,7 @@ export default function Billboard({
   const { avatar } = selectedProfile;
   const [trailer, setTrailer] = useState(null);
   const [banner, setBanner] = useState(null);
+  const { width } = useWindowDimensions();
 
   // for replay functionality
   const [donePlay, setDonePlay] = useState(false);
@@ -30,16 +32,15 @@ export default function Billboard({
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
 
-  const windowWidth = window?.innerWidth;
-
   useEffect(() => {
     setLoading(true);
     setBanner(null);
+    setTrailer(null);
     async function fetchBillboard() {
       const banner = await getBanner(category);
       setBanner(banner);
-      const delayDisplay = setTimeout(() => banner && setLoading(false), 1000);
-      if (windowWidth > 600) {
+      const delayDisplay = setTimeout(() => banner && setLoading(false), 1500);
+      if (width > 600) {
         const trailer = await getTrailer(category, banner.id);
         setTrailer(trailer);
       }
@@ -47,7 +48,7 @@ export default function Billboard({
     }
     const delayDisplay = fetchBillboard();
     return clearTimeout(delayDisplay);
-  }, [windowWidth, avatar, category]);
+  }, [width, avatar, category]);
 
   // for description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
@@ -130,17 +131,21 @@ export default function Billboard({
         <styled.DetailContainer>
           <styled.Title
             className={showTrailer ? 'small' : ''}
-            style={{ '--height': `${descriptionHeight + 65}px` }}
+            style={{
+              '--height': `${descriptionHeight + (width < 800 ? 25 : 65)}px`,
+            }}
           >
             {banner.name || banner.title || banner.original_name}
           </styled.Title>
-          <styled.Description
-            className={showTrailer ? 'no-desc' : ''}
-            ref={descriptionRef}
-            style={{ '--height': `${descriptionHeight}px` }}
-          >
-            {shortDescription(banner.overview, 185)}
-          </styled.Description>
+          {width > 600 && (
+            <styled.Description
+              className={showTrailer ? 'no-desc' : ''}
+              ref={descriptionRef}
+              style={{ '--height': `${descriptionHeight}px` }}
+            >
+              {shortDescription(banner.overview, 185)}
+            </styled.Description>
+          )}
           <styled.ButtonWrapper>
             <styled.PlayButton
               onClick={() => {

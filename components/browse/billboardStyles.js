@@ -51,8 +51,9 @@ export const Video = styled.div`
   }
 `;
 
-export const Mute = styled.div`
+export const Mute = styled.button`
   position: absolute;
+  background: transparent;
   bottom: 25%;
   right: 14rem;
   color: white;
@@ -63,6 +64,13 @@ export const Mute = styled.div`
   z-index: 1;
   transition: all 0.35s;
   cursor: pointer;
+
+  @media (max-width: 62.5em) {
+    bottom: 55%;
+    width: 4rem;
+    height: 4rem;
+    right: 9rem;
+  }
 
   :hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -75,6 +83,10 @@ export const Mute = styled.div`
     display: inline-block;
     user-select: none;
     padding: 1.35rem;
+
+    @media (max-width: 62.5em) {
+      padding: 1rem;
+    }
   }
 `;
 
@@ -84,6 +96,7 @@ export const Banner = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 0;
+  position: relative;
 
   @media (max-width: 62.5em) {
     height: 50vh;
@@ -123,6 +136,16 @@ export const DetailContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+
+  @media (max-width: 62.5em) {
+    bottom: 55.2%;
+    width: 55%;
+  }
+
+  @media (max-width: 37.5em) {
+    width: 70%;
+    bottom: 73.2%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -131,7 +154,17 @@ export const Title = styled.h1`
   text-shadow: 0px 4px 3px rgb(20 20 20 / 40%), 0px 8px 13px rgb(20 20 20 / 10%),
     0px 18px 23px rgb(20 20 20 / 10%);
   transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  font-size: 7rem;
+  font-size: 6rem;
+
+  @media (max-width: 62.5em) {
+    font-size: 4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 37.5em) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 
   &.small {
     transform-origin: left bottom;
@@ -168,20 +201,22 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const PlayButton = styled.button`
-  align-items: center;
   appearance: none;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
+  align-items: center;
   display: flex;
   justify-content: center;
   padding: 1.15rem 3.5rem 1.15rem 2.9rem;
   margin-right: 1.44rem;
   user-select: none;
-  word-break: break-word;
-  white-space: nowrap;
   background-color: white;
   color: black;
+
+  @media (max-width: 62.5em) {
+    padding: 0.8rem 1.6rem;
+  }
 
   :hover {
     background-color: rgba(255, 255, 255, 0.75);
@@ -191,13 +226,32 @@ export const PlayButton = styled.button`
     width: 3.5rem;
     height: 3.5rem;
     margin-right: 1.6rem;
+
+    @media (max-width: 62.5em) {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+
+    @media (max-width: 37.5em) {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.5rem;
+    }
   }
 
   span {
     display: block;
     font-size: 2.3rem;
     font-weight: bold;
-    line-height: 3.5rem;
+
+    @media (max-width: 62.5em) {
+      font-size: 1.7rem;
+    }
+
+    @media (max-width: 37.5em) {
+      font-size: 1.2rem;
+    }
   }
 `;
 

@@ -24,6 +24,10 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 37.5em) {
+    padding-top: 1rem;
+  }
 `;
 
 export const Logo = styled.div`
@@ -87,6 +91,10 @@ export const Wrapper = styled.div`
     gap: 4rem;
     margin-left: 1rem;
 
+    @media screen and (max-width: 37.5em) {
+      margin-left: -0.5rem;
+    }
+
     @media screen and (max-width: 42.5em) {
       gap: 1rem;
     }
@@ -130,6 +138,10 @@ export const Category = styled.ul`
   font-size: 1.4rem;
   gap: 2rem;
 
+  @media screen and (max-width: 37.5em) {
+    font-size: 1.1rem;
+  }
+
   li {
     cursor: pointer;
     color: #e5e5e5;
@@ -168,6 +180,11 @@ export const Search = styled.div`
     z-index: 10;
     cursor: pointer;
     transition: transform 0.5s ease;
+
+    @media screen and (max-width: 37.5em) {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
   }
 
   &.active {
@@ -208,6 +225,10 @@ export const Input = styled.input`
 export const Menu = styled.div`
   margin: 0 1rem 0 2.4rem;
   position: relative;
+
+  @media screen and (max-width: 37.5em) {
+    margin: 0 1rem 0 1rem;
+  }
 
   img {
     border-radius: 3px !important;
