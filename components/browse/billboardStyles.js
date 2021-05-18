@@ -54,12 +54,12 @@ export const Video = styled.div`
 export const Mute = styled.div`
   position: absolute;
   bottom: 25%;
-  right: 12rem;
-  color: #ffffff9f;
+  right: 14rem;
+  color: white;
   width: 5.3rem;
   height: 5.3rem;
   border-radius: 50%;
-  border: 1px solid #ffffff9f;
+  border: 1px solid white;
   z-index: 1;
   transition: all 0.35s;
   cursor: pointer;
@@ -77,6 +77,8 @@ export const Mute = styled.div`
     padding: 1.35rem;
   }
 `;
+
+export const Replay = styled(Mute)``;
 
 export const Banner = styled.div`
   width: 100%;
@@ -231,6 +233,15 @@ export const InfoIcon = () => (
   <svg viewBox="0 0 24 24">
     <path
       d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
+      fill="currentColor"
+    ></path>
+  </svg>
+);
+
+export const ReplayIcon = () => (
+  <svg viewBox="0 0 24 24">
+    <path
+      d="M20 12.35l1.919-1.371 1.162 1.627-4.08 2.915-4.082-2.915 1.162-1.627L18 12.349V12c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.93 0 3.68-.79 4.94-2.06l1.42 1.42A8.954 8.954 0 0 1 11 21a9 9 0 1 1 9-9v.35z"
       fill="currentColor"
     ></path>
   </svg>

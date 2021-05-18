@@ -3,6 +3,8 @@ import * as styled from './billboardStyles';
 import { NextflixContext } from 'pages/browse';
 import { ProfileContext } from 'components/layout/Layout';
 
+import { shortDescription } from 'helpers/browseHelpers';
+
 import { useState, useContext, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
@@ -14,6 +16,8 @@ export default function Billboard({
   setMute,
   showTrailer,
   setShowTrailer,
+  distracted,
+  setDistracted,
 }) {
   const { TVBanner, TVTrailer, movieBanner, movieTrailer } =
     useContext(NextflixContext);
@@ -22,17 +26,23 @@ export default function Billboard({
   const [trailer, setTrailer] = useState(TVTrailer);
   const [banner, setBanner] = useState(TVBanner);
 
+  const [donePlay, setDonePlay] = useState(false);
+
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
 
+  // for description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
-
   useEffect(() => {
-    // for description animation
     descriptionRef.current.clientHeight !== 0 &&
       setDescriptionHeight(descriptionRef.current.clientHeight);
   });
 
+  // for visual effects
+  useEffect(() => {
+    setDistracted(false);
+    setDonePlay(false);
+  }, [category]);
   useEffect(() => {
     setShowTrailer(false);
     switch (category) {
@@ -46,9 +56,12 @@ export default function Billboard({
         break;
     }
 
-    setTimeout(() => setShowTrailer(true), 2000);
-    return () => clearTimeout();
-  }, [category]);
+    const delayPlay = setTimeout(() => setShowTrailer(true), 2000);
+
+    if (distracted) clearTimeout(delayPlay);
+
+    return () => clearTimeout(delayPlay);
+  }, [category, distracted]);
 
   const playerConfig = {
     playerVars: {
@@ -58,11 +71,6 @@ export default function Billboard({
       iv_load_policy: 3,
     },
   };
-
-  const shortDescription = (description, length) =>
-    description.length > length
-      ? description.substr(0, length - 1) + '...'
-      : description;
 
   return (
     <styled.Billboard>
@@ -74,9 +82,13 @@ export default function Billboard({
             className="trailer"
             width="100%"
             height="100%"
-            playing
+            playing={!donePlay}
             muted={mute}
-            onEnded={() => setShowTrailer(false)}
+            // onReady={() => setDonePlay(false)}
+            onEnded={() => {
+              setShowTrailer(false);
+              setDonePlay(true);
+            }}
             config={playerConfig}
           />
           <styled.Mute onClick={() => setMute(!mute)}>
@@ -94,6 +106,16 @@ export default function Billboard({
               objectFit="cover"
             />
           </styled.Banner>
+          {donePlay && (
+            <styled.Replay
+              onClick={() => {
+                setDonePlay(false);
+                setShowTrailer(true);
+              }}
+            >
+              <styled.ReplayIcon />
+            </styled.Replay>
+          )}
           <styled.Overlay showOverlay={!showTrailer} />
         </>
       )}
@@ -119,6 +141,8 @@ export default function Billboard({
                 start: playerRef.current?.getCurrentTime() || 0,
               });
               setShowTrailer(false);
+              setDistracted(true);
+              setDonePlay(true);
             }}
           >
             <styled.PlayIcon />
@@ -131,6 +155,8 @@ export default function Billboard({
                 key: trailer,
                 start: playerRef.current?.getCurrentTime() || 0,
               });
+              setDistracted(true);
+              setDonePlay(true);
             }}
           >
             <styled.InfoIcon />

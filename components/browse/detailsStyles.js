@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import {
   Video as BillboardVideo,
   Overlay as BillboardOverlay,
+  Mute as BillboardMute,
 } from './billboardStyles';
 
 export const Details = styled.div`
@@ -164,6 +165,11 @@ export const Panel = styled.div`
 export const Title = styled.div`
   margin: 0 0 0.8rem;
   font-size: 3.2rem;
+`;
+
+export const Mute = styled(BillboardMute)`
+  bottom: 50%;
+  right: 3rem;
 `;
 
 export const MinorDetails = styled.p`

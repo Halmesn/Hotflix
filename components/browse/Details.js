@@ -1,4 +1,5 @@
 import * as styled from './detailsStyles';
+import { MuteIcon, NotMuteIcon } from './billboardStyles';
 
 import { ProfileContext } from 'components/layout/Layout';
 
@@ -66,6 +67,14 @@ export default function Details({
                 onEnded={() => setShowBanner(true)}
                 config={{ playerVars: { start: Math.floor(start) } }}
               />
+              <styled.Mute
+                onClick={(e) => {
+                  setMute(!mute);
+                  e.stopPropagation();
+                }}
+              >
+                {mute ? <MuteIcon /> : <NotMuteIcon />}
+              </styled.Mute>
             </styled.Video>
           )}
           {details.backdrop_path && (showBanner || !key) && (

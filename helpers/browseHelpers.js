@@ -4,6 +4,11 @@ import { TMDB } from '/data/tmdbEndpoints';
 export const chooseRandomBillboard = (dataLength) =>
   Math.floor(Math.random() * dataLength);
 
+export const shortDescription = (description, length) =>
+  description.length > length
+    ? description.substr(0, length - 1) + '...'
+    : description;
+
 export const getBillboard = async (category) => {
   const method =
     category === 'TVShows' ? 'fetchTVTrailers' : 'fetchMovieTrailers';
