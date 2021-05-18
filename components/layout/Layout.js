@@ -31,6 +31,8 @@ export default function Layout({ children }) {
     userEmail,
   };
 
+  useEffect(() => setCategory('TVShows'), [selectedProfile]);
+
   //get or remove user's profile details from localStorage
   useEffect(() => {
     const localAccounts = getLocalAccounts();

@@ -20,7 +20,7 @@ export default function Billboard({
   setLoading,
 }) {
   const { category, selectedProfile } = useContext(ProfileContext);
-
+  const { avatar } = selectedProfile;
   const [trailer, setTrailer] = useState(null);
   const [banner, setBanner] = useState(null);
 
@@ -34,10 +34,11 @@ export default function Billboard({
 
   useEffect(() => {
     setLoading(true);
+    setBanner(null);
     async function fetchBillboard() {
       const banner = await getBanner(category);
       setBanner(banner);
-      const delayDisplay = setTimeout(() => setLoading(false), 1000);
+      const delayDisplay = setTimeout(() => banner && setLoading(false), 1000);
       if (windowWidth > 600) {
         const trailer = await getTrailer(category, banner.id);
         setTrailer(trailer);
@@ -46,7 +47,7 @@ export default function Billboard({
     }
     const delayDisplay = fetchBillboard();
     return clearTimeout(delayDisplay);
-  }, [windowWidth, selectedProfile, category]);
+  }, [windowWidth, avatar, category]);
 
   // for description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
@@ -59,7 +60,7 @@ export default function Billboard({
   useEffect(() => {
     setDistracted(false);
     setDonePlay(false);
-  }, [category, selectedProfile]);
+  }, [category, avatar]);
 
   useEffect(() => {
     if (!trailer) return;
@@ -68,7 +69,7 @@ export default function Billboard({
 
     if (distracted) clearTimeout(delayPlay);
     return () => clearTimeout(delayPlay);
-  }, [category, distracted, selectedProfile, trailer]);
+  }, [category, distracted, avatar, trailer]);
 
   const playerConfig = {
     playerVars: {
