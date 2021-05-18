@@ -1,8 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import {
   Video as BillboardVideo,
-  Overlay as BillboardOverlay,
   Mute as BillboardMute,
+  PlayButton as BillboardPlayButton,
 } from './billboardStyles';
 
 export const Details = styled.div`
@@ -44,6 +44,7 @@ export const Wrapper = styled.div`
 export const Video = styled(BillboardVideo)`
   height: 51.2rem;
   width: 100%;
+
   .details {
     pointer-events: none;
     z-index: 0;
@@ -103,9 +104,13 @@ export const Close = styled.div`
   }
 `;
 
-export const Overlay = styled(BillboardOverlay)`
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 51.2rem;
+  z-index: 0;
   background: linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95));
 
   @media (max-width: 600px) {
@@ -166,6 +171,17 @@ export const Title = styled.div`
   margin: 0 0 0.8rem;
   font-size: 3.2rem;
 `;
+
+export const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 49%;
+  left: 3rem;
+  @media (max-width: 600px) {
+    bottom: 13rem;
+  }
+`;
+
+export const PlayButton = styled(BillboardPlayButton)``;
 
 export const Mute = styled(BillboardMute)`
   bottom: 50%;

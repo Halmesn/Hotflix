@@ -44,6 +44,7 @@ export default function Content() {
           setMute={setMute}
           setShowTrailer={setShowTrailer}
           setSelectedItem={setSelectedItem}
+          setPlayerVideo={setPlayerVideo}
         />
       )}
       <Billboard

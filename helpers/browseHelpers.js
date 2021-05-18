@@ -88,3 +88,15 @@ export const getDetails = async (category, id) => {
 
   return { details, cast, trailer };
 };
+
+export const getEpisodes = async (season, id) => {
+  const { data } = await tmdb.get(
+    TMDB.TVShows.helpers.fetchTVSeason
+      .replace('_id', id)
+      .replace('_seasonNumber', season)
+  );
+
+  const { episodes } = data;
+
+  return episodes;
+};

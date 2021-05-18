@@ -76,7 +76,7 @@ export const TMDB = {
       fetchTVDetails: `/tv/_id?api_key=${API_KEY}`,
       fetchTVAggregateCredits: `/tv/_id/aggregate_credits?api_key=${API_KEY}`,
       fetchTVRecommendations: `/tv/_id/recommendations?api_key=${API_KEY}`,
-      fetchTVSeason: `/tv/_id/season/{{season_number}}?api_key=${API_KEY}`,
+      fetchTVSeason: `/tv/_id/season/_seasonNumber?api_key=${API_KEY}`,
     },
   },
   movies: {

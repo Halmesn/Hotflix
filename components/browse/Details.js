@@ -1,5 +1,7 @@
 import * as styled from './detailsStyles';
-import { MuteIcon, NotMuteIcon } from './billboardStyles';
+import { MuteIcon, NotMuteIcon, PlayIcon } from './billboardStyles';
+
+import Episode from './Episode';
 
 import { ProfileContext } from 'components/layout/Layout';
 
@@ -15,6 +17,7 @@ export default function Details({
   setMute,
   setShowTrailer,
   setSelectedItem,
+  setPlayerVideo,
 }) {
   const { category } = useContext(ProfileContext);
   const { id, key, start } = selectedItem;
@@ -24,8 +27,8 @@ export default function Details({
   const [trailer, setTrailer] = useState(null);
   const [showBanner, setShowBanner] = useState(false);
 
-  const modalRef = useRef();
   const playerRef = useRef(null);
+  const modalRef = useRef();
 
   useEffect(() => setShowTrailer(false), []);
 
@@ -58,6 +61,7 @@ export default function Details({
           {!showBanner && (
             <styled.Video>
               <ReactPlayer
+                ref={playerRef}
                 url={`https://www.youtube.com/watch?v=${key}`}
                 className="details"
                 width="100%"
@@ -91,6 +95,20 @@ export default function Details({
             <styled.CloseIcon />
           </styled.Close>
           <styled.Overlay />
+          <styled.ButtonWrapper>
+            <styled.PlayButton
+              onClick={() => {
+                setPlayerVideo({
+                  trailer,
+                  start: playerRef.current?.getCurrentTime() || 0,
+                });
+                setSelectedItem(null);
+              }}
+            >
+              <PlayIcon />
+              <span>Play</span>
+            </styled.PlayButton>
+          </styled.ButtonWrapper>
           <styled.Summary>
             <styled.Panel className="major-details">
               <styled.Title>
@@ -129,6 +147,9 @@ export default function Details({
               </styled.MinorDetails>
             </styled.Panel>
           </styled.Summary>
+          {category === 'TVShows' && (
+            <Episode id={id} seasons={details.seasons} />
+          )}
         </styled.Wrapper>
       </styled.Details>
     )

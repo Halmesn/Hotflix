@@ -26,6 +26,7 @@ export default function Billboard({
   const [trailer, setTrailer] = useState(TVTrailer);
   const [banner, setBanner] = useState(TVBanner);
 
+  // for replay functionality
   const [donePlay, setDonePlay] = useState(false);
 
   const playerRef = useRef(null);
@@ -84,7 +85,6 @@ export default function Billboard({
             height="100%"
             playing={!donePlay}
             muted={mute}
-            // onReady={() => setDonePlay(false)}
             onEnded={() => {
               setShowTrailer(false);
               setDonePlay(true);
