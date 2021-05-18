@@ -1,6 +1,6 @@
 import * as styled from './styles';
 
-export default function FalseLoading({ src, ...restProps }) {
+export default function Loading({ src, ...restProps }) {
   return (
     <styled.Spinner {...restProps}>
       <styled.Loading />
@@ -9,6 +9,6 @@ export default function FalseLoading({ src, ...restProps }) {
   );
 }
 
-FalseLoading.Finished = () => {
+Loading.Finished = () => {
   return <styled.Finished />;
 };

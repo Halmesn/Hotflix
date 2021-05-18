@@ -1,9 +1,8 @@
 import * as styled from './billboardStyles';
 
-import { NextflixContext } from 'pages/browse';
 import { ProfileContext } from 'components/layout/Layout';
 
-import { shortDescription } from 'helpers/browseHelpers';
+import { getBanner, getTrailer, shortDescription } from 'helpers/browseHelpers';
 
 import { useState, useContext, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -18,13 +17,12 @@ export default function Billboard({
   setShowTrailer,
   distracted,
   setDistracted,
+  setLoading,
 }) {
-  const { TVBanner, TVTrailer, movieBanner, movieTrailer } =
-    useContext(NextflixContext);
-  const { category } = useContext(ProfileContext);
+  const { category, selectedProfile } = useContext(ProfileContext);
 
-  const [trailer, setTrailer] = useState(TVTrailer);
-  const [banner, setBanner] = useState(TVBanner);
+  const [trailer, setTrailer] = useState(null);
+  const [banner, setBanner] = useState(null);
 
   // for replay functionality
   const [donePlay, setDonePlay] = useState(false);
@@ -32,37 +30,45 @@ export default function Billboard({
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
 
+  const windowWidth = window?.innerWidth;
+
+  useEffect(() => {
+    setLoading(true);
+    async function fetchBillboard() {
+      const banner = await getBanner(category);
+      setBanner(banner);
+      const delayDisplay = setTimeout(() => setLoading(false), 1000);
+      if (windowWidth > 600) {
+        const trailer = await getTrailer(category, banner.id);
+        setTrailer(trailer);
+      }
+      return delayDisplay;
+    }
+    const delayDisplay = fetchBillboard();
+    return clearTimeout(delayDisplay);
+  }, [windowWidth, selectedProfile, category]);
+
   // for description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
   useEffect(() => {
-    descriptionRef.current.clientHeight !== 0 &&
-      setDescriptionHeight(descriptionRef.current.clientHeight);
+    descriptionRef.current?.clientHeight !== 0 &&
+      setDescriptionHeight(descriptionRef.current?.clientHeight);
   });
 
   // for visual effects
   useEffect(() => {
     setDistracted(false);
     setDonePlay(false);
-  }, [category]);
-  useEffect(() => {
-    setShowTrailer(false);
-    switch (category) {
-      case 'TVShows':
-        setBanner(TVBanner);
-        setTrailer(TVTrailer);
-        break;
-      case 'movies':
-        setBanner(movieBanner);
-        setTrailer(movieTrailer);
-        break;
-    }
+  }, [category, selectedProfile]);
 
+  useEffect(() => {
+    if (!trailer) return;
+    setShowTrailer(false);
     const delayPlay = setTimeout(() => setShowTrailer(true), 2000);
 
     if (distracted) clearTimeout(delayPlay);
-
     return () => clearTimeout(delayPlay);
-  }, [category, distracted]);
+  }, [category, distracted, selectedProfile, trailer]);
 
   const playerConfig = {
     playerVars: {
@@ -75,7 +81,7 @@ export default function Billboard({
 
   return (
     <styled.Billboard>
-      {showTrailer && (
+      {showTrailer && trailer && (
         <styled.Video>
           <ReactPlayer
             ref={playerRef}
@@ -96,7 +102,7 @@ export default function Billboard({
           </styled.Mute>
         </styled.Video>
       )}
-      {!showTrailer && (
+      {!showTrailer && banner && (
         <>
           <styled.Banner>
             <Image
@@ -119,52 +125,54 @@ export default function Billboard({
           <styled.Overlay showOverlay={!showTrailer} />
         </>
       )}
-      <styled.DetailContainer>
-        <styled.Title
-          className={showTrailer ? 'small' : ''}
-          style={{ '--height': `${descriptionHeight + 65}px` }}
-        >
-          {banner.name || banner.title || banner.original_name}
-        </styled.Title>
-        <styled.Description
-          className={showTrailer ? 'no-desc' : ''}
-          ref={descriptionRef}
-          style={{ '--height': `${descriptionHeight}px` }}
-        >
-          {shortDescription(banner.overview, 185)}
-        </styled.Description>
-        <styled.ButtonWrapper>
-          <styled.PlayButton
-            onClick={() => {
-              setPlayerVideo({
-                trailer,
-                start: playerRef.current?.getCurrentTime() || 0,
-              });
-              setShowTrailer(false);
-              setDistracted(true);
-              setDonePlay(true);
-            }}
+      {banner && (
+        <styled.DetailContainer>
+          <styled.Title
+            className={showTrailer ? 'small' : ''}
+            style={{ '--height': `${descriptionHeight + 65}px` }}
           >
-            <styled.PlayIcon />
-            <span>Play</span>
-          </styled.PlayButton>
-          <styled.InfoButton
-            onClick={() => {
-              setSelectedItem({
-                id: banner.id,
-                key: trailer,
-                start: playerRef.current?.getCurrentTime() || 0,
-                placeholder: banner.backdrop_path,
-              });
-              setDistracted(true);
-              setDonePlay(true);
-            }}
+            {banner.name || banner.title || banner.original_name}
+          </styled.Title>
+          <styled.Description
+            className={showTrailer ? 'no-desc' : ''}
+            ref={descriptionRef}
+            style={{ '--height': `${descriptionHeight}px` }}
           >
-            <styled.InfoIcon />
-            <span>More Info</span>
-          </styled.InfoButton>
-        </styled.ButtonWrapper>
-      </styled.DetailContainer>
+            {shortDescription(banner.overview, 185)}
+          </styled.Description>
+          <styled.ButtonWrapper>
+            <styled.PlayButton
+              onClick={() => {
+                setPlayerVideo({
+                  trailer,
+                  start: playerRef.current?.getCurrentTime() || 0,
+                });
+                setShowTrailer(false);
+                setDistracted(true);
+                setDonePlay(true);
+              }}
+            >
+              <styled.PlayIcon />
+              <span>Play</span>
+            </styled.PlayButton>
+            <styled.InfoButton
+              onClick={() => {
+                setSelectedItem({
+                  id: banner.id,
+                  key: trailer,
+                  start: playerRef.current?.getCurrentTime() || 0,
+                  placeholder: banner.backdrop_path,
+                });
+                setDistracted(true);
+                setDonePlay(true);
+              }}
+            >
+              <styled.InfoIcon />
+              <span>More Info</span>
+            </styled.InfoButton>
+          </styled.ButtonWrapper>
+        </styled.DetailContainer>
+      )}
     </styled.Billboard>
   );
 }

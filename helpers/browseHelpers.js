@@ -9,38 +9,50 @@ export const shortDescription = (description, length) =>
     ? description.substr(0, length - 1) + '...'
     : description;
 
-export const getBillboard = async (category) => {
-  const method =
-    category === 'TVShows' ? 'fetchTVTrailers' : 'fetchMovieTrailers';
-
-  // get banner
-  const { data: bannerData } = await tmdb.get(
-    TMDB[category].sections[1].endpoint
+export const getBanner = async (category) => {
+  const { data: data1 } = await tmdb.get(
+    TMDB[category].sections[1].endpoint.replace('_pageNumber', 1)
   );
-  const { results: bannerResults } = bannerData;
-  const filteredResults = bannerResults.filter(
-    ({ original_language }) => original_language === 'en'
+  const { data: data2 } = await tmdb.get(
+    TMDB[category].sections[1].endpoint.replace('_pageNumber', 2)
+  );
+  const { results: results1 } = data1;
+  const { results: results2 } = data2;
+  const resultsPools = [...results1, ...results2];
+  const filteredResults = resultsPools.filter(
+    ({ original_language, title }) =>
+      original_language === 'en' && title !== 'Mortal Kombat'
   );
   const banner = filteredResults[chooseRandomBillboard(filteredResults.length)];
 
-  // get trailer
-  const trailerEndpoint = TMDB[category].helpers[method].replace(
-    '_id',
-    banner.id
-  );
+  return banner;
+};
+
+export const getTrailer = async (category, id) => {
+  const method =
+    category === 'TVShows' ? 'fetchTVTrailers' : 'fetchMovieTrailers';
+
+  const trailerEndpoint = TMDB[category].helpers[method].replace('_id', id);
+
   let trailer = null;
-  const { data: trailerData } = await tmdb.get(trailerEndpoint);
-  const { results: trailerResults } = trailerData;
-  if (trailerResults.length > 0) {
-    const trailerDetails = trailerResults
-      .reverse()
-      .find(({ site, type }) => site === 'YouTube' && type === 'Trailer');
+  const { data } = await tmdb.get(trailerEndpoint);
+  const { results } = data;
+  if (results.length > 0) {
+    const trailerDetails = results.reverse().find(
+      ({ site, type }) =>
+        site === 'YouTube' &&
+        // get all the possible type
+        (type === 'Trailer' ||
+          type === 'Featurette' ||
+          type === 'Clip' ||
+          type === 'Opening Credits')
+    );
     if (trailerDetails) {
       trailer = trailerDetails.key;
     }
   }
 
-  return { banner, trailer };
+  return trailer;
 };
 
 export const getDetails = async (category, id) => {

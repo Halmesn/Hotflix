@@ -9,7 +9,7 @@ export const TMDB = {
       },
       {
         title: 'Trending Now',
-        endpoint: `/trending/tv/day?api_key=${API_KEY}`,
+        endpoint: `/trending/tv/day?api_key=${API_KEY}&page=_pageNumber`,
       },
       {
         title: 'War Politics',

@@ -9,17 +9,24 @@ import { signOut } from 'next-auth/client';
 export default function UserMenu() {
   const { selectedProfile, setSelectedProfile, profile } =
     useContext(ProfileContext);
-  const { avatar, name } = selectedProfile;
+  const { avatar: profileAvatar, name: profileName } = selectedProfile;
 
   return (
     <styled.Wrapper className="menu">
       <styled.Menu className="button">
-        <Image src={avatar} alt={`${name}'s avatar`} width={32} height={32} />
+        <Image
+          src={profileAvatar}
+          alt={`${profileName}'s avatar`}
+          width={32}
+          height={32}
+        />
         <styled.Dropdown className="dropdown">
           {profile.map(({ name, avatar }) => (
             <styled.DropdownOptions
               key={name}
-              onClick={() => setSelectedProfile({ name, avatar })}
+              onClick={() =>
+                name !== profileName && setSelectedProfile({ name, avatar })
+              }
             >
               <styled.Wrapper className="image">
                 <Image

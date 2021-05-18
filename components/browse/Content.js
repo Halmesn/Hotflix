@@ -1,11 +1,11 @@
 import Billboard from './Billboard';
 import Player from './Player';
 import Details from './Details';
-import FalseLoading from 'components/layout/background/FalseLoading';
+import Loading from 'components/layout/background/Loading';
 
 import { ProfileContext } from 'components/layout/Layout';
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 
 // this Component serves a purpose of managing cross component's states
 export default function Content() {
@@ -13,7 +13,7 @@ export default function Content() {
   const { avatar } = selectedProfile;
 
   // states for visual effects
-  const [falseLoading, setFalseLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showTrailer, setShowTrailer] = useState(false);
   const [distracted, setDistracted] = useState(false);
 
@@ -24,16 +24,9 @@ export default function Content() {
   // states for cross components uses
   const [mute, setMute] = useState(true);
 
-  useEffect(() => {
-    setFalseLoading(true);
-    const falseLoading = () => setFalseLoading(false);
-    setTimeout(falseLoading, 1000);
-    return () => clearTimeout(falseLoading);
-  }, [avatar]);
-
   return (
     <section>
-      {falseLoading ? <FalseLoading src={avatar} /> : <FalseLoading.Finished />}
+      {loading ? <Loading src={avatar} /> : <Loading.Finished />}
       {playerVideo && (
         <Player playerVideo={playerVideo} setPlayerVideo={setPlayerVideo} />
       )}
@@ -56,6 +49,7 @@ export default function Content() {
         setShowTrailer={setShowTrailer}
         distracted={distracted}
         setDistracted={setDistracted}
+        setLoading={setLoading}
       />
     </section>
   );
