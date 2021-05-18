@@ -3,21 +3,24 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 
 export const Header = styled.header`
-  position: ${({ url }) =>
-    url === '/' || url === '/browse' ? 'fixed' : 'absolute'};
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 3;
   transition: all 0.5s;
-
-  background: ${({ showBackground }) => (showBackground ? '#141414' : 'none')};
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
 `;
 
 export const Nav = styled.nav`
   width: 95%;
   margin: 0 auto;
-  padding: 1.7rem 0;
+  padding: 1rem 0;
+  padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,6 +85,7 @@ export const Wrapper = styled.div`
   &.primary-nav {
     display: flex;
     gap: 4rem;
+    margin-left: 1rem;
 
     @media screen and (max-width: 42.5em) {
       gap: 1rem;
@@ -92,6 +96,26 @@ export const Wrapper = styled.div`
   &.menu {
     display: flex;
     align-items: center;
+  }
+
+  &.secondary-nav {
+    margin-right: 2.3rem;
+  }
+
+  &.menu {
+    cursor: pointer;
+
+    &:hover .button {
+      ul {
+        opacity: 1;
+        transform: rotateX(0) translateX(-50%);
+        visibility: visible;
+      }
+
+      .caret {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   &.image {
@@ -181,39 +205,23 @@ export const Input = styled.input`
   }
 `;
 
-export const Menu = styled.button`
+export const Menu = styled.div`
   margin: 0 1rem 0 2.4rem;
-  cursor: pointer;
-  border: 0;
-  border-radius: 3px;
-  width: 3.6rem;
-  height: 3.6rem;
   position: relative;
 
-  &:hover {
-    outline: none;
-    ul {
-      opacity: 1;
-      transform: rotateX(0) translateX(-50%);
-      visibility: visible;
-    }
-
-    & + .caret {
-      transform: rotate(180deg);
-    }
-  }
-
   img {
-    border-radius: 3px;
+    border-radius: 3px !important;
   }
 `;
 
 export const Caret = styled.span`
-  display: inline-block;
+  position: absolute;
+  top: 44%;
+  right: -2rem;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 5px 5px 0 5px;
+  border-width: 5.3px 5.3px 0 5.3px;
   border-color: #fff transparent transparent transparent;
   transition: transform 367ms cubic-bezier(0.21, 0, 0.07, 1);
 `;
@@ -222,7 +230,7 @@ export const Dropdown = styled.ul`
   list-style: none;
   opacity: 0;
   position: absolute;
-  top: 6rem;
+  top: 5.5rem;
   right: -10rem;
   background: rgba(0, 0, 0, 0.75);
   color: #fff;
@@ -242,7 +250,7 @@ export const Dropdown = styled.ul`
     border-style: solid;
     border-width: 7px 7px 0 7px;
     border-color: #d3d3d3 transparent transparent transparent;
-    transform: rotate(180deg) translate(-4.3rem, 2rem);
+    transform: rotate(180deg) translate(-11.3rem, 2rem);
   }
 `;
 
