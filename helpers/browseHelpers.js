@@ -100,3 +100,18 @@ export const getEpisodes = async (season, id) => {
 
   return episodes;
 };
+
+export const getRecommendations = async (category, id) => {
+  const getMethod = () =>
+    category === 'TVShows'
+      ? 'fetchTVRecommendations'
+      : 'fetchMovieRecommendations';
+
+  const { data } = await tmdb.get(
+    TMDB[category].helpers[getMethod()].replace('_id', id)
+  );
+
+  const { results: recommendations } = data;
+
+  return recommendations;
+};

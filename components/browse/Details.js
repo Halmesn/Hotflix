@@ -2,6 +2,7 @@ import * as styled from './detailsStyles';
 import { MuteIcon, NotMuteIcon, PlayIcon } from './billboardStyles';
 
 import Episode from './Episode';
+import Recommendation from './Recommendation';
 
 import { ProfileContext } from 'components/layout/Layout';
 
@@ -154,6 +155,11 @@ export default function Details({
               placeholder={placeholder}
             />
           )}
+          <Recommendation
+            category={category}
+            id={id}
+            placeholder={placeholder}
+          />
         </styled.Wrapper>
       </styled.Details>
     )

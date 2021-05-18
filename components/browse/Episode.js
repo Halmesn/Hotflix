@@ -8,6 +8,11 @@ import {
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+export const onShowMoreClick = (e, setState) => {
+  e.stopPropagation();
+  setState((showAll) => !showAll);
+};
+
 export default function Episode({ id, seasons, placeholder }) {
   const [season, setSeason] = useState('1');
   const [episodes, setEpisodes] = useState();
@@ -25,7 +30,7 @@ export default function Episode({ id, seasons, placeholder }) {
     <styled.Episode>
       <styled.Header>
         <styled.Title>Episodes</styled.Title>
-        <styled.Dropdown
+        <styled.Select
           onChange={({ target }) => setSeason(target.value)}
           value={season}
         >
@@ -34,47 +39,41 @@ export default function Episode({ id, seasons, placeholder }) {
               {name}
             </option>
           ))}
-        </styled.Dropdown>
+        </styled.Select>
       </styled.Header>
       {episodes && (
         <styled.List>
           {episodes.map(
             ({ id, episode_number, name, overview, still_path }, i) =>
+              // if i > 10 && showAll is false, then it will not be returned'
               (showAll || (!showAll && i < 10)) && (
                 <styled.ListItem key={id}>
-                  <styled.Panel className="episode-number">
+                  <styled.Wrapper className="number">
                     {episode_number}
-                  </styled.Panel>
-                  <styled.Panel className="episode-image">
-                    <styled.Wrapper className="image">
-                      <Image
-                        src={`https://image.tmdb.org/t/p/w185/${
-                          still_path || placeholder
-                        }`}
-                        width={154}
-                        height={80}
-                        alt={`Episode ${episode_number}`}
-                      />
-                    </styled.Wrapper>
-                  </styled.Panel>
-                  <styled.Panel className="episode-details">
+                  </styled.Wrapper>
+                  <styled.Wrapper className="image">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w185/${
+                        still_path || placeholder
+                      }`}
+                      width={154}
+                      height={90}
+                      alt={`Episode ${episode_number}`}
+                    />
+                  </styled.Wrapper>
+                  <styled.Wrapper className="details">
                     <styled.ListItemTitle>{name}</styled.ListItemTitle>
                     <styled.Overview>
                       {overview.length === 0
                         ? 'No overview available'
                         : shortDescription(overview, 185)}
                     </styled.Overview>
-                  </styled.Panel>
+                  </styled.Wrapper>
                 </styled.ListItem>
               )
           )}
           {episodes.length > 10 && (
-            <styled.ShowMore
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowAll(!showAll);
-              }}
-            >
+            <styled.ShowMore onClick={(e) => onShowMoreClick(e, setShowAll)}>
               {showAll ? <styled.ArrowUp /> : <styled.ArrowDown />}
             </styled.ShowMore>
           )}

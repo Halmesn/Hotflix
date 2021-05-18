@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Episode = styled.div`
   padding: 4.8rem;
+  padding-bottom: 1rem;
   @media (max-width: 600px) {
     padding: 2.4rem;
   }
@@ -17,7 +18,7 @@ export const Title = styled.p`
   font-size: 2.4rem;
 `;
 
-export const Dropdown = styled.select`
+export const Select = styled.select`
   min-width: 6.4rem;
   padding: 0.56rem;
   background-color: rgb(36, 36, 36);
@@ -39,30 +40,27 @@ export const List = styled.div`
   }
 `;
 
-export const Panel = styled.div`
-  &.episode-number {
+export const Wrapper = styled.div`
+  &.number {
     flex: 1;
     font-size: 2.4rem;
     color: #d2d2d2;
     text-align: center;
   }
 
-  &.episode-image {
+  &.image {
     flex: 5;
+    margin: 2rem 1.6rem;
+
+    img {
+      max-width: 14.4rem;
+      border-radius: 0.56rem !important;
+    }
   }
 
-  &.episode-details {
+  &.details {
     flex: 15;
   }
-
-  img {
-    max-width: 14.4rem;
-    border-radius: 0.56rem !important;
-  }
-`;
-
-export const Wrapper = styled.div`
-  margin: 2rem 1.6rem;
 `;
 
 export const ListItem = styled.div`
@@ -70,7 +68,7 @@ export const ListItem = styled.div`
   justify-content: space-between;
   place-items: center;
   border-bottom: 1px solid #404040;
-  padding: 0 6.4rem 0 2.4rem;
+  padding: 0.5rem 6.4rem 1.1rem 2.4rem;
 
   &:last-of-type {
     border-bottom: 3px solid #404040;
