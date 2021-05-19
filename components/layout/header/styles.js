@@ -184,6 +184,7 @@ export const Search = styled.div`
     @media screen and (max-width: 37.5em) {
       width: 1.8rem;
       height: 1.8rem;
+      top: 8px;
     }
   }
 
@@ -245,6 +246,11 @@ export const Caret = styled.span`
   border-width: 5.3px 5.3px 0 5.3px;
   border-color: #fff transparent transparent transparent;
   transition: transform 367ms cubic-bezier(0.21, 0, 0.07, 1);
+
+  @media screen and (max-width: 37.5em) {
+    border-width: 4.5px 4.5px 0 4.5px;
+    right: -1.7rem;
+  }
 `;
 
 export const Dropdown = styled.ul`

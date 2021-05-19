@@ -144,7 +144,7 @@ export const DetailContainer = styled.div`
 
   @media (max-width: 37.5em) {
     width: 70%;
-    bottom: 73.2%;
+    bottom: 71.2%;
   }
 `;
 
@@ -218,6 +218,10 @@ export const PlayButton = styled.button`
     padding: 0.8rem 1.6rem;
   }
 
+  @media (max-width: 37.5em) {
+    padding: 0.6rem 0.8rem;
+  }
+
   :hover {
     background-color: rgba(255, 255, 255, 0.75);
   }
@@ -234,8 +238,8 @@ export const PlayButton = styled.button`
     }
 
     @media (max-width: 37.5em) {
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       margin-right: 0.5rem;
     }
   }
