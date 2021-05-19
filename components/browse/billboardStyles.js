@@ -144,7 +144,7 @@ export const DetailContainer = styled.div`
 
   @media (max-width: 37.5em) {
     width: 70%;
-    bottom: 71.2%;
+    bottom: 70%;
   }
 `;
 

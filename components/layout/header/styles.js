@@ -108,6 +108,10 @@ export const Wrapper = styled.div`
 
   &.secondary-nav {
     margin-right: 2.3rem;
+
+    @media (max-width: 37.5em) {
+      margin-right: 1.6rem;
+    }
   }
 
   &.menu {
