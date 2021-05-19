@@ -103,8 +103,8 @@ export const Close = styled.div`
     }
   }
   @media (max-width: 37.5em) {
-    top: 1.2rem;
-    right: 1.5rem;
+    top: 2.4rem;
+    right: 2.4rem;
   }
 `;
 
