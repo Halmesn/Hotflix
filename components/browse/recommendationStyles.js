@@ -72,4 +72,8 @@ export const Year = styled.p`
 export const ShowMoreWrapper = styled.div`
   margin-top: 3.2rem;
   padding-bottom: 3.2rem;
+
+  @media (max-width: 37.5em) {
+    height: 10rem;
+  }
 `;

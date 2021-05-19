@@ -15,10 +15,6 @@ export const Details = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-
-  @media (max-width: 37.5em) {
-    height: calc(100vh + 5rem);
-  }
 `;
 
 export const FullScreen = createGlobalStyle`
