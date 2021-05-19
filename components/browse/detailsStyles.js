@@ -6,7 +6,9 @@ import {
 } from './billboardStyles';
 
 export const Details = styled.div`
-  position: fixed;
+  position: absolute;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   top: 0;
   left: 0;
   z-index: 99;
@@ -192,7 +194,7 @@ export const Mute = styled(BillboardMute)`
   right: 3rem;
 
   @media (max-width: 37.5em) {
-    top: 22.5rem;
+    top: 23rem;
   }
 `;
 
