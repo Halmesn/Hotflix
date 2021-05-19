@@ -2,7 +2,6 @@ import * as styled from './billboardStyles';
 
 import { ProfileContext } from 'components/layout/Layout';
 
-import useWindowDimensions from 'hooks/useWindowDimensions';
 import { getBanner, getTrailer, shortDescription } from 'helpers/browseHelpers';
 
 import { useState, useContext, useRef, useEffect } from 'react';
@@ -19,12 +18,12 @@ export default function Billboard({
   distracted,
   setDistracted,
   setLoading,
+  width,
+  avatar,
 }) {
-  const { category, selectedProfile } = useContext(ProfileContext);
-  const { avatar } = selectedProfile;
+  const { category } = useContext(ProfileContext);
   const [trailer, setTrailer] = useState(null);
   const [banner, setBanner] = useState(null);
-  const { width } = useWindowDimensions();
 
   // for replay functionality
   const [donePlay, setDonePlay] = useState(false);
@@ -32,6 +31,7 @@ export default function Billboard({
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
 
+  // data fetching
   useEffect(() => {
     setLoading(true);
     setBanner(null);
@@ -46,21 +46,29 @@ export default function Billboard({
     }
     const delayDisplay = fetchBillboard();
     return clearTimeout(delayDisplay);
+
+    // here I use avatar as a dependency instead of selectedProfile is because
+    // when using selectedProfile as a useEffect dependency, it'll cause a weird bug that
+    // every single time when users switch between browser tabs,
+    // the whole app will re-render itself, I haven't find a solution on Google yet,
+    // but I managed to come out my own: destructing avatar property that'll definitely change when
+    // selectedProfile changes, then using it as the useEffect dependency.
   }, [avatar, category]);
 
-  // for description animation
+  // description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
   useEffect(() => {
     descriptionRef.current?.clientHeight !== 0 &&
       setDescriptionHeight(descriptionRef.current?.clientHeight);
   });
 
-  // for visual effects
+  // reset player related states
   useEffect(() => {
     setDistracted(false);
     setDonePlay(false);
   }, [category, avatar]);
 
+  // for delaying video playing
   useEffect(() => {
     setShowTrailer(false);
     if (!trailer || width <= 600) return;
@@ -106,7 +114,9 @@ export default function Billboard({
         <>
           <styled.Banner>
             <Image
-              src={`https://image.tmdb.org/t/p/original${banner.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/${
+                width <= 600 ? 'w780' : width <= 1000 ? 'w1280' : 'original'
+              }${banner.backdrop_path}`}
               alt={banner.title}
               layout="fill"
               objectFit="cover"

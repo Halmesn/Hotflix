@@ -8,7 +8,6 @@ export const Header = styled.header`
   left: 0;
   width: 100%;
   z-index: 3;
-  transition: all 0.5s;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.7) 10%,

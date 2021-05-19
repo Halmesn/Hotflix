@@ -19,6 +19,7 @@ export default function Details({
   setShowTrailer,
   setSelectedItem,
   setPlayerVideo,
+  width,
 }) {
   const { category } = useContext(ProfileContext);
   const { id, key, start, placeholder } = selectedItem;
@@ -85,7 +86,9 @@ export default function Details({
           {details.backdrop_path && (showBanner || !key) && (
             <styled.Banner>
               <Image
-                src={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/${
+                  width <= 600 ? 'w780' : width <= 1000 ? 'w1280' : 'original'
+                }${details.backdrop_path}`}
                 alt={details.title}
                 layout="fill"
                 objectFit="cover"

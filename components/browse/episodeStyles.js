@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Episode = styled.div`
   padding: 4.8rem;
   padding-bottom: 1rem;
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     padding: 2.4rem;
   }
 `;
@@ -74,7 +74,7 @@ export const ListItem = styled.div`
     border-bottom: 3px solid #404040;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     padding: 1.6rem 0;
   }
 `;
@@ -83,7 +83,7 @@ export const ListItemTitle = styled.p`
   font-weight: 800;
   font-size: 1.76rem;
   margin-bottom: 0.8rem;
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     font-size: 1.28rem;
     margin-bottom: 0.4rem;
   }
@@ -93,7 +93,7 @@ export const Overview = styled.p`
   color: #d2d2d2;
   font-size: 1.44rem;
   line-height: 1.5;
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     font-size: 1.12rem;
     line-height: 1.25;
   }
@@ -122,12 +122,12 @@ export const ShowMore = styled.div`
     background-color: #545454;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     width: 3.2rem;
     height: 3.2rem;
     svg {
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 2.8rem;
+      height: 2.8rem;
     }
   }
 `;

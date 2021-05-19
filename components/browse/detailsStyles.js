@@ -178,21 +178,21 @@ export const Title = styled.div`
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-  bottom: 35%;
+  top: 42rem;
   left: 3rem;
   @media (max-width: 37.5em) {
-    bottom: 66%;
+    top: 24rem;
   }
 `;
 
 export const PlayButton = styled(BillboardPlayButton)``;
 
 export const Mute = styled(BillboardMute)`
-  bottom: 36%;
+  top: 41.5rem;
   right: 3rem;
 
   @media (max-width: 37.5em) {
-    bottom: 66%;
+    top: 22.5rem;
   }
 `;
 
