@@ -1,6 +1,7 @@
 import Billboard from './Billboard';
 import Player from './Player';
 import Details from './Details';
+import Lolomo from './Lolomo';
 import Loading from 'components/layout/background/Loading';
 
 import { ProfileContext } from 'components/layout/Layout';
@@ -13,7 +14,7 @@ import { useState, useContext } from 'react';
 
 // this Component serves a purpose of managing cross component's states
 export default function Content() {
-  const { selectedProfile } = useContext(ProfileContext);
+  const { category, selectedProfile } = useContext(ProfileContext);
   const { avatar } = selectedProfile;
   const { width } = useWindowDimensions();
 
@@ -41,6 +42,7 @@ export default function Content() {
         <Details
           width={width}
           mute={mute}
+          category={category}
           setMute={setMute}
           selectedItem={selectedItem}
           setShowTrailer={setShowTrailer}
@@ -51,6 +53,7 @@ export default function Content() {
       <Billboard
         avatar={avatar}
         width={width}
+        category={category}
         mute={mute}
         setMute={setMute}
         showTrailer={showTrailer}
@@ -61,6 +64,7 @@ export default function Content() {
         setPlayerVideo={setPlayerVideo}
         setSelectedItem={setSelectedItem}
       />
+      <Lolomo category={category} />
     </section>
   );
 }

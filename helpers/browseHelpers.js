@@ -23,7 +23,8 @@ export const getBanner = async (category) => {
     ({ original_language, title }) =>
       original_language === 'en' &&
       title !== 'Mortal Kombat' &&
-      title !== 'The Walking Dead'
+      title !== 'The Walking Dead' &&
+      title !== 'Superman & Lois'
   );
   const banner = filteredResults[chooseRandomBillboard(filteredResults.length)];
 
@@ -128,4 +129,15 @@ export const getRecommendations = async (category, id) => {
   const { results: recommendations } = data;
 
   return recommendations;
+};
+
+export const getSliderItems = async (section) => {
+  const { data } = await tmdb.get(
+    section.endpoint.replace('&page=_pageNumber', '')
+  );
+  console.log(data);
+
+  const { results: sliderItems } = data;
+
+  return sliderItems;
 };

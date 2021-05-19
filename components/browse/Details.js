@@ -4,24 +4,22 @@ import { MuteIcon, NotMuteIcon, PlayIcon } from './billboardStyles';
 import Episode from './Episode';
 import Recommendation from './Recommendation';
 
-import { ProfileContext } from 'components/layout/Layout';
-
 import { getDetails as fetchDetails } from 'helpers/browseHelpers';
 
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import Image from 'next/image';
 
 export default function Details({
-  selectedItem,
   mute,
-  setMute,
-  setShowTrailer,
-  setSelectedItem,
-  setPlayerVideo,
   width,
+  setMute,
+  category,
+  selectedItem,
+  setShowTrailer,
+  setPlayerVideo,
+  setSelectedItem,
 }) {
-  const { category } = useContext(ProfileContext);
   const { id, key, start, placeholder } = selectedItem;
 
   const [details, setDetails] = useState(null);
@@ -32,14 +30,15 @@ export default function Details({
   const playerRef = useRef(null);
   const modalRef = useRef();
 
-  useEffect(() => setShowTrailer(false), []);
-
   useEffect(() => {
+    setShowTrailer(false);
+
     const onOutsideClick = (e) =>
       (modalRef.current && modalRef.current.contains(e.target)) ||
       setSelectedItem(null);
 
     document.body.addEventListener('click', onOutsideClick);
+
     return () => document.body.removeEventListener('click', onOutsideClick);
   }, []);
 

@@ -1,27 +1,25 @@
 import * as styled from './billboardStyles';
 
-import { ProfileContext } from 'components/layout/Layout';
-
 import { getBanner, getTrailer, shortDescription } from 'helpers/browseHelpers';
 
-import { useState, useContext, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
 
 export default function Billboard({
-  setPlayerVideo,
-  setSelectedItem,
   mute,
-  setMute,
-  showTrailer,
-  setShowTrailer,
-  distracted,
-  setDistracted,
-  setLoading,
   width,
   avatar,
+  setMute,
+  category,
+  setLoading,
+  distracted,
+  showTrailer,
+  setDistracted,
+  setShowTrailer,
+  setPlayerVideo,
+  setSelectedItem,
 }) {
-  const { category } = useContext(ProfileContext);
   const [trailer, setTrailer] = useState(null);
   const [banner, setBanner] = useState(null);
 
