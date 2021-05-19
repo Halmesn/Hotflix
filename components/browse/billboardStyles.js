@@ -153,7 +153,7 @@ export const Title = styled.h1`
   margin-bottom: 2.5rem;
   text-shadow: 0px 4px 3px rgb(20 20 20 / 40%), 0px 8px 13px rgb(20 20 20 / 10%),
     0px 18px 23px rgb(20 20 20 / 10%);
-  transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 1.3s ease;
   font-size: 6rem;
 
   @media (max-width: 62.5em) {
@@ -169,8 +169,7 @@ export const Title = styled.h1`
   &.small {
     transform-origin: left bottom;
     transform: scale(0.8) translate3d(0px, var(--height), 0px);
-    transition-duration: 1300ms;
-    transition-delay: 4000ms;
+    transition-delay: 2200ms;
   }
 `;
 
@@ -181,15 +180,14 @@ export const Description = styled.p`
   width: 100%;
   font-size: 1.4vw;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
-  transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s ease;
   opacity: 1;
 
   &.no-desc {
     opacity: 0;
     transform-origin: left bottom;
     transform: translate3d(0px, var(--height), 0px) scaleY(0);
-    transition-duration: 1.3s;
-    transition-delay: 4000ms;
+    transition-delay: 2200ms;
   }
 `;
 

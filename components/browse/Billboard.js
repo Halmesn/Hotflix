@@ -39,16 +39,14 @@ export default function Billboard({
     async function fetchBillboard() {
       const banner = await getBanner(category);
       setBanner(banner);
+      const trailer = await getTrailer(category, banner.id);
+      setTrailer(trailer);
       const delayDisplay = setTimeout(() => banner && setLoading(false), 1500);
-      if (width > 600) {
-        const trailer = await getTrailer(category, banner.id);
-        setTrailer(trailer);
-      }
       return delayDisplay;
     }
     const delayDisplay = fetchBillboard();
     return clearTimeout(delayDisplay);
-  }, [width, avatar, category]);
+  }, [avatar, category]);
 
   // for description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
@@ -64,13 +62,13 @@ export default function Billboard({
   }, [category, avatar]);
 
   useEffect(() => {
-    if (!trailer) return;
     setShowTrailer(false);
+    if (!trailer || width <= 600) return;
     const delayPlay = setTimeout(() => setShowTrailer(true), 2000);
 
     if (distracted) clearTimeout(delayPlay);
     return () => clearTimeout(delayPlay);
-  }, [category, distracted, avatar, trailer]);
+  }, [category, distracted, avatar, trailer, width]);
 
   const playerConfig = {
     playerVars: {
@@ -83,7 +81,7 @@ export default function Billboard({
 
   return (
     <styled.Billboard>
-      {showTrailer && trailer && (
+      {showTrailer && trailer && width > 600 && (
         <styled.Video>
           <ReactPlayer
             ref={playerRef}
@@ -114,7 +112,7 @@ export default function Billboard({
               objectFit="cover"
             />
           </styled.Banner>
-          {donePlay && (
+          {donePlay && width > 600 && (
             <styled.Replay
               onClick={() => {
                 setDonePlay(false);

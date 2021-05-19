@@ -65,7 +65,7 @@ export const Video = styled(BillboardVideo)`
       }
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     height: 28.8rem;
     iframe {
       width: 128%;
@@ -79,7 +79,7 @@ export const Banner = styled.div`
   height: 51.2rem;
   position: relative;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     height: 28.8rem;
   }
 `;
@@ -97,9 +97,13 @@ export const Close = styled.div`
     height: 3.5rem;
     padding: 0.35rem;
     fill: white;
+    @media (max-width: 37.5em) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
-  @media (max-width: 600px) {
-    top: 0.5rem;
+  @media (max-width: 37.5em) {
+    top: 1.2rem;
     right: 1.5rem;
   }
 `;
@@ -113,7 +117,7 @@ export const Overlay = styled.div`
   z-index: 0;
   background: linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95));
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     height: 28.8rem;
   }
 `;
@@ -121,7 +125,7 @@ export const Overlay = styled.div`
 export const Summary = styled.div`
   padding: 1.6rem 3.2rem 0;
   display: flex;
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     padding: 1.6rem 1.6rem 0;
   }
 `;
@@ -148,7 +152,7 @@ export const Panel = styled.div`
     flex: 2;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     padding: 0.8rem 0.8rem 0;
     p {
       margin-bottom: 0.8rem;
@@ -174,18 +178,22 @@ export const Title = styled.div`
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-  bottom: 49%;
+  bottom: 35%;
   left: 3rem;
-  @media (max-width: 600px) {
-    bottom: 13rem;
+  @media (max-width: 37.5em) {
+    bottom: 66%;
   }
 `;
 
 export const PlayButton = styled(BillboardPlayButton)``;
 
 export const Mute = styled(BillboardMute)`
-  bottom: 50%;
+  bottom: 36%;
   right: 3rem;
+
+  @media (max-width: 37.5em) {
+    bottom: 66%;
+  }
 `;
 
 export const MinorDetails = styled.p`
@@ -194,7 +202,7 @@ export const MinorDetails = styled.p`
   span {
     color: #777;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 37.5em) {
     font-size: 1.2rem;
     line-height: 1.25;
   }

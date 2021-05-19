@@ -14,8 +14,6 @@ export default function Recommendation({ category, id, placeholder }) {
   const [recommendations, setRecommendations] = useState();
   const [showAll, setShowAll] = useState(false);
 
-  console.log(recommendations);
-
   useEffect(() => {
     const getRecommendations = async () => {
       const recommendations = await fetchRecommendations(category, id);
