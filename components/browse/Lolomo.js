@@ -4,14 +4,12 @@ import Slider from './Slider';
 
 import { TMDB } from 'data/tmdbEndpoints';
 
-export default function Lolomo({ category }) {
+export default function Lolomo({ category, loading }) {
   return (
-    <styled.Lolomo>
-      <styled.SliderContainer>
-        {TMDB[category].sections.map((section) => (
-          <Slider key={section.title} section={section} />
-        ))}
-      </styled.SliderContainer>
+    <styled.Lolomo isLoading={loading}>
+      {TMDB[category].sections.map((section) => (
+        <Slider key={section.title} section={section} />
+      ))}
     </styled.Lolomo>
   );
 }

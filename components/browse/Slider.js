@@ -5,6 +5,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import { getSliderItems as fetchSliderItems } from 'helpers/browseHelpers';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper/core';
 
@@ -16,7 +17,11 @@ export default function Slider({ section }) {
   useEffect(() => {
     const getSliderItems = async () => {
       const sliderItems = await fetchSliderItems(section);
-      setSliderItems(sliderItems);
+      const filteredItems = sliderItems.filter(
+        ({ original_language, backdrop_path, poster_path }) =>
+          original_language === 'en' && backdrop_path && poster_path
+      );
+      setSliderItems(filteredItems);
     };
     getSliderItems();
   }, [section.endpoint]);
@@ -26,21 +31,35 @@ export default function Slider({ section }) {
       <styled.Slider>
         <styled.Title>{section.title}</styled.Title>
         <Swiper
-          slidesPerView={6}
-          spaceBetween={4}
+          slidesPerView={'auto'}
+          slidesPerGroup={3}
+          spaceBetween={3}
           navigation
-          loop={true}
-          slidesPerGroup={6}
+          className={`${section.size || 'normal'}`}
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          {sliderItems.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              className="card-container"
+              onMouseEnter={() => console.log('object')}
+            >
+              <styled.Card>
+                <styled.Poster>
+                  <Image
+                    src={`${
+                      section.size === 'large'
+                        ? `https://image.tmdb.org/t/p/w342/${item.poster_path}`
+                        : `https://image.tmdb.org/t/p/w300/${item.backdrop_path}`
+                    }`}
+                    alt={item.name || item.title}
+                    width={300}
+                    height={section.size === 'large' ? 448 : 165}
+                  />
+                </styled.Poster>
+                <styled.Details></styled.Details>
+              </styled.Card>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </styled.Slider>
     )

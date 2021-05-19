@@ -64,7 +64,7 @@ export default function Content() {
         setPlayerVideo={setPlayerVideo}
         setSelectedItem={setSelectedItem}
       />
-      <Lolomo category={category} />
+      <Lolomo category={category} loading={loading} />
     </section>
   );
 }

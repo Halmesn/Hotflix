@@ -22,7 +22,7 @@ export const TMDB = {
       {
         title: 'Nextflix Original',
         endpoint: `/discover/tv?api_key=${API_KEY}&with_networks=213&with_watch_providers=8&watch_region=AU`,
-        size: 'lg',
+        size: 'large',
       },
       {
         title: 'Documentary',
@@ -94,13 +94,13 @@ export const TMDB = {
         endpoint: `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=AU`,
       },
       {
-        title: 'Today in Australia Cinemas',
+        title: 'Playing in Australian Cinemas',
         endpoint: `movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=AU`,
       },
       {
         title: 'Nextflix Original',
         endpoint: `/discover/movie?api_key=${API_KEY}&with_networks=213&with_watch_providers=8&watch_region=AU`,
-        size: 'lg',
+        size: 'large',
       },
       {
         title: 'Sci-Fi',

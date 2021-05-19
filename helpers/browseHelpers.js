@@ -135,7 +135,6 @@ export const getSliderItems = async (section) => {
   const { data } = await tmdb.get(
     section.endpoint.replace('&page=_pageNumber', '')
   );
-  console.log(data);
 
   const { results: sliderItems } = data;
 
