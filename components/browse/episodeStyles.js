@@ -125,6 +125,8 @@ export const ShowMore = styled.div`
   @media (max-width: 37.5em) {
     width: 3.2rem;
     height: 3.2rem;
+    margin-top: -1.4rem;
+
     svg {
       width: 2.8rem;
       height: 2.8rem;

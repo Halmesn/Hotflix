@@ -104,7 +104,7 @@ export const Close = styled.div`
   }
   @media (max-width: 37.5em) {
     top: 2.4rem;
-    right: 2.4rem;
+    right: 3.8rem;
   }
 `;
 

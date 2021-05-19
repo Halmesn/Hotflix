@@ -13,6 +13,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(auto, auto);
   gap: 1.6rem;
+  margin-bottom: 3.2rem;
 
   @media (max-width: 37.5em) {
     grid-template-columns: repeat(2, 1fr);
@@ -70,10 +71,7 @@ export const Year = styled.p`
 `;
 
 export const ShowMoreWrapper = styled.div`
-  margin-top: 3.2rem;
-  padding-bottom: 3.2rem;
-
   @media (max-width: 37.5em) {
-    height: 10rem;
+    height: 12rem;
   }
 `;
