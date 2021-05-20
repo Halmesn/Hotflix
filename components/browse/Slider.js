@@ -34,7 +34,7 @@ export default function Slider({ section }) {
       <styled.Slider>
         <styled.Title>{section.title}</styled.Title>
         <Swiper
-          slidesPerView={6}
+          slidesPerView={'auto'}
           slidesPerGroup={3}
           spaceBetween={3}
           simulateTouch={false}
