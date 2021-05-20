@@ -34,10 +34,11 @@ export default function Slider({ section }) {
       <styled.Slider>
         <styled.Title>{section.title}</styled.Title>
         <Swiper
-          slidesPerView={'auto'}
+          slidesPerView={6}
           slidesPerGroup={3}
           spaceBetween={3}
-          // navigation
+          simulateTouch={false}
+          navigation
           className={`${section.size || 'normal'}`}
         >
           {sliderItems.map((item) => (

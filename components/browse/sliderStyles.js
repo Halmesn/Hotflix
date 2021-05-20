@@ -5,11 +5,9 @@ export const Title = styled.h2`
   font-size: 2.8rem;
   color: #fff;
   font-weight: bold;
-
   @media (max-width: 62.5em) {
     font-size: 1.6rem;
   }
-
   @media (max-width: 37.5em) {
     font-size: 1.44rem;
     padding: 0 2.4rem 0;
@@ -65,7 +63,6 @@ export const Rating = styled.p`
     margin-right: 0.8rem;
     padding: 0.2rem 0.4rem;
   }
-
   .popularity {
     color: #46d369;
     font-weight: 800;
@@ -82,40 +79,33 @@ export const Rating = styled.p`
 export const Slider = styled.div`
   margin-top: -12rem;
   margin-bottom: 3.2rem;
-
   :last-child {
     .swiper-container {
       padding-bottom: 0;
     }
-
     .swiper-button-prev,
     .swiper-button-next {
       top: 70%;
     }
   }
-
   @media (max-width: 62.5em) {
     margin-top: -8rem;
     margin-bottom: 0;
   }
-
   @media (max-width: 37.5em) {
     margin-top: 0;
     margin-bottom: 0;
   }
-
   .swiper-container {
     display: flex;
     padding: 12.8rem 0 15rem 5.6rem;
     margin-top: -11.2rem;
-
     @media (max-width: 62.5em) {
       padding: 12.8rem 0 11.2rem 4.4rem;
     }
     @media (max-width: 37.5em) {
       padding: 12.8rem 0 4.8rem 2.4rem;
     }
-
     &.normal {
       .card-container {
         transition: 0s all;
@@ -132,7 +122,6 @@ export const Slider = styled.div`
         }
       }
     }
-
     &.large {
       @media (max-width: 62.5em) {
         padding: 12.8rem 0 13.6rem 4.4rem;
@@ -176,7 +165,6 @@ export const Slider = styled.div`
           0 6px 6px rgba(0, 0, 0, 0.5);
       }
     }
-
     @media (max-width: 62.5em) {
       margin-right: 23.12rem;
     }
@@ -184,12 +172,10 @@ export const Slider = styled.div`
       margin-right: 17.44rem;
     }
   }
-
   .swiper-button-prev,
   .swiper-button-next {
     color: white;
     top: 48%;
-    opacity: 0;
     transition: all 0.5s ease;
   }
 `;
