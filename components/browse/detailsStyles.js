@@ -6,7 +6,7 @@ import {
 } from './billboardStyles';
 
 export const Details = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
