@@ -19,7 +19,7 @@ export default function Content() {
   const { width } = useWindowDimensions();
 
   // states for visual effects
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showTrailer, setShowTrailer] = useState(false);
 
   // handle situations when users click 'Play' or 'More info' buttons before video starts to play

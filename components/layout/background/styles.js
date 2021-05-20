@@ -64,9 +64,9 @@ export const Spinner = styled.div`
 `;
 
 export const Loading = createGlobalStyle`
-body {
+  body {
   overflow: hidden;
-}
+  }
 `;
 
 export const Avatar = styled.img`
@@ -79,15 +79,17 @@ export const Avatar = styled.img`
 `;
 
 export const Finished = createGlobalStyle`
-html {
-  background-color: #141414;
+  html {
+    background-color: #141414;
 }
-body {
-  overflow: visible;
-  color: #fff;
-  background-color: #141414;
+
+  body {
+    overflow: visible;
+    color: #fff;
+    background-color: #141414;
 }
-* {
-  margin: 0;
-}
+
+  * {
+    margin: 0;
+  }
 `;

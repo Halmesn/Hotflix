@@ -12,17 +12,21 @@ export const TMDB = {
         endpoint: `/trending/tv/day?api_key=${API_KEY}&page=_pageNumber`,
       },
       {
+        title: 'Airing Today',
+        endpoint: `/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
+      },
+      {
+        title: 'Nextflix Original',
+        endpoint: `/discover/tv?api_key=${API_KEY}&with_networks=213&with_watch_providers=8&watch_region=AU`,
+        size: 'large',
+      },
+      {
         title: 'War Politics',
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10768&with_watch_providers=8&watch_region=AU`,
       },
       {
         title: 'Sci-Fi & Fantasy',
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10765&with_watch_providers=8&watch_region=AU`,
-      },
-      {
-        title: 'Nextflix Original',
-        endpoint: `/discover/tv?api_key=${API_KEY}&with_networks=213&with_watch_providers=8&watch_region=AU`,
-        size: 'large',
       },
       {
         title: 'Documentary',
@@ -61,10 +65,6 @@ export const TMDB = {
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10764&with_watch_providers=8&watch_region=AU`,
       },
       {
-        title: 'Soap',
-        endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10766&with_watch_providers=8&watch_region=AU`,
-      },
-      {
         title: 'Talk',
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10767&with_watch_providers=8&watch_region=AU`,
       },
@@ -83,7 +83,7 @@ export const TMDB = {
     sections: [
       {
         title: 'Popular on Nextflix',
-        endpoint: `/movie/popular?api_key=${API_KEY}`,
+        endpoint: `/movie/popular?api_key=${API_KEY}&region=AU`,
       },
       {
         title: 'Trending Now',

@@ -2,7 +2,10 @@ import * as styled from './sliderStyles';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-import { getSliderItems as fetchSliderItems } from 'helpers/browseHelpers';
+import {
+  getSliderItems as fetchSliderItems,
+  isNewRelease,
+} from 'helpers/browseHelpers';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -34,14 +37,14 @@ export default function Slider({ section }) {
           slidesPerView={'auto'}
           slidesPerGroup={3}
           spaceBetween={3}
-          navigation
+          // navigation
           className={`${section.size || 'normal'}`}
         >
           {sliderItems.map((item) => (
             <SwiperSlide
               key={item.id}
               className="card-container"
-              onMouseEnter={() => console.log('object')}
+              onMouseEnter={() => {}}
             >
               <styled.Card>
                 <styled.Poster>
@@ -56,7 +59,19 @@ export default function Slider({ section }) {
                     height={section.size === 'large' ? 448 : 165}
                   />
                 </styled.Poster>
-                <styled.Details></styled.Details>
+                <styled.Details>
+                  <styled.MiniTitle>{item.name || item.title}</styled.MiniTitle>
+                  <br />
+                  <styled.Rating>
+                    {isNewRelease(item.release_date || item.first_air_date) && (
+                      <span className="new-badge">New</span>
+                    )}
+                    <span className="popularity">
+                      {Math.round(item.popularity) / 10}% Popularity
+                    </span>
+                    <span className="rating">{item.vote_average}/10 Rated</span>
+                  </styled.Rating>
+                </styled.Details>
               </styled.Card>
             </SwiperSlide>
           ))}

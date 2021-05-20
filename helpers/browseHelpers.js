@@ -1,13 +1,20 @@
 import tmdb from '/data/tmdb';
 import { TMDB } from '/data/tmdbEndpoints';
 
-export const chooseRandomBillboard = (dataLength) =>
+export const chooseRandomBanner = (dataLength) =>
   Math.floor(Math.random() * dataLength);
 
 export const shortDescription = (description, length) =>
   description.length > length
     ? description.substr(0, length - 1) + '...'
     : description;
+
+export const isNewRelease = (date) => {
+  const releaseDate = new Date(date);
+  const currentDate = new Date();
+  const gap = currentDate.getTime() - releaseDate.getTime();
+  return Math.ceil(gap / (1000 * 3600 * 24)) <= 30;
+};
 
 export const getBanner = async (category) => {
   const { data: data1 } = await tmdb.get(
@@ -20,13 +27,14 @@ export const getBanner = async (category) => {
   const { results: results2 } = data2;
   const resultsPools = [...results1, ...results2];
   const filteredResults = resultsPools.filter(
-    ({ original_language, title }) =>
+    ({ original_language, original_name }) =>
       original_language === 'en' &&
-      title !== 'Mortal Kombat' &&
-      title !== 'The Walking Dead' &&
-      title !== 'Superman & Lois'
+      // get rid of items that the video can't be played
+      original_name !== 'Mortal Kombat' &&
+      original_name !== 'The Walking Dead' &&
+      original_name !== 'Superman & Lois'
   );
-  const banner = filteredResults[chooseRandomBillboard(filteredResults.length)];
+  const banner = filteredResults[chooseRandomBanner(filteredResults.length)];
 
   return banner;
 };
