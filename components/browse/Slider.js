@@ -28,6 +28,7 @@ export default function Slider({
   const [coordinateX, setCoordinateX] = useState(0);
   // separate click from drag
   const [dragging, setDragging] = useState(false);
+  const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
 
   const containerRef = useRef();
   const playerRef = useRef();
@@ -94,24 +95,23 @@ export default function Slider({
               mouseDown={mouseDown}
             >
               <styled.Card
+                mouseDown={mouseDown}
                 onMouseEnter={handleCardHover}
                 onMouseLeave={() => {
                   clearTimeout(timer);
                 }}
+                onMouseDown={(e) => setClientXonMouseDown(e.clientX)}
                 // separate click from drag
-                onMouseUp={
-                  dragging
-                    ? () => {}
-                    : () => {
-                        setSelectedItem({
-                          id: item.id,
-                          start: 0,
-                          placeholder: item.backdrop_path,
-                        });
-                        setDistracted(true);
-                        setDonePlay(true);
-                      }
-                }
+                onClick={(e) => {
+                  if (e.clientX !== clientXonMouseDown) return;
+                  setSelectedItem({
+                    id: item.id,
+                    start: 0,
+                    placeholder: item.backdrop_path,
+                  });
+                  setDistracted(true);
+                  setDonePlay(true);
+                }}
               >
                 <styled.Poster>
                   <Image

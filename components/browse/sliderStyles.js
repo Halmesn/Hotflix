@@ -39,7 +39,7 @@ export const Poster = styled.div`
 `;
 
 export const Card = styled.div`
-  cursor: pointer;
+  cursor: ${({ mouseDown }) => (mouseDown ? 'grab' : 'pointer')};
   border-radius: 0.56rem;
   transition: transform 0.25s, visibility 0.25s, box-shadow 0.25s ease-in;
 `;

@@ -33,6 +33,8 @@ export default function Content() {
   // states for cross components usage
   const [mute, setMute] = useState(true);
 
+  console.log(selectedItem);
+
   return (
     <section>
       {loading ? <Loading src={avatar} /> : <Loading.Finished />}
