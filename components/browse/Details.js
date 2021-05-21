@@ -20,7 +20,7 @@ export default function Details({
   setPlayerVideo,
   setSelectedItem,
 }) {
-  const { id, key, start, placeholder } = selectedItem;
+  const { id, start, placeholder } = selectedItem;
 
   const [details, setDetails] = useState(null);
   const [cast, setCast] = useState(null);
@@ -39,11 +39,11 @@ export default function Details({
       (modalRef.current && modalRef.current.contains(e.target)) ||
       (mounted && setSelectedItem(null));
 
-    document.body.addEventListener('click', onOutsideClick);
+    document.body.addEventListener('mousedown', onOutsideClick);
 
     return () => {
       mounted = false;
-      document.body.removeEventListener('click', onOutsideClick);
+      document.body.removeEventListener('mousedown', onOutsideClick);
     };
   }, []);
 
@@ -72,7 +72,7 @@ export default function Details({
             <styled.Video>
               <ReactPlayer
                 ref={playerRef}
-                url={`https://www.youtube.com/watch?v=${key}`}
+                url={`https://www.youtube.com/watch?v=${trailer}`}
                 className="details"
                 width="100%"
                 height="100%"
@@ -91,7 +91,7 @@ export default function Details({
               </styled.Mute>
             </styled.Video>
           )}
-          {details.backdrop_path && (showBanner || !key) && (
+          {details.backdrop_path && (showBanner || !trailer) && (
             <styled.Banner>
               <Image
                 src={`https://image.tmdb.org/t/p/${

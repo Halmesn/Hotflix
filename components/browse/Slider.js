@@ -9,16 +9,30 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function Slider({ section, category }) {
+export default function Slider({
+  section,
+  category,
+  setDonePlay,
+  setSelectedItem,
+  setDistracted,
+}) {
   const [sliderItems, setSliderItems] = useState(null);
   const [genres, setGenres] = useState(null);
+  const [showSliderTrailer, setShowSliderTrailer] = useState(false);
+
+  const [timer, setTimer] = useState(null);
 
   // container click and drag
-  const [mouseDown, setMouseDown] = useState();
+  const [mouseDown, setMouseDown] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [coordinateX, setCoordinateX] = useState(0);
+  // separate click from drag
+  const [dragging, setDragging] = useState(false);
 
   const containerRef = useRef();
+  const playerRef = useRef();
+
+  const handleCardHover = () => {};
 
   useEffect(() => {
     const getSliderItems = async () => {
@@ -37,21 +51,26 @@ export default function Slider({ section, category }) {
     getGenres();
   }, [section.endpoint, category]);
 
-  function handleContainerMouseDown(e) {
+  // click and drag handles
+  const handleContainerMouseDown = (e) => {
     e.preventDefault();
+    setDragging(false);
     setMouseDown(true);
     setScrollLeft(containerRef.current.scrollLeft);
     setCoordinateX(e.clientX);
-  }
+  };
 
-  function handleContainerMouseUp() {
+  const handleContainerMouseUp = () => {
     setMouseDown(false);
-  }
+    setDragging(false);
+  };
 
-  function handleContainerMouseMove(e) {
-    if (!mouseDown) return;
-    containerRef.current.scrollLeft = scrollLeft + (coordinateX - e.clientX);
-  }
+  const handleContainerMouseMove = (e) => {
+    setDragging(true);
+    mouseDown &&
+      (containerRef.current.scrollLeft =
+        scrollLeft + (coordinateX - e.clientX));
+  };
 
   return (
     sliderItems && (
@@ -59,17 +78,41 @@ export default function Slider({ section, category }) {
         <styled.Title>{section.title}</styled.Title>
         <styled.Row
           className={`${section.size || 'normal'}`}
-          ref={containerRef}
           // click and drag functionalities
+          ref={containerRef}
           onMouseDown={handleContainerMouseDown}
           onMouseMove={handleContainerMouseMove}
           onMouseLeave={handleContainerMouseUp}
           onMouseUp={handleContainerMouseUp}
+          dragging={dragging}
           mouseDown={mouseDown}
         >
           {sliderItems.map((item) => (
-            <styled.CardContainer key={item.id} mouseDown={mouseDown}>
-              <styled.Card onMouseEnter={(e) => {}}>
+            <styled.CardContainer
+              key={item.id}
+              dragging={dragging}
+              mouseDown={mouseDown}
+            >
+              <styled.Card
+                onMouseEnter={handleCardHover}
+                onMouseLeave={() => {
+                  clearTimeout(timer);
+                }}
+                // separate click from drag
+                onMouseUp={
+                  dragging
+                    ? () => {}
+                    : () => {
+                        setSelectedItem({
+                          id: item.id,
+                          start: 0,
+                          placeholder: item.backdrop_path,
+                        });
+                        setDistracted(true);
+                        setDonePlay(true);
+                      }
+                }
+              >
                 <styled.Poster>
                   <Image
                     src={`${
@@ -94,6 +137,29 @@ export default function Slider({ section, category }) {
                     </span>
                     <span className="rating">{item.vote_average}/10 Rated</span>
                   </styled.Rating>
+                  <>
+                    <br />
+                    <p>
+                      {genres && genres.length > 0
+                        ? item.genre_ids.map((genreId, i) => {
+                            if (i > 2) return null;
+                            const genreDetails = genres.find(
+                              (genre) => genre.id === genreId
+                            );
+                            return (
+                              <styled.Genre key={`${item.id}_${genreId}`}>
+                                <span>{`${
+                                  genreDetails ? genreDetails.name : ''
+                                }`}</span>
+                                {i < item.genre_ids.length - 1 && i !== 2 && (
+                                  <span className="genre-dot">&bull;</span>
+                                )}
+                              </styled.Genre>
+                            );
+                          })
+                        : null}
+                    </p>
+                  </>
                 </styled.Details>
               </styled.Card>
             </styled.CardContainer>

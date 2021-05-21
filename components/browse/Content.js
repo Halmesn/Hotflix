@@ -28,6 +28,7 @@ export default function Content() {
   // states for both player and detail modals
   const [playerVideo, setPlayerVideo] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [donePlay, setDonePlay] = useState(false); // replay functionality
 
   // states for cross components usage
   const [mute, setMute] = useState(true);
@@ -56,6 +57,8 @@ export default function Content() {
         category={category}
         mute={mute}
         setMute={setMute}
+        donePlay={donePlay}
+        setDonePlay={setDonePlay}
         showTrailer={showTrailer}
         setShowTrailer={setShowTrailer}
         distracted={distracted}
@@ -64,7 +67,13 @@ export default function Content() {
         setPlayerVideo={setPlayerVideo}
         setSelectedItem={setSelectedItem}
       />
-      <Lolomo category={category} loading={loading} />
+      <Lolomo
+        category={category}
+        loading={loading}
+        setSelectedItem={setSelectedItem}
+        setDonePlay={setDonePlay}
+        setDistracted={setDistracted}
+      />
     </section>
   );
 }

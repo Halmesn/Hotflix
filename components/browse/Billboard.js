@@ -12,9 +12,11 @@ export default function Billboard({
   avatar,
   setMute,
   category,
+  donePlay,
   setLoading,
   distracted,
   showTrailer,
+  setDonePlay,
   setDistracted,
   setShowTrailer,
   setPlayerVideo,
@@ -22,9 +24,6 @@ export default function Billboard({
 }) {
   const [trailer, setTrailer] = useState(null);
   const [banner, setBanner] = useState(null);
-
-  // for replay functionality
-  const [donePlay, setDonePlay] = useState(false);
 
   const playerRef = useRef(null);
   const descriptionRef = useRef(null);
