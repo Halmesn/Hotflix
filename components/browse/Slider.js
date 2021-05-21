@@ -13,6 +13,11 @@ export default function Slider({ section, category }) {
   const [sliderItems, setSliderItems] = useState(null);
   const [genres, setGenres] = useState(null);
 
+  // container click and drag
+  const [mouseDown, setMouseDown] = useState();
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [coordinateX, setCoordinateX] = useState(0);
+
   const containerRef = useRef();
 
   useEffect(() => {
@@ -32,21 +37,39 @@ export default function Slider({ section, category }) {
     getGenres();
   }, [section.endpoint, category]);
 
+  function handleContainerMouseDown(e) {
+    e.preventDefault();
+    setMouseDown(true);
+    setScrollLeft(containerRef.current.scrollLeft);
+    setCoordinateX(e.clientX);
+  }
+
+  function handleContainerMouseUp() {
+    setMouseDown(false);
+  }
+
+  function handleContainerMouseMove(e) {
+    if (!mouseDown) return;
+    containerRef.current.scrollLeft = scrollLeft + (coordinateX - e.clientX);
+  }
+
   return (
     sliderItems && (
       <styled.Slider>
         <styled.Title>{section.title}</styled.Title>
-        <styled.Row className={`${section.size || 'normal'}`}>
+        <styled.Row
+          className={`${section.size || 'normal'}`}
+          ref={containerRef}
+          // click and drag functionalities
+          onMouseDown={handleContainerMouseDown}
+          onMouseMove={handleContainerMouseMove}
+          onMouseLeave={handleContainerMouseUp}
+          onMouseUp={handleContainerMouseUp}
+          mouseDown={mouseDown}
+        >
           {sliderItems.map((item) => (
-            <styled.CardContainer key={item.id} ref={containerRef}>
-              <styled.Card
-                onMouseEnter={(e) => {
-                  if (e.target.getBoundingClientRect().x + 395 > 1952) {
-                    console.log('object');
-                    containerRef.current.scrollLeft += 395;
-                  }
-                }}
-              >
+            <styled.CardContainer key={item.id} mouseDown={mouseDown}>
+              <styled.Card onMouseEnter={(e) => {}}>
                 <styled.Poster>
                   <Image
                     src={`${

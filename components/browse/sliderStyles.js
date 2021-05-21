@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Slider = styled.div`
   margin-top: -12rem;
@@ -63,52 +63,54 @@ export const Details = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  object-fit: contain;
-  width: 100%;
   margin-right: 0.4rem;
   z-index: 1;
-  transition: 0s all;
 
-  &:hover {
-    transition-delay: 500ms;
-    position: relative;
-    max-height: unset;
-    z-index: 2;
-    margin-right: 29.7rem;
-
-    ${Details} {
-      transition-delay: 500ms;
-      opacity: 1;
-      width: 100%;
-      padding: 1.6rem 1.2rem;
-      border-radius: 0 0 0.4rem 0.4rem;
-      * {
+  ${({ mouseDown }) =>
+    !mouseDown &&
+    css`
+      &:hover {
         transition-delay: 500ms;
-        display: inline-block;
-      }
-      @media (max-width: 62.5em) {
-        width: calc(100% - 1.6rem);
-        padding: 0.8rem 0.8rem 0.4rem;
-      }
-      @media (max-width: 37.5em) {
-        padding: 0.4rem 0.8rem 0.4rem;
-      }
-    }
+        position: relative;
+        max-height: unset;
+        z-index: 2;
+        margin-right: 29.7rem;
 
-    ${Card} {
-      transition-delay: 500ms;
-      position: absolute;
-      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.75), 0 6px 6px rgba(0, 0, 0, 0.5);
-    }
+        ${Details} {
+          transition-delay: 500ms;
+          opacity: 1;
+          width: 100%;
+          padding: 1.6rem 1.2rem;
+          border-radius: 0 0 0.4rem 0.4rem;
+          * {
+            transition-delay: 500ms;
+            display: inline-block;
+          }
+          @media (max-width: 62.5em) {
+            width: calc(100% - 1.6rem);
+            padding: 0.8rem 0.8rem 0.4rem;
+          }
+          @media (max-width: 37.5em) {
+            padding: 0.4rem 0.8rem 0.4rem;
+          }
+        }
 
-    @media (max-width: 62.5em) {
-      margin-right: 23.12rem;
-    }
+        ${Card} {
+          transition-delay: 500ms;
+          position: absolute;
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.75),
+            0 6px 6px rgba(0, 0, 0, 0.5);
+        }
 
-    @media (max-width: 37.5em) {
-      margin-right: 17.44rem;
-    }
-  }
+        @media (max-width: 62.5em) {
+          margin-right: 23.12rem;
+        }
+
+        @media (max-width: 37.5em) {
+          margin-right: 17.44rem;
+        }
+      }
+    `}
 `;
 
 export const Row = styled.div`
@@ -133,27 +135,33 @@ export const Row = styled.div`
   &.normal {
     ${CardContainer} {
       transition: 0s all;
-      &:hover {
-        ${Card} {
-          transition-delay: 500ms;
-          transform: scale(1.35);
-        }
-        ${Details} {
-          transition-delay: 500ms;
-          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.75),
-            0 6px 6px rgba(0, 0, 0, 0.5);
-        }
-      }
-    }
 
-    ${Poster} {
-      max-height: 16.5rem;
-      @media (max-width: 1000px) {
-        max-height: 12.8rem;
-      }
-      @media (max-width: 600px) {
-        max-height: 9.6rem;
-      }
+      ${({ mouseDown }) =>
+        !mouseDown &&
+        css`
+          &:hover {
+            ${Card} {
+              transition-delay: 500ms;
+              transform: scale(1.35);
+            }
+
+            ${Details} {
+              transition-delay: 500ms;
+              box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.75),
+                0 6px 6px rgba(0, 0, 0, 0.5);
+            }
+
+            ${Poster} {
+              max-height: 16.5rem;
+              @media (max-width: 1000px) {
+                max-height: 12.8rem;
+              }
+              @media (max-width: 600px) {
+                max-height: 9.6rem;
+              }
+            }
+          }
+        `}
     }
   }
 

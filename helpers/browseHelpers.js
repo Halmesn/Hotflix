@@ -35,7 +35,6 @@ export const getBanner = async (category) => {
       (original_name || original_title) !== 'Superman & Lois' &&
       (original_name || original_title) !== 'Fear the Walking Dead'
   );
-  console.log(filteredResults);
   const banner = filteredResults[chooseRandomBanner(filteredResults.length)];
 
   return banner;
