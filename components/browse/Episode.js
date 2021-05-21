@@ -19,11 +19,15 @@ export default function Episode({ id, seasons, placeholder }) {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
+    let mounted = true;
+
     const getEpisodes = async () => {
       const episodes = await fetchEpisodes(season, id);
-      setEpisodes(episodes);
+      mounted && setEpisodes(episodes);
     };
     getEpisodes();
+
+    return () => (mounted = false);
   }, [id, season]);
 
   return (

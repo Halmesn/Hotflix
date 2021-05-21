@@ -31,25 +31,34 @@ export default function Details({
   const modalRef = useRef();
 
   useEffect(() => {
-    setShowTrailer(false);
+    // prevent memory leaks if users open and close modal super quickly
+    let mounted = true;
+    mounted && setShowTrailer(false);
 
     const onOutsideClick = (e) =>
       (modalRef.current && modalRef.current.contains(e.target)) ||
-      setSelectedItem(null);
+      (mounted && setSelectedItem(null));
 
     document.body.addEventListener('click', onOutsideClick);
 
-    return () => document.body.removeEventListener('click', onOutsideClick);
+    return () => {
+      mounted = false;
+      document.body.removeEventListener('click', onOutsideClick);
+    };
   }, []);
 
   useEffect(() => {
+    let mounted = true;
+
     const getDetails = async () => {
       const { details, cast, trailer } = await fetchDetails(category, id);
-      setDetails(details);
-      setCast(cast);
-      if (trailer) setTrailer(trailer);
+      mounted && setDetails(details);
+      mounted && setCast(cast);
+      if (trailer) mounted && setTrailer(trailer);
     };
     getDetails();
+
+    return () => (mounted = false);
   }, [selectedItem]);
 
   return (

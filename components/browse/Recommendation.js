@@ -15,11 +15,15 @@ export default function Recommendation({ category, id, placeholder }) {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
+    // prevent memory leaks if users open and close modal super quickly
+    let mounted = true;
     const getRecommendations = async () => {
       const recommendations = await fetchRecommendations(category, id);
-      setRecommendations(recommendations);
+      mounted && setRecommendations(recommendations);
     };
     getRecommendations();
+
+    return () => (mounted = false);
   }, [id, category]);
 
   return recommendations && recommendations.length > 0 ? (

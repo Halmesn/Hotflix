@@ -1,21 +1,19 @@
 import * as styled from './sliderStyles';
-import 'swiper/swiper.min.css';
-import 'swiper/components/navigation/navigation.min.css';
 
 import {
   getSliderItems as fetchSliderItems,
+  getGenres as fetchGenres,
   isNewRelease,
 } from 'helpers/browseHelpers';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper/core';
 
-SwiperCore.use([Navigation]);
-
-export default function Slider({ section }) {
+export default function Slider({ section, category }) {
   const [sliderItems, setSliderItems] = useState(null);
+  const [genres, setGenres] = useState(null);
+
+  const containerRef = useRef();
 
   useEffect(() => {
     const getSliderItems = async () => {
@@ -26,28 +24,29 @@ export default function Slider({ section }) {
       );
       setSliderItems(filteredItems);
     };
+    const getGenres = async () => {
+      const genres = await fetchGenres(category);
+      setGenres(genres);
+    };
     getSliderItems();
-  }, [section.endpoint]);
+    getGenres();
+  }, [section.endpoint, category]);
 
   return (
     sliderItems && (
       <styled.Slider>
         <styled.Title>{section.title}</styled.Title>
-        <Swiper
-          slidesPerView={'auto'}
-          slidesPerGroup={3}
-          spaceBetween={3}
-          simulateTouch={false}
-          navigation
-          className={`${section.size || 'normal'}`}
-        >
+        <styled.Row className={`${section.size || 'normal'}`}>
           {sliderItems.map((item) => (
-            <SwiperSlide
-              key={item.id}
-              className="card-container"
-              onMouseEnter={() => {}}
-            >
-              <styled.Card>
+            <styled.CardContainer key={item.id} ref={containerRef}>
+              <styled.Card
+                onMouseEnter={(e) => {
+                  if (e.target.getBoundingClientRect().x + 395 > 1952) {
+                    console.log('object');
+                    containerRef.current.scrollLeft += 395;
+                  }
+                }}
+              >
                 <styled.Poster>
                   <Image
                     src={`${
@@ -74,9 +73,9 @@ export default function Slider({ section }) {
                   </styled.Rating>
                 </styled.Details>
               </styled.Card>
-            </SwiperSlide>
+            </styled.CardContainer>
           ))}
-        </Swiper>
+        </styled.Row>
       </styled.Slider>
     )
   );

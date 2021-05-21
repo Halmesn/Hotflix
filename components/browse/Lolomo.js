@@ -8,7 +8,7 @@ export default function Lolomo({ category, loading }) {
   return (
     <styled.Lolomo isLoading={loading}>
       {TMDB[category].sections.map((section) => (
-        <Slider key={section.title} section={section} />
+        <Slider key={section.title} section={section} category={category} />
       ))}
     </styled.Lolomo>
   );

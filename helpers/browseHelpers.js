@@ -27,13 +27,15 @@ export const getBanner = async (category) => {
   const { results: results2 } = data2;
   const resultsPools = [...results1, ...results2];
   const filteredResults = resultsPools.filter(
-    ({ original_language, original_name }) =>
+    ({ original_language, original_name, original_title }) =>
       original_language === 'en' &&
       // get rid of items that the video can't be played
-      original_name !== 'Mortal Kombat' &&
-      original_name !== 'The Walking Dead' &&
-      original_name !== 'Superman & Lois'
+      (original_name || original_title) !== 'Mortal Kombat' &&
+      (original_name || original_title) !== 'The Walking Dead' &&
+      (original_name || original_title) !== 'Superman & Lois' &&
+      (original_name || original_title) !== 'Fear the Walking Dead'
   );
+  console.log(filteredResults);
   const banner = filteredResults[chooseRandomBanner(filteredResults.length)];
 
   return banner;
@@ -147,4 +149,15 @@ export const getSliderItems = async (section) => {
   const { results: sliderItems } = data;
 
   return sliderItems;
+};
+
+export const getGenres = async (category) => {
+  const getMethod = () =>
+    category === 'TVShows' ? 'fetchTVGenres' : 'fetchMovieGenres';
+
+  const { data } = await tmdb.get(TMDB[category].helpers[getMethod()]);
+
+  const { genres } = data;
+
+  return genres;
 };
