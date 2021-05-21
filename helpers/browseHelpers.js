@@ -160,3 +160,12 @@ export const getGenres = async (category) => {
 
   return genres;
 };
+
+export const playerConfig = {
+  playerVars: {
+    // player not respond to keyboard controls
+    disablekb: 1,
+    // video annotations not be shown
+    iv_load_policy: 3,
+  },
+};

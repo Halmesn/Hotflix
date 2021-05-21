@@ -89,7 +89,7 @@ export const Video = styled.div`
   opacity: 0;
   border-radius: 0.35rem 0.35rem 0 0;
 
-  &.trailer-visible {
+  &.visible {
     height: 163px;
     width: 285px;
     opacity: 1;
@@ -106,7 +106,7 @@ export const Video = styled.div`
     }
   }
 
-  .trailer-video {
+  .slider-trailer {
     pointer-events: none;
     border-radius: 0.35rem 0.35rem 0 0;
 
@@ -156,47 +156,6 @@ export const Video = styled.div`
 export const CardContainer = styled.div`
   margin-right: 0.4rem;
   z-index: 1;
-
-  /* &:hover {
-    transition-delay: 500ms;
-    position: relative;
-    max-height: unset;
-    z-index: 2;
-    margin-right: 29.7rem;
-
-    ${Details} {
-      transition-delay: 500ms;
-      opacity: 1;
-      width: 100%;
-      padding: 0.8rem 0.6rem;
-      border-radius: 0 0 0.4rem 0.4rem;
-      * {
-        transition-delay: 500ms;
-        display: inline-block;
-      }
-      @media (max-width: 62.5em) {
-        width: calc(100% - 1.6rem);
-        padding: 0.8rem 0.8rem 0.4rem;
-      }
-      @media (max-width: 37.5em) {
-        padding: 0.4rem 0.8rem 0.4rem;
-      }
-    }
-
-    ${Card} {
-      transition-delay: 500ms;
-      position: absolute;
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.75), 0 6px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    @media (max-width: 62.5em) {
-      margin-right: 23.12rem;
-    }
-
-    @media (max-width: 37.5em) {
-      margin-right: 17.44rem;
-    }
-  } */
 
   ${({ dragging, mouseDown }) =>
     dragging &&
@@ -268,28 +227,6 @@ export const Row = styled.div`
     ${CardContainer} {
       transition: 0s all;
 
-      /* &:hover {
-        ${Card} {
-          transition-delay: 500ms;
-          transform: scale(1.35);
-        }
-
-        ${Details} {
-          transition-delay: 500ms;
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.75), 0 6px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        ${Poster} {
-          max-height: 16.5rem;
-          @media (max-width: 62.5em) {
-            max-height: 12.8rem;
-          }
-          @media (max-width: 37.5em) {
-            max-height: 9.6rem;
-          }
-        }
-      } */
-
       ${({ dragging, mouseDown }) =>
         dragging &&
         !mouseDown &&
@@ -336,27 +273,6 @@ export const Row = styled.div`
       padding-bottom: 1rem;
       transition: 0s all;
 
-      /* &:hover {
-        margin-right: 29.7rem;
-
-        ${Card} {
-          transition-delay: 500ms;
-          transform: scale(1.2);
-        }
-
-        ${Details} {
-          transition-delay: 500ms;
-        }
-
-        @media (max-width: 62.5em) {
-          margin-right: 11.83rem;
-        }
-
-        @media (max-width: 37.5em) {
-          margin-right: 9.9rem;
-        }
-      } */
-
       ${({ dragging, mouseDown }) =>
         dragging &&
         !mouseDown &&
@@ -385,7 +301,7 @@ export const Row = styled.div`
     }
 
     ${Video} {
-      &.trailer-visible {
+      &.visible {
         height: 450px;
         width: 300px;
         border-radius: 0.35rem;
@@ -400,7 +316,7 @@ export const Row = styled.div`
           width: 170.656px;
         }
       }
-      .trailer-video {
+      .slider-trailer {
         > div {
           height: 450px;
           width: 300px;

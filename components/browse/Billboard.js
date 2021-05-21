@@ -1,6 +1,11 @@
 import * as styled from './billboardStyles';
 
-import { getBanner, getTrailer, shortDescription } from 'helpers/browseHelpers';
+import {
+  getBanner,
+  getTrailer,
+  shortDescription,
+  playerConfig,
+} from 'helpers/browseHelpers';
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -75,15 +80,6 @@ export default function Billboard({
     return () => clearTimeout(delayPlay);
   }, [category, distracted, avatar, trailer, width]);
 
-  const playerConfig = {
-    playerVars: {
-      // player not respond to keyboard controls
-      disablekb: 1,
-      // video annotations not be shown
-      iv_load_policy: 3,
-    },
-  };
-
   return (
     <styled.Billboard>
       {showTrailer && trailer && width > 600 && (
@@ -135,7 +131,7 @@ export default function Billboard({
       {banner && (
         <styled.DetailContainer>
           <styled.Title
-            className={showTrailer ? 'small' : ''}
+            className={showTrailer && 'small'}
             style={{
               '--height': `${descriptionHeight + (width < 800 ? 25 : 65)}px`,
             }}
@@ -144,7 +140,7 @@ export default function Billboard({
           </styled.Title>
           {width > 600 && (
             <styled.Description
-              className={showTrailer ? 'no-desc' : ''}
+              className={showTrailer && 'no-desc'}
               ref={descriptionRef}
               style={{ '--height': `${descriptionHeight}px` }}
             >

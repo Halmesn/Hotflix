@@ -5,11 +5,12 @@ import Slider from './Slider';
 import { TMDB } from 'data/tmdbEndpoints';
 
 export default function Lolomo({
-  category,
   loading,
+  category,
   setDonePlay,
-  setSelectedItem,
   setDistracted,
+  setShowTrailer,
+  setSelectedItem,
 }) {
   return (
     <styled.Lolomo isLoading={loading}>
@@ -21,6 +22,7 @@ export default function Lolomo({
           setDonePlay={setDonePlay}
           setSelectedItem={setSelectedItem}
           setDistracted={setDistracted}
+          setShowTrailer={setShowTrailer}
         />
       ))}
     </styled.Lolomo>
