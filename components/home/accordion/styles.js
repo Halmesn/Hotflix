@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { Card, Title as title } from '../feature/styles';
 
 export const Accordion = styled(Card)`
@@ -61,21 +60,27 @@ export const Question = styled.button`
   cursor: pointer;
 `;
 
-export const Icon = styled(motion.div)`
+export const Icon = styled.div`
   position: absolute;
   right: 1em;
-  top: 35%;
-  transform: translateY(-50%);
+  top: 53%;
+  transform: translateY(-50%) rotate(-45deg);
   height: 1em;
   width: 1em;
   fill: #fff;
+  transition: all 0.1s ease-in-out;
+
+  &.open {
+    transform: translateY(-50%) rotate(0);
+  }
 `;
 
-export const Answer = styled(motion.div)`
+export const Answer = styled.div`
   display: block;
   text-align: left;
   background: #303030;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
   span {
     display: inline-block;
     padding: 1.2em;
@@ -83,32 +88,15 @@ export const Answer = styled(motion.div)`
     white-space: pre-wrap;
     line-height: 1.3;
   }
+
+  &.close {
+    height: 0;
+  }
+
+  &.open {
+    height: auto;
+  }
 `;
-
-// framer motion animation variants
-
-export const iconVariants = {
-  close: { rotate: -45 },
-  open: {
-    rotate: 0,
-    transition: {
-      duration: 0.1,
-      ease: 'easeInOut',
-    },
-  },
-};
-
-export const answerVariants = {
-  close: { opacity: 0, height: 0 },
-  open: {
-    height: 'auto',
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      ease: 'easeInOut',
-    },
-  },
-};
 
 // svg icons
 

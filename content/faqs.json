@@ -7,7 +7,7 @@
   {
     "id": 2,
     "header": "What techs dose Nextflix use?",
-    "body": "Nextflix uses React and Nextjs for it's javascript framework, styled-components for css style, framer-motion for animations, NextAuth for authentication and route protection.\n\nIt also utilizes MongoDb along with localStorage to save and retrieve user data."
+    "body": "Nextflix uses React and Nextjs for it's javascript framework, styled-components for css style, NextAuth for authentication and route protection.\n\nIt also utilizes MongoDb along with localStorage to save and retrieve user data."
   },
   {
     "id": 3,
