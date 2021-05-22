@@ -33,7 +33,7 @@ export const TMDB = {
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=35&with_watch_providers=8&watch_region=AU`,
       },
       {
-        title: 'Anime',
+        title: 'Animation',
         endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=16&with_watch_providers=8&watch_region=AU`,
       },
       {

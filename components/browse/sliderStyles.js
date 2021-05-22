@@ -77,12 +77,12 @@ export const Details = styled.div`
   }
 `;
 
-export const Genre = styled.span`
+export const Genre = styled.p`
   line-height: 1;
 
   .genre-dot {
     font-weight: bold;
-    margin: 0.6rem;
+    margin: 0.3rem 0.6rem;
     opacity: 0.5;
   }
 
@@ -172,9 +172,8 @@ export const CardContainer = styled.div`
   margin-right: 0.4rem;
   z-index: 1;
 
-  ${({ dragging, mouseDown }) =>
+  ${({ dragging }) =>
     !dragging &&
-    // !mouseDown &&
     css`
       &:hover {
         transition-delay: 500ms;
@@ -242,9 +241,8 @@ export const Row = styled.div`
     ${CardContainer} {
       transition: 0s all;
 
-      ${({ dragging, mouseDown }) =>
+      ${({ dragging }) =>
         !dragging &&
-        // !mouseDown &&
         css`
           &:hover {
             ${Card} {
@@ -288,9 +286,8 @@ export const Row = styled.div`
       padding-bottom: 1rem;
       transition: 0s all;
 
-      ${({ dragging, mouseDown }) =>
+      ${({ dragging }) =>
         !dragging &&
-        // !mouseDown &&
         css`
           &:hover {
             margin-right: 29.7rem;
@@ -392,9 +389,6 @@ export const Row = styled.div`
       @media (max-width: 37.5em) {
         margin-top: -2rem;
       }
-    }
-    .volume-btn {
-      top: 1.6rem;
     }
   }
 `;

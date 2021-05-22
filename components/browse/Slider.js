@@ -1,5 +1,5 @@
 import * as styled from './sliderStyles';
-import { Mute, MuteIcon, NotMuteIcon } from './billboardStyles';
+import { MuteIcon, NotMuteIcon } from './billboardStyles';
 
 import { NextflixContext } from 'components/browse/Content';
 
@@ -11,7 +11,7 @@ import {
   playerConfig,
 } from 'helpers/browseHelpers';
 
-import { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
 
@@ -75,8 +75,6 @@ export default function Slider({ section, category }) {
     }
   }, [dragging, mouseDown]);
 
-  console.log(dragging);
-
   // data fetching
   useEffect(() => {
     const getSliderItems = async () => {
@@ -109,9 +107,10 @@ export default function Slider({ section, category }) {
   };
 
   const onSliderMouseMove = (e) => {
-    mouseDown && setDragging(true);
-    mouseDown &&
-      (sliderRef.current.scrollLeft = scrollLeft + (coordinateX - e.clientX));
+    if (mouseDown) {
+      setDragging(true);
+      sliderRef.current.scrollLeft = scrollLeft + (coordinateX - e.clientX);
+    }
   };
 
   const onPosterClick = (e, item) => {
@@ -195,7 +194,7 @@ export default function Slider({ section, category }) {
                   </styled.Poster>
                 )}
 
-                <styled.Details>
+                <styled.Details onMouseDown={(e) => e.stopPropagation()}>
                   <styled.MiniTitle>{item.name || item.title}</styled.MiniTitle>
                   <br />
                   <styled.Rating>
@@ -207,29 +206,27 @@ export default function Slider({ section, category }) {
                     </span>
                     <span className="rating">{item.vote_average}/10 Rated</span>
                   </styled.Rating>
-                  <>
-                    <br />
-                    <p>
-                      {genres && genres.length > 0
-                        ? item.genre_ids.map((genreId, i) => {
-                            if (i > 2) return null;
-                            const genreDetails = genres.find(
-                              (genre) => genre.id === genreId
-                            );
-                            return (
-                              <styled.Genre key={`${item.id}_${genreId}`}>
-                                <span>{`${
-                                  genreDetails ? genreDetails.name : ''
-                                }`}</span>
-                                {i < item.genre_ids.length - 1 && i !== 2 && (
-                                  <span className="genre-dot">&bull;</span>
-                                )}
-                              </styled.Genre>
-                            );
-                          })
-                        : null}
-                    </p>
-                  </>
+                  <br />
+                  <styled.Genre>
+                    {genres &&
+                      genres.length > 0 &&
+                      item.genre_ids.map((genreId, i) => {
+                        if (i > 2) return null;
+                        const genreDetails = genres.find(
+                          ({ id }) => id === genreId
+                        );
+                        return (
+                          <React.Fragment key={genreId}>
+                            {i !== 0 && (
+                              <span className="genre-dot">&bull;</span>
+                            )}
+                            <span>{`${
+                              genreDetails && genreDetails.name
+                            }`}</span>
+                          </React.Fragment>
+                        );
+                      })}
+                  </styled.Genre>
                 </styled.Details>
               </styled.Card>
             </styled.CardContainer>
