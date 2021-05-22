@@ -14,6 +14,7 @@ import {
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
+import { isMobile } from 'react-device-detect';
 
 export default function Slider({ section, category }) {
   const {
@@ -47,6 +48,7 @@ export default function Slider({ section, category }) {
   const showPoster = (item) => sliderTrailer?.id !== item.id;
 
   const onPosterHover = (id) => {
+    if (isMobile) return;
     const delayPlay = setTimeout(async () => {
       const trailer = await fetchTrailer(category, id);
       setSliderTrailer({
@@ -138,9 +140,14 @@ export default function Slider({ section, category }) {
           onMouseUp={onSliderMouseUp}
           // for styled-components
           dragging={dragging}
+          isMobile={isMobile}
         >
           {sliderItems.map((item) => (
-            <styled.CardContainer key={item.id} dragging={dragging}>
+            <styled.CardContainer
+              key={item.id}
+              dragging={dragging}
+              isMobile={isMobile}
+            >
               <styled.Card
                 onMouseEnter={() => onPosterHover(item.id)}
                 onMouseLeave={() => {
@@ -151,7 +158,6 @@ export default function Slider({ section, category }) {
                 // credit:https://github.com/akiran/react-slick/issues/848#issuecomment-438903613
                 onMouseDown={(e) => setClientXonMouseDown(e.clientX)}
                 onClick={(e) => onPosterClick(e, item)}
-                mouseDown={mouseDown}
               >
                 {!showPoster(item) && sliderTrailer && (
                   <styled.Video

@@ -186,8 +186,9 @@ export const CardContainer = styled.div`
   margin-right: 0.4rem;
   z-index: 1;
 
-  ${({ dragging }) =>
+  ${({ dragging, isMobile }) =>
     !dragging &&
+    !isMobile &&
     css`
       &:hover {
         transition-delay: 500ms;
@@ -251,8 +252,9 @@ export const Row = styled.div`
     ${CardContainer} {
       transition: 0s all;
 
-      ${({ dragging }) =>
+      ${({ dragging, isMobile }) =>
         !dragging &&
+        !isMobile &&
         css`
           &:hover {
             ${Card} {
@@ -296,8 +298,9 @@ export const Row = styled.div`
       padding-bottom: 1rem;
       transition: 0s all;
 
-      ${({ dragging }) =>
+      ${({ dragging, isMobile }) =>
         !dragging &&
+        !isMobile &&
         css`
           &:hover {
             margin-right: 29.7rem;
