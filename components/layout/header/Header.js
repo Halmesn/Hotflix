@@ -12,14 +12,14 @@ export default function Header() {
   const [showBackground, setShowBackground] = useState(false);
 
   useEffect(() => {
-    const scrollHandler = () => {
+    const onWindowScroll = () => {
       if (window.scrollY > 50) setShowBackground(true);
       else setShowBackground(false);
     };
 
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', onWindowScroll);
 
-    return () => window.removeEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', onWindowScroll);
   }, []);
 
   return (

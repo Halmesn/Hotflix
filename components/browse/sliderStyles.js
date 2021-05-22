@@ -85,10 +85,14 @@ export const Card = styled.div`
 
 export const Details = styled.div`
   opacity: 0;
-  height: 0;
-  padding: 0.8rem 0.6rem;
+  width: 0;
+  padding: 0;
   background: #111111;
   position: relative;
+
+  * {
+    display: none;
+  }
 `;
 
 export const Genre = styled.p`
@@ -199,9 +203,14 @@ export const CardContainer = styled.div`
 
         ${Details} {
           transition-delay: 500ms;
+          width: 100%;
           opacity: 1;
           border-radius: 0 0 0.4rem 0.4rem;
-          height: auto;
+
+          * {
+            transition-delay: 500ms;
+            display: inline-block;
+          }
 
           @media (max-width: 62.5em) {
             padding: 0.8rem 0.8rem 0.4rem;
