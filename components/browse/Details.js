@@ -63,12 +63,11 @@ export default function Details({
 
   return (
     details &&
-    cast &&
-    trailer && (
+    cast && (
       <styled.Details>
         <styled.FullScreen />
         <styled.Wrapper ref={modalRef}>
-          {!showBanner && (
+          {!showBanner && trailer && (
             <styled.Video>
               <ReactPlayer
                 ref={playerRef}
