@@ -5,12 +5,6 @@ export const Slider = styled.div`
   margin-top: -12rem;
   margin-bottom: 3.2rem;
 
-  :last-child {
-    .normal {
-      padding-bottom: 2rem;
-    }
-  }
-
   @media (max-width: 62.5em) {
     margin-top: -8rem;
     margin-bottom: 0;
@@ -93,6 +87,12 @@ export const Details = styled.div`
   * {
     display: none;
   }
+
+  @media (max-width: 37.5em) {
+    br {
+      display: none !important;
+    }
+  }
 `;
 
 export const Genre = styled.p`
@@ -123,19 +123,19 @@ export const Video = styled.div`
   border-radius: 0.35rem 0.35rem 0 0;
 
   &.visible {
-    height: 163px;
-    width: 285px;
+    height: 16.3rem;
+    width: 29.3rem;
     opacity: 1;
     border-radius: 0.35rem 0.35rem 0 0;
 
     @media (max-width: 62.5em) {
-      height: 130px;
-      width: 227.219px;
+      height: 13rem;
+      width: 22.7rem;
     }
 
     @media (max-width: 37.5em) {
-      height: 96px;
-      width: 170.406px;
+      height: 9.6rem;
+      width: 17rem;
     }
   }
 
@@ -146,19 +146,19 @@ export const Video = styled.div`
     > div {
       position: relative;
       overflow: hidden;
-      height: 165px;
-      width: 285px;
+      height: 16.5rem;
+      width: 29.3rem;
       pointer-events: none;
       border-radius: 0.35rem 0.35rem 0 0;
 
       @media (max-width: 62.5em) {
-        height: 132px;
-        width: 227.219px;
+        height: 13.2rem;
+        width: 22.7rem;
       }
 
       @media (max-width: 37.5em) {
-        height: 98px;
-        width: 170.406px;
+        height: 9.8rem;
+        width: 17rem;
       }
     }
 
@@ -205,6 +205,7 @@ export const CardContainer = styled.div`
           transition-delay: 500ms;
           width: 100%;
           opacity: 1;
+          padding: 0.8rem 0.6rem;
           border-radius: 0 0 0.4rem 0.4rem;
 
           * {
@@ -251,10 +252,10 @@ export const Row = styled.div`
   }
 
   @media (max-width: 62.5em) {
-    padding: 12.8rem 0 9.2rem 4.4rem;
+    padding: 12.8rem 0 11.2rem 4.4rem;
   }
   @media (max-width: 37.5em) {
-    padding: 12.8rem 0 2rem 2.4rem;
+    padding: 12.8rem 0 5.2rem 2.4rem;
   }
 
   &.normal {
@@ -299,7 +300,7 @@ export const Row = styled.div`
     }
 
     @media (max-width: 37.5em) {
-      padding: 12.8rem 0 2.3rem 2.4rem;
+      padding: 12.8rem 0 6.3rem 2.4rem;
     }
 
     ${CardContainer} {

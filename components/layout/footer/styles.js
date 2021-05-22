@@ -7,13 +7,17 @@ export const Footer = styled.footer`
   padding: 5rem 5%;
   box-sizing: content-box;
 
-  @media only screen and (min-width: 34.375em) {
-    padding: 7rem 4.5rem 0 4.5rem;
-  }
+  ${({ url }) =>
+    url === '/browse' &&
+    css`
+      padding: 0;
+      margin-top: -5rem;
 
-  @media only screen and (max-width: 37.5em) {
-    padding: 1rem 1rem 0 1rem;
-  }
+      @media only screen and (max-width: 37.5em) {
+        padding: 1rem 1rem 0 1rem;
+        margin-top: 0;
+      }
+    `}
 
   ${({ url, selectedProfile }) => {
     if ((url === '/browse' && !selectedProfile) || url === '/account') {
@@ -21,7 +25,7 @@ export const Footer = styled.footer`
         display: none;
       `;
     }
-  }};
+  }}
 `;
 
 export const ContentContainer = styled.div`

@@ -199,9 +199,9 @@ export default function Slider({ section, category }) {
                     />
                   </styled.Poster>
                 )}
-
                 <styled.Details onMouseDown={(e) => e.stopPropagation()}>
                   <styled.MiniTitle>{item.name || item.title}</styled.MiniTitle>
+                  <br />
                   <styled.Rating>
                     {isNewRelease(item.release_date || item.first_air_date) && (
                       <span className="new-badge">New</span>
@@ -211,6 +211,7 @@ export default function Slider({ section, category }) {
                     </span>
                     <span className="rating">{item.vote_average}/10 Rated</span>
                   </styled.Rating>
+                  <br />
                   <styled.Genre>
                     {genres &&
                       genres.length > 0 &&
