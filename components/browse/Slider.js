@@ -1,7 +1,7 @@
 import * as styled from './sliderStyles';
 import { MuteIcon, NotMuteIcon } from './billboardStyles';
 
-import { NextflixContext } from 'components/browse/Content';
+import { SliderContext } from 'components/browse/Content';
 
 import {
   getSliderItems as fetchSliderItems,
@@ -23,7 +23,7 @@ export default function Slider({ section, category }) {
     setDistracted,
     setShowTrailer,
     setSelectedItem,
-  } = useContext(NextflixContext);
+  } = useContext(SliderContext);
 
   const [sliderItems, setSliderItems] = useState(null);
   const [genres, setGenres] = useState(null);

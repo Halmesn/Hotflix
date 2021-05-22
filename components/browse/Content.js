@@ -10,7 +10,7 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { useState, useContext, createContext } from 'react';
 
-export const NextflixContext = createContext();
+export const SliderContext = createContext();
 
 // I started adding comments for browse related components because some of them are kinda messy and confusing
 
@@ -46,7 +46,7 @@ export default function Content() {
   };
 
   return (
-    <NextflixContext.Provider value={providerValue}>
+    <SliderContext.Provider value={providerValue}>
       <section>
         {loading ? <Loading src={avatar} /> : <Loading.Finished />}
         {playerVideo && (
@@ -82,6 +82,6 @@ export default function Content() {
         />
         <Lolomo category={category} loading={loading} />
       </section>
-    </NextflixContext.Provider>
+    </SliderContext.Provider>
   );
 }
