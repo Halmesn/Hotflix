@@ -13,7 +13,6 @@
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^4.1.11",
-    "modern-normalize": "^1.0.0",
     "mongodb": "^3.6.6",
     "next": "10.2.0",
     "next-auth": "^3.19.4",
