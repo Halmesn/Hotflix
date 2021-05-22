@@ -8,9 +8,11 @@ import { ProfileContext } from 'components/layout/Layout';
 
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-import { useState, useContext } from 'react';
+import { useState, useContext, createContext } from 'react';
 
-// I added comments for some browse related components because they're kinda messy and confusing
+export const NextflixContext = createContext();
+
+// I started adding comments for browse related components because some of them are kinda messy and confusing
 
 // this Component serves a purpose of managing cross component's states
 export default function Content() {
@@ -33,48 +35,53 @@ export default function Content() {
   // states for cross components usage
   const [mute, setMute] = useState(true);
 
+  const providerValue = {
+    mute,
+    setMute,
+    setDonePlay,
+    setDistracted,
+    setPlayerVideo,
+    setShowTrailer,
+    setSelectedItem,
+  };
+
   return (
-    <section>
-      {loading ? <Loading src={avatar} /> : <Loading.Finished />}
-      {playerVideo && (
-        <Player playerVideo={playerVideo} setPlayerVideo={setPlayerVideo} />
-      )}
-      {selectedItem && (
-        <Details
+    <NextflixContext.Provider value={providerValue}>
+      <section>
+        {loading ? <Loading src={avatar} /> : <Loading.Finished />}
+        {playerVideo && (
+          <Player playerVideo={playerVideo} setPlayerVideo={setPlayerVideo} />
+        )}
+        {selectedItem && (
+          <Details
+            width={width}
+            mute={mute}
+            category={category}
+            setMute={setMute}
+            selectedItem={selectedItem}
+            setShowTrailer={setShowTrailer}
+            setSelectedItem={setSelectedItem}
+            setPlayerVideo={setPlayerVideo}
+          />
+        )}
+        <Billboard
+          avatar={avatar}
           width={width}
-          mute={mute}
           category={category}
+          mute={mute}
           setMute={setMute}
-          selectedItem={selectedItem}
+          donePlay={donePlay}
+          setDonePlay={setDonePlay}
+          showTrailer={showTrailer}
           setShowTrailer={setShowTrailer}
-          setSelectedItem={setSelectedItem}
+          distracted={distracted}
+          setDistracted={setDistracted}
+          setLoading={setLoading}
           setPlayerVideo={setPlayerVideo}
+          setSelectedItem={setSelectedItem}
         />
-      )}
-      <Billboard
-        avatar={avatar}
-        width={width}
-        category={category}
-        mute={mute}
-        setMute={setMute}
-        donePlay={donePlay}
-        setDonePlay={setDonePlay}
-        showTrailer={showTrailer}
-        setShowTrailer={setShowTrailer}
-        distracted={distracted}
-        setDistracted={setDistracted}
-        setLoading={setLoading}
-        setPlayerVideo={setPlayerVideo}
-        setSelectedItem={setSelectedItem}
-      />
-      <Lolomo
-        category={category}
-        loading={loading}
-        setSelectedItem={setSelectedItem}
-        setDonePlay={setDonePlay}
-        setDistracted={setDistracted}
-        setShowTrailer={setShowTrailer}
-      />
-    </section>
+        <Lolomo category={category} loading={loading} />
+      </section>
+    </NextflixContext.Provider>
   );
 }

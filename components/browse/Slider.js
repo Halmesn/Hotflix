@@ -1,4 +1,7 @@
 import * as styled from './sliderStyles';
+import { Mute, MuteIcon, NotMuteIcon } from './billboardStyles';
+
+import { NextflixContext } from 'components/browse/Content';
 
 import {
   getSliderItems as fetchSliderItems,
@@ -8,18 +11,20 @@ import {
   playerConfig,
 } from 'helpers/browseHelpers';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
 
-export default function Slider({
-  section,
-  category,
-  setDonePlay,
-  setDistracted,
-  setShowTrailer,
-  setSelectedItem,
-}) {
+export default function Slider({ section, category }) {
+  const {
+    mute,
+    setMute,
+    setDonePlay,
+    setDistracted,
+    setShowTrailer,
+    setSelectedItem,
+  } = useContext(NextflixContext);
+
   const [sliderItems, setSliderItems] = useState(null);
   const [genres, setGenres] = useState(null);
   const [sliderTrailer, setSliderTrailer] = useState(null);
@@ -27,7 +32,7 @@ export default function Slider({
   // for delay video play
   const [timer, setTimer] = useState(null);
 
-  // container click and drag
+  // slider click and drag
   const [mouseDown, setMouseDown] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [coordinateX, setCoordinateX] = useState(0);
@@ -35,36 +40,34 @@ export default function Slider({
   const [dragging, setDragging] = useState(false);
   const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
 
-  const containerRef = useRef();
+  const sliderRef = useRef();
   const playerRef = useRef();
 
   // render condition check: when users hover a poster, still render other posters
   const showPoster = (item) => sliderTrailer?.id !== item.id;
 
   const onPosterHover = (id) => {
-    setTimer(
-      setTimeout(async () => {
-        const trailer = await fetchTrailer(category, id);
-        setSliderTrailer({
-          // set unique id to identify the card that users hover
-          id: id,
-          url: trailer,
-          isLoaded: false,
-        });
-        // clean up Billboard states
-        setShowTrailer(false);
-        setDistracted(true);
-        setDonePlay(true);
-      }),
-      800
-    );
+    const delayPlay = setTimeout(async () => {
+      const trailer = await fetchTrailer(category, id);
+      setSliderTrailer({
+        // set unique id to identify the card that user hovers
+        id: id,
+        url: trailer,
+        isLoaded: false,
+      });
+      // clean up Billboard states
+      setShowTrailer(false);
+      setDistracted(true);
+      setDonePlay(true);
+    }, 800);
+    setTimer(delayPlay);
   };
 
   // isLoaded state: when the video player is loaded, hide poster
   const onTrailerReady = () =>
     sliderTrailer && setSliderTrailer({ ...sliderTrailer, isLoaded: true });
 
-  // when users dragging disable video playing
+  // when users dragging slider disables video playing
   useEffect(() => {
     if (dragging && mouseDown) {
       clearTimeout(timer);
@@ -72,22 +75,23 @@ export default function Slider({
     }
   }, [dragging, mouseDown]);
 
+  console.log(dragging);
+
   // data fetching
   useEffect(() => {
     const getSliderItems = async () => {
       const sliderItems = await fetchSliderItems(section);
+      const genres = await fetchGenres(category);
+
       const filteredItems = sliderItems.filter(
         ({ original_language, backdrop_path, poster_path }) =>
           original_language === 'en' && backdrop_path && poster_path
       );
+
       setSliderItems(filteredItems);
-    };
-    const getGenres = async () => {
-      const genres = await fetchGenres(category);
       setGenres(genres);
     };
     getSliderItems();
-    getGenres();
   }, [section.endpoint, category]);
 
   // click and drag handlers
@@ -95,7 +99,7 @@ export default function Slider({
     e.preventDefault();
     setDragging(false);
     setMouseDown(true);
-    setScrollLeft(containerRef.current.scrollLeft);
+    setScrollLeft(sliderRef.current.scrollLeft);
     setCoordinateX(e.clientX);
   };
 
@@ -105,10 +109,9 @@ export default function Slider({
   };
 
   const onSliderMouseMove = (e) => {
-    setDragging(true);
+    mouseDown && setDragging(true);
     mouseDown &&
-      (containerRef.current.scrollLeft =
-        scrollLeft + (coordinateX - e.clientX));
+      (sliderRef.current.scrollLeft = scrollLeft + (coordinateX - e.clientX));
   };
 
   const onPosterClick = (e, item) => {
@@ -129,21 +132,16 @@ export default function Slider({
         <styled.Row
           className={`${section.size || 'normal'}`}
           // click and drag functionalities
-          ref={containerRef}
+          ref={sliderRef}
           onMouseDown={onSliderMouseDown}
           onMouseMove={onSliderMouseMove}
           onMouseLeave={onSliderMouseUp}
           onMouseUp={onSliderMouseUp}
           // for styled-components
           dragging={dragging}
-          mouseDown={mouseDown}
         >
           {sliderItems.map((item) => (
-            <styled.CardContainer
-              key={item.id}
-              dragging={dragging}
-              mouseDown={mouseDown}
-            >
+            <styled.CardContainer key={item.id} dragging={dragging}>
               <styled.Card
                 onMouseEnter={() => onPosterHover(item.id)}
                 onMouseLeave={() => {
@@ -166,11 +164,20 @@ export default function Slider({
                       width="100%"
                       height="100%"
                       playing
+                      muted={mute}
                       onReady={onTrailerReady}
                       onEnded={() => setSliderTrailer(null)}
                       config={playerConfig}
                       className="slider-trailer"
                     />
+                    <styled.Mute
+                      onMouseDown={(e) => {
+                        e.stopPropagation();
+                        setMute(!mute);
+                      }}
+                    >
+                      {mute ? <MuteIcon /> : <NotMuteIcon />}
+                    </styled.Mute>
                   </styled.Video>
                 )}
                 {(showPoster(item) || !sliderTrailer?.isLoaded) && (

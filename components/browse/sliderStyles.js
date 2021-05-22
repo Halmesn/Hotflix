@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Mute as BillboardMute } from './billboardStyles';
 
 export const Slider = styled.div`
   margin-top: -12rem;
@@ -12,6 +13,20 @@ export const Slider = styled.div`
   @media (max-width: 37.5em) {
     margin-top: 0;
     margin-bottom: 0;
+  }
+`;
+
+export const Mute = styled(BillboardMute)`
+  width: 3rem;
+  height: 3rem;
+  top: 12rem;
+  right: 1rem;
+
+  svg {
+    padding: 0.7rem;
+  }
+
+  @media (max-width: 37.5em) {
   }
 `;
 
@@ -158,8 +173,8 @@ export const CardContainer = styled.div`
   z-index: 1;
 
   ${({ dragging, mouseDown }) =>
-    dragging &&
-    !mouseDown &&
+    !dragging &&
+    // !mouseDown &&
     css`
       &:hover {
         transition-delay: 500ms;
@@ -228,8 +243,8 @@ export const Row = styled.div`
       transition: 0s all;
 
       ${({ dragging, mouseDown }) =>
-        dragging &&
-        !mouseDown &&
+        !dragging &&
+        // !mouseDown &&
         css`
           &:hover {
             ${Card} {
@@ -274,8 +289,8 @@ export const Row = styled.div`
       transition: 0s all;
 
       ${({ dragging, mouseDown }) =>
-        dragging &&
-        !mouseDown &&
+        !dragging &&
+        // !mouseDown &&
         css`
           &:hover {
             margin-right: 29.7rem;
