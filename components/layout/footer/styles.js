@@ -11,6 +11,10 @@ export const Footer = styled.footer`
     padding: 7rem 4.5rem 0 4.5rem;
   }
 
+  @media only screen and (max-width: 37.5em) {
+    padding: 1rem 1rem 0 1rem;
+  }
+
   ${({ url, selectedProfile }) => {
     if ((url === '/browse' && !selectedProfile) || url === '/account') {
       return css`
@@ -58,6 +62,10 @@ export const Link = styled.li`
   line-height: 1.3;
 
   ${mixins.footerLink}
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const Title = styled.p`
@@ -65,6 +73,10 @@ export const Title = styled.p`
   margin: 0 0 3rem;
 
   ${mixins.footerLink}
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 1.4rem;
+  }
 `;
 export const Country = styled.p`
   font-size: 1.3rem;

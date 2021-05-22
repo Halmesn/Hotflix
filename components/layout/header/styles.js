@@ -3,16 +3,19 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 
 export const Header = styled.header`
-  position: absolute;
+  position: ${({ url }) => (url === '/browse' ? 'fixed' : 'absolute')};
   top: 0;
   left: 0;
   width: 100%;
   z-index: 3;
-  background: linear-gradient(
+  background: ${({ showBackground }) =>
+    showBackground
+      ? '#141414'
+      : `linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.7) 10%,
     rgba(0, 0, 0, 0)
-  );
+  ))`};
 `;
 
 export const Nav = styled.nav`
@@ -24,28 +27,42 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
 
+  ${({ url }) =>
+    url === '/browse' &&
+    css`
+      padding: 2rem 0;
+
+      @media screen and (max-width: 62.5em) {
+        padding: 1rem 0;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        padding-left: 1rem;
+      }
+    `}
+
   @media screen and (max-width: 37.5em) {
     padding-top: 1rem;
   }
 `;
 
 export const Logo = styled.div`
-  position: relative;
   width: ${({ url }) => (url === '/browse' ? '11rem' : '20rem')};
+  position: relative;
 
   @media only screen and (max-width: 90.625em) {
     width: 15rem;
   }
 
-  @media only screen and (max-width: 59.375em) {
+  @media only screen and (max-width: 62.5em) {
     width: 12rem;
   }
 
-  @media only screen and (max-width: 34.375em) {
+  @media only screen and (max-width: 37.5em) {
     width: 10rem;
   }
 
-  @media screen and (max-width: 31.25em) {
+  @media screen and (max-width: 37.5em) {
     ${({ url }) =>
       url === '/browse' &&
       css`

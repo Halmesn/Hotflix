@@ -133,7 +133,7 @@ export default function Billboard({
           <styled.Title
             className={showTrailer && 'small'}
             style={{
-              '--height': `${descriptionHeight + (width < 800 ? 25 : 65)}px`,
+              '--height': `${descriptionHeight + (width <= 1000 ? 25 : 65)}px`,
             }}
           >
             {banner.name || banner.title || banner.original_name}

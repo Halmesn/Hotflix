@@ -6,18 +6,15 @@ import { ProfileContext } from 'components/layout/Layout';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useContext } from 'react';
 
-export default function Navbar() {
-  const router = useRouter();
-  const url = router.pathname;
+export default function Navbar({ url }) {
   const href = url === '/account' ? '/' : '#';
   const { selectedProfile, setSelectedProfile, category, setCategory } =
     useContext(ProfileContext);
 
   return (
-    <styled.Nav>
+    <styled.Nav url={url}>
       <styled.Wrapper className="primary-nav">
         <Link href={href}>
           <a>

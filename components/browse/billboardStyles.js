@@ -55,18 +55,18 @@ export const Mute = styled.button`
   position: absolute;
   background: transparent;
   bottom: 25%;
-  right: 14rem;
+  right: 6%;
   color: white;
   width: 5.3rem;
   height: 5.3rem;
   border-radius: 50%;
   border: 1px solid white;
-  z-index: 1;
+  z-index: 2;
   transition: all 0.35s;
   cursor: pointer;
 
   @media (max-width: 62.5em) {
-    bottom: 55%;
+    bottom: 64%;
     width: 4rem;
     height: 4rem;
     right: 9rem;
@@ -136,15 +136,18 @@ export const DetailContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  z-index: 2;
 
   @media (max-width: 62.5em) {
-    bottom: 55.2%;
+    bottom: 64.2%;
     width: 55%;
+    left: 5.4%;
   }
 
   @media (max-width: 37.5em) {
     width: 70%;
-    bottom: 70%;
+    bottom: 74%;
+    left: 4.4%;
   }
 `;
 

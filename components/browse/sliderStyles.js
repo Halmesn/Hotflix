@@ -5,6 +5,12 @@ export const Slider = styled.div`
   margin-top: -12rem;
   margin-bottom: 3.2rem;
 
+  :last-child {
+    .normal {
+      padding-bottom: 2rem;
+    }
+  }
+
   @media (max-width: 62.5em) {
     margin-top: -8rem;
     margin-bottom: 0;
@@ -26,13 +32,23 @@ export const Mute = styled(BillboardMute)`
     padding: 0.7rem;
   }
 
+  @media (max-width: 62.5em) {
+    top: 9rem;
+  }
+
   @media (max-width: 37.5em) {
+    top: 6.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    svg {
+      padding: 0.5rem;
+    }
   }
 `;
 
 export const Title = styled.h2`
   padding-left: 5.6rem;
-  font-size: 1.4vw;
+  font-size: 2.76rem;
   color: #fff;
   font-weight: bold;
 
@@ -51,6 +67,14 @@ export const Poster = styled.div`
   img {
     border-radius: 0.3rem;
   }
+
+  @media (max-width: 62.5em) {
+    width: 22.7rem;
+  }
+
+  @media (max-width: 37.5em) {
+    width: 17rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -61,20 +85,10 @@ export const Card = styled.div`
 
 export const Details = styled.div`
   opacity: 0;
-  width: 0;
-  padding: 0;
+  height: 0;
+  padding: 0.8rem 0.6rem;
   background: #111111;
   position: relative;
-
-  * {
-    display: none;
-  }
-
-  @media (max-width: 37.5em) {
-    br {
-      display: none !important;
-    }
-  }
 `;
 
 export const Genre = styled.p`
@@ -87,7 +101,7 @@ export const Genre = styled.p`
   }
 
   @media (max-width: 62.5em) {
-    font-size: 0.96rem;
+    zoom: 0.8;
     .genre-dot {
       margin: 0 0.56rem 0.4rem;
     }
@@ -110,12 +124,12 @@ export const Video = styled.div`
     opacity: 1;
     border-radius: 0.35rem 0.35rem 0 0;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 62.5em) {
       height: 130px;
       width: 227.219px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 37.5em) {
       height: 96px;
       width: 170.406px;
     }
@@ -133,12 +147,12 @@ export const Video = styled.div`
       pointer-events: none;
       border-radius: 0.35rem 0.35rem 0 0;
 
-      @media (max-width: 1000px) {
+      @media (max-width: 62.5em) {
         height: 132px;
         width: 227.219px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 37.5em) {
         height: 98px;
         width: 170.406px;
       }
@@ -155,12 +169,12 @@ export const Video = styled.div`
       transform: translate(-50%, -55%);
       border-radius: 0.35rem 0.35rem 0 0;
 
-      @media (max-width: 1000px) {
+      @media (max-width: 62.5em) {
         height: 220px;
         width: 390.219px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 37.5em) {
         height: 186px;
         width: 227.4px;
       }
@@ -185,17 +199,13 @@ export const CardContainer = styled.div`
         ${Details} {
           transition-delay: 500ms;
           opacity: 1;
-          width: 100%;
-          padding: 0.8rem 0.6rem;
           border-radius: 0 0 0.4rem 0.4rem;
-          * {
-            transition-delay: 500ms;
-            display: inline-block;
-          }
+          height: auto;
+
           @media (max-width: 62.5em) {
-            width: calc(100% - 1.6rem);
             padding: 0.8rem 0.8rem 0.4rem;
           }
+
           @media (max-width: 37.5em) {
             padding: 0.4rem 0.8rem 0.4rem;
           }
@@ -231,10 +241,10 @@ export const Row = styled.div`
   }
 
   @media (max-width: 62.5em) {
-    padding: 12.8rem 0 11.2rem 4.4rem;
+    padding: 12.8rem 0 9.2rem 4.4rem;
   }
   @media (max-width: 37.5em) {
-    padding: 12.8rem 0 4.8rem 2.4rem;
+    padding: 12.8rem 0 2rem 2.4rem;
   }
 
   &.normal {
@@ -278,7 +288,7 @@ export const Row = styled.div`
     }
 
     @media (max-width: 37.5em) {
-      padding: 12.8rem 0 4.8rem 2.4rem;
+      padding: 12.8rem 0 2.3rem 2.4rem;
     }
 
     ${CardContainer} {
@@ -302,11 +312,11 @@ export const Row = styled.div`
             }
 
             @media (max-width: 62.5em) {
-              margin-right: 11.83rem;
+              margin-right: 23.1rem;
             }
 
             @media (max-width: 37.5em) {
-              margin-right: 9.9rem;
+              margin-right: 17.4rem;
             }
           }
         `}
@@ -319,8 +329,8 @@ export const Row = styled.div`
         border-radius: 0.35rem;
 
         @media (max-width: 62.5em) {
-          height: 278px;
-          width: 185px;
+          height: 33.89rem;
+          width: 22.7rem;
         }
 
         @media (max-width: 37.5em) {
@@ -335,8 +345,8 @@ export const Row = styled.div`
           border-radius: 0.35rem;
 
           @media (max-width: 62.5em) {
-            height: 278px;
-            width: 185px;
+            height: 33.89rem;
+            width: 22.7rem;
           }
 
           @media (max-width: 37.5em) {
@@ -390,6 +400,18 @@ export const Row = styled.div`
         margin-top: -2rem;
       }
     }
+
+    ${Genre} {
+      @media (max-width: 62.5em) {
+        display: none;
+      }
+    }
+
+    ${Mute} {
+      @media (max-width: 62.5em) {
+        top: 2rem;
+      }
+    }
   }
 `;
 
@@ -402,7 +424,7 @@ export const MiniTitle = styled.h3`
   }
 
   @media (max-width: 37.5em) {
-    font-size: 1.04rem;
+    zoom: 0.8;
   }
 `;
 
@@ -416,6 +438,10 @@ export const Rating = styled.p`
     font-weight: 800;
     margin-right: 0.8rem;
     padding: 0.2rem 0.4rem;
+
+    @media (max-width: 62.5em) {
+      zoom: 0.8;
+    }
   }
 
   .popularity {
@@ -425,7 +451,7 @@ export const Rating = styled.p`
   }
 
   @media (max-width: 62.5em) {
-    font-size: 0.8rem;
+    zoom: 0.8;
   }
 
   @media (max-width: 37.5em) {
