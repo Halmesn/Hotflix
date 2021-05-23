@@ -1,34 +1,168 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br />
+<p align="center">
+  <h1 align="center">Nextflix: A Netflix Clone</h1>
+  <img src="images/readme/browse.png" alt="Nextflix Screenshot">
+  <p align="center">
+    My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
+    <br /><br />
+    <a href="https://nextflix-tmdb.vercel.app"><strong>View Demo »</strong></a>
+    <br /><br />
+    <a href="https://github.com/Halmesn/Nextflix/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Halmesn/Nextflix/issues">Request Feature</a>
+  </p>
+</p>
+
+<h2 style="display: inline-block">Table of Contents</h2>
+<ol>
+  <li>
+    <a href="#about-the-project">About The Project</a>
+    <ul>
+      <li><a href="#built-with">Built With</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#installation">Installation</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ol>
+
+## About The Project
+
+### Built With
+
+- **[React](https://reactjs.org/)**
+- **[Next.js](https://nextjs.org/)**
+- [NextAuth](https://next-auth.js.org/)
+- [styled-components](https://styled-components.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running follow these simple steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install latest version of npm
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Installation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Clone the project
+   ```sh
+   git clone https://github.com/Halmesn/Nextflix.git
+   ```
+2. Go to project directory and Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Create .env.local file
+4. Request an API key from TMDB and add it to .env.local file
+   ```sh
+   NEXT_PUBLIC_TMDB_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+5. Create a database at MongoDB and add connection url to .env.local file
+   ```sh
+   MONGODB_DATABASE=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+6. Add a next-auth host url to .env.local file
+   ```sh
+   NEXTAUTH_URL=http://localhost:3000
+   ```
+7. Create a trial account at your database, adjust the email address in AuthForm onTrialClick function and add it's password to .env.local file
+   ```sh
+   NEXT_PUBLIC_TRIAL_ACCOUNT_PASSWORD=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+8. Add Google and Facebook client id and secret to .env.local file
+   ```sh
+   GOOGLE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   GOOGLE_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   FACEBOOK_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   FACEBOOK_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+9. Start the application
+   ```sh
+   npm start
+   ```
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+**Creating an Account**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![](/images/readme/signup.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Go to Sign Up page.
+   - From the homepage, enter your email and click 'Get Started'.
+   - From Sign In page, click the 'Sign up now' link below 'Sign In' button.
+2. Input the necessary fields. Don't worry. It won't take long.
+   - Both email and phone number has to be unique.
+   - Or just click the trail account button, the email and password will be filled automatically for you.
+3. After signing up, you'll receive a success message, then you can sign in.
+   - Your email and password will be filled automatically for you.
 
-## Deploy on Vercel
+**Logging In**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![](/images/readme/signin.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Go to Sign In page.
+   - From the homepage, click 'Sign in' button.
+   - From Sign Up page, click the 'Sign in now' link below 'Sign Up' button.
+2. Input the necessary fields and proceed.
+   - You can sign in using either email or phone number.
+   - You can also sign in with your google or facebook account.
+
+**Searching for a Show**
+
+![](/images/readme/search.png)
+
+1. Log in and add a profile if you don't already have one or selected a profile.'
+2. Click the appropriate tab for your search.
+   - If searching for a movie, click 'Movies' tab in the header.
+   - If searching for a series, click 'TV Shows' tab in the header.
+3. Click the search icon on the header.
+4. Input your search term.
+5. To go back to browse page, click the 'back' arrow in the left top corner.
+
+**Adding User Profile**
+
+![](/images/readme/manage_profile.png)
+
+1. Log in to your account.
+2. Click 'Manage Profiles'.
+3. Click 'Add Profile'.
+   - You can only add up to 5 profiles for each account.
+4. Click the pencil/edit icon and choose your preferred avatar.
+5. Enter your preferred display name and click 'Save'.
+   - You can't use avatars and names already used by other profiles in the same account.
+
+**Editing User Profile**
+
+![](/images/readme/edit_profile.png)
+
+1. Log in to your account.
+2. Click 'Manage Profiles'.
+3. Click the profile you wish to edit.
+4. Modify the profile as you see fit and click 'Save'.
+
+**Deleting User Profile**
+
+![](/images/readme/delete_profile.png)
+
+1. Log in to your account.
+2. Click 'Manage Profiles'.
+3. Click the profile you wish to delete.
+4. Click 'Delete Profile'.
+5. Confirm deletion by clicking 'Yes'.
+
+## Contact
+
+Adrian Li - [LinkedIn](https://www.linkedin.com/in/adrian-li-332395208/) - xiaxi.li.syd@gmail.com
