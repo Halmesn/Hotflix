@@ -5,7 +5,7 @@
   <p align="center">
     My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
-    <a href="https://nextflix-tmdb.vercel.app"><strong>View Demo »</strong></a>
+    <a href="https://nextflix-clone.vercel.app/"><strong>View Demo »</strong></a>
     <br /><br />
     <a href="https://github.com/Halmesn/Nextflix/issues">Report Bug</a>
     ·
