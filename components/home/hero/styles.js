@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SubmitBtn as SubscribeBtn } from 'components/home/subscribe/styles';
 
 export const Hero = styled.section`
   position: relative;
@@ -24,6 +25,8 @@ export const Text = styled.div`
   text-align: center;
   transform: translateY(5rem);
 `;
+
+export const Demo = styled(SubscribeBtn)``;
 
 export const Title = styled.h1`
   font-size: 6.4rem;

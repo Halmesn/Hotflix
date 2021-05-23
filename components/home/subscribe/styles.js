@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { labelTransition } from 'styles/mixins';
 
 export const Subscribe = styled.form`
