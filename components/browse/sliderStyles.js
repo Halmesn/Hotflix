@@ -139,7 +139,7 @@ export const Video = styled.div`
     }
   }
 
-  .slider-trailer {
+  .card-trailer {
     pointer-events: none;
     border-radius: 0.35rem 0.35rem 0 0;
 
@@ -358,7 +358,7 @@ export const Row = styled.div`
           width: 170.656px;
         }
       }
-      .slider-trailer {
+      .card-trailer {
         > div {
           height: 450px;
           width: 300px;

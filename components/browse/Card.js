@@ -1,6 +1,88 @@
 import * as styled from './cardStyles';
 
-export default function Card() {
+import * as styled from './sliderStyles';
+import { MuteIcon, NotMuteIcon } from './billboardStyles';
+
+import { SliderContext } from 'components/browse/Content';
+
+import {
+  getGenres as fetchGenres,
+  getTrailer as fetchTrailer,
+  isNewRelease,
+  playerConfig,
+} from 'helpers/browseHelpers';
+
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import Image from 'next/image';
+import ReactPlayer from 'react-player/youtube';
+import { isMobile } from 'react-device-detect';
+
+export default function Card({ item, section, mouseDown, dragging }) {
+  const {
+    mute,
+    setMute,
+    setDonePlay,
+    setDistracted,
+    setShowTrailer,
+    setSelectedItem,
+  } = useContext(SliderContext);
+
+  const [genres, setGenres] = useState(null);
+  const [sliderTrailer, setSliderTrailer] = useState(null);
+
+  // for delay video play
+  const [timer, setTimer] = useState(null);
+
+  // separate click from drag for Slider component usage
+  const [clientXonMouseDown, setClientXonMouseDown] = useState(null);
+
+  const playerRef = useRef();
+
+  // render condition check: when users hover a poster, still render other posters
+  const showPoster = (item) => sliderTrailer?.id !== item.id;
+
+  const onPosterHover = (id) => {
+    if (isMobile) return;
+    const delayPlay = setTimeout(async () => {
+      const trailer = await fetchTrailer(category, id);
+      setSliderTrailer({
+        // set unique id to identify the card that user hovers
+        id: id,
+        url: trailer,
+        isLoaded: false,
+      });
+      // clean up Billboard states
+      setShowTrailer(false);
+      setDistracted(true);
+      setDonePlay(true);
+    }, 800);
+    setTimer(delayPlay);
+  };
+
+  // isLoaded state: when the video player is loaded, hide poster
+  const onTrailerReady = () =>
+    sliderTrailer && setSliderTrailer({ ...sliderTrailer, isLoaded: true });
+
+  // data fetching
+  useEffect(() => {
+    const getGenres = async () => {
+      const genres = await fetchGenres(category);
+      setGenres(genres);
+    };
+    getGenres();
+  }, [category]);
+
+  const onPosterClick = (e, item) => {
+    if (e.clientX !== clientXonMouseDown) return;
+    setSelectedItem({
+      id: item.id,
+      start: playerRef.current?.getCurrentTime() || 0,
+      placeholder: item.backdrop_path,
+    });
+    setDistracted(true);
+    setDonePlay(true);
+  };
+
   return (
     <styled.CardContainer key={item.id} dragging={dragging} isMobile={isMobile}>
       <styled.Card
@@ -9,10 +91,9 @@ export default function Card() {
           clearTimeout(timer);
           setSliderTrailer(null);
         }}
-        // separate click from drag
-        // credit:https://github.com/akiran/react-slick/issues/848#issuecomment-438903613
         onMouseDown={(e) => setClientXonMouseDown(e.clientX)}
         onClick={(e) => onPosterClick(e, item)}
+        mouseDown={mouseDown}
       >
         {!showPoster(item) && sliderTrailer && (
           <styled.Video className={sliderTrailer.isLoaded ? 'visible' : ''}>
@@ -26,7 +107,7 @@ export default function Card() {
               onReady={onTrailerReady}
               onEnded={() => setSliderTrailer(null)}
               config={playerConfig}
-              className="slider-trailer"
+              className="card-trailer"
             />
             <styled.Mute
               onMouseDown={(e) => {
@@ -42,13 +123,13 @@ export default function Card() {
           <styled.Poster>
             <Image
               src={`${
-                section.size === 'large'
+                section?.size === 'large'
                   ? `https://image.tmdb.org/t/p/w342/${item.poster_path}`
                   : `https://image.tmdb.org/t/p/w300/${item.backdrop_path}`
               }`}
               alt={item.name || item.title}
               width={300}
-              height={section.size === 'large' ? 448 : 165}
+              height={section?.size === 'large' ? 448 : 165}
             />
           </styled.Poster>
         )}

@@ -124,7 +124,7 @@ export const Video = styled.div`
     }
   }
 
-  .slider-trailer {
+  .card-trailer {
     pointer-events: none;
     border-radius: 0.35rem 0.35rem 0 0;
 

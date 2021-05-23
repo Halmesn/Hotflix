@@ -173,7 +173,7 @@ export default function Slider({ section, category }) {
                       onReady={onTrailerReady}
                       onEnded={() => setSliderTrailer(null)}
                       config={playerConfig}
-                      className="slider-trailer"
+                      className="card-trailer"
                     />
                     <styled.Mute
                       onMouseDown={(e) => {
