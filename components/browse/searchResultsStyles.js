@@ -15,7 +15,7 @@ export const CardContainer = styled(ReusedCardContainer)``;
 
 export const Row = styled(SliderRow)`
   display: grid;
-  grid-template-columns: repeat(6, 28.4rem);
+  grid-template-columns: repeat(auto-fill, minmax(28.4rem, 28.5rem));
   padding: 14rem 4.8rem;
   grid-gap: 1.8rem;
   place-content: center;
@@ -26,13 +26,15 @@ export const Row = styled(SliderRow)`
   }
 
   @media (max-width: 62.5em) {
-    grid-template-columns: repeat(4, 22.4rem);
+    grid-template-columns: repeat(auto-fill, minmax(22.4rem, 22.5rem));
+
     ${CardContainer} {
       margin-bottom: 3.2rem;
     }
   }
   @media (max-width: 37.5em) {
-    grid-template-columns: repeat(2, 16.8rem);
+    grid-template-columns: repeat(auto-fill, minmax(16.8rem, 16.9rem));
+
     padding: 8rem 3.2rem;
     ${CardContainer} {
       margin-bottom: 0;

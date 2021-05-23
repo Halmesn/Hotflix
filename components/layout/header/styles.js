@@ -8,6 +8,7 @@ export const Header = styled.header`
   left: 0;
   width: 100%;
   z-index: 3;
+  transition: background 0.5s ease;
   background: ${({ showBackground }) =>
     showBackground
       ? '#141414'
