@@ -33,7 +33,8 @@ export const getBanner = async (category) => {
       (original_name || original_title) !== 'Mortal Kombat' &&
       (original_name || original_title) !== 'The Walking Dead' &&
       (original_name || original_title) !== 'Superman & Lois' &&
-      (original_name || original_title) !== 'Fear the Walking Dead'
+      (original_name || original_title) !== 'Fear the Walking Dead' &&
+      (original_name || original_title) !== 'Master of None'
   );
   const banner = filteredResults[chooseRandomBanner(filteredResults.length)];
 
