@@ -105,7 +105,7 @@ Install latest version of npm
    - From Sign In page, click the 'Sign up now' link below 'Sign In' button.
 2. Input the necessary fields. Don't worry. It won't take long.
    - Both email and phone number has to be unique.
-   - Or just click the trail account button, the email and password will be filled automatically for you.
+   - Or just click the trial account button, the email and password will be filled automatically for you.
 3. After signing up, you'll receive a success message, then you can sign in.
    - Your email and password will be filled automatically for you.
 
