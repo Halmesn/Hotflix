@@ -2,6 +2,7 @@ import Billboard from './Billboard';
 import Player from './Player';
 import Details from './Details';
 import Lolomo from './Lolomo';
+import SearchResults from './SearchResults';
 import Loading from 'components/layout/background/Loading';
 
 import { ProfileContext } from 'components/layout/Layout';
@@ -17,7 +18,8 @@ export const SliderContext = createContext();
 
 // this Component serves a purpose of managing cross component's states
 export default function Content() {
-  const { category, selectedProfile } = useContext(ProfileContext);
+  const { category, selectedProfile, searchResults } =
+    useContext(ProfileContext);
   const { avatar } = selectedProfile;
   const { width } = useWindowDimensions();
 
@@ -84,25 +86,35 @@ export default function Content() {
           setPlayerVideo={setPlayerVideo}
         />
       )}
-      <Billboard
-        avatar={avatar}
-        width={width}
-        category={category}
-        mute={mute}
-        setMute={setMute}
-        donePlay={donePlay}
-        setDonePlay={setDonePlay}
-        showTrailer={showTrailer}
-        setShowTrailer={setShowTrailer}
-        distracted={distracted}
-        setDistracted={setDistracted}
-        setLoading={setLoading}
-        setPlayerVideo={setPlayerVideo}
-        setSelectedItem={setSelectedItem}
-      />
-      <SliderContext.Provider value={providerValue}>
-        <Lolomo category={category} loading={loading} rowsShown={rowsShown} />
-      </SliderContext.Provider>
+      {searchResults ? (
+        <SearchResults searchResults={searchResults} />
+      ) : (
+        <>
+          <Billboard
+            avatar={avatar}
+            width={width}
+            category={category}
+            mute={mute}
+            setMute={setMute}
+            donePlay={donePlay}
+            setDonePlay={setDonePlay}
+            showTrailer={showTrailer}
+            setShowTrailer={setShowTrailer}
+            distracted={distracted}
+            setDistracted={setDistracted}
+            setLoading={setLoading}
+            setPlayerVideo={setPlayerVideo}
+            setSelectedItem={setSelectedItem}
+          />
+          <SliderContext.Provider value={providerValue}>
+            <Lolomo
+              category={category}
+              loading={loading}
+              rowsShown={rowsShown}
+            />
+          </SliderContext.Provider>
+        </>
+      )}
     </section>
   );
 }

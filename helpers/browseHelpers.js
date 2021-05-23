@@ -161,6 +161,22 @@ export const getGenres = async (category) => {
   return genres;
 };
 
+export const getSearchResults = async (category, query) => {
+  const getMethod = () => (category === 'TVShows' ? 'searchTV' : 'searchMovie');
+
+  const { data } = await tmdb.get(
+    TMDB[category].helpers[getMethod()].replace('_query', query)
+  );
+
+  const { results } = data;
+
+  const filteredResults = results
+    .filter(({ backdrop_path }) => backdrop_path)
+    .sort((a, b) => b.popularity - a.popularity);
+
+  return filteredResults;
+};
+
 export const playerConfig = {
   playerVars: {
     // player not respond to keyboard controls

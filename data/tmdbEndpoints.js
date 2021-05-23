@@ -66,7 +66,7 @@ export const TMDB = {
       },
     ],
     helpers: {
-      searchTV: `/search/tv?api_key=${API_KEY}&query={{query}}`,
+      searchTV: `/search/tv?api_key=${API_KEY}&query=_query`,
       fetchTVGenres: `genre/tv/list?api_key=${API_KEY}`,
       fetchTVTrailers: `/tv/_id/videos?api_key=${API_KEY}`,
       fetchTVDetails: `/tv/_id?api_key=${API_KEY}`,
@@ -164,7 +164,7 @@ export const TMDB = {
       },
     ],
     helpers: {
-      searchMovie: `/search/movie?api_key=${API_KEY}&query={{query}}`,
+      searchMovie: `/search/movie?api_key=${API_KEY}&query=_query`,
       fetchMovieGenres: `genre/movie/list?api_key=${API_KEY}`,
       fetchMovieTrailers: `/movie/_id/videos?api_key=${API_KEY}`,
       fetchMovieDetails: `/movie/_id?api_key=${API_KEY}`,

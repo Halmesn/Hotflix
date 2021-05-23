@@ -18,6 +18,7 @@ export default function Layout({ children }) {
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [profile, setProfile] = useState();
   const [category, setCategory] = useState('TVShows');
+  const [searchResults, setSearchResults] = useState(null);
 
   const userEmail = session?.user.email;
 
@@ -29,6 +30,8 @@ export default function Layout({ children }) {
     category,
     setCategory,
     userEmail,
+    searchResults,
+    setSearchResults,
   };
 
   useEffect(() => setCategory('TVShows'), [selectedProfile]);
