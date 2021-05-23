@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <h1 align="center">Nextflix: A Netflix Clone</h1>
-  <img src="images/readme/browse.png" alt="Nextflix Screenshot">
+  <img src="https://github.com/Halmesn/Nextflix/blob/main/public/readme/browse.png" alt="Nextflix Screenshot">
   <p align="center">
     My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
@@ -98,7 +98,7 @@ Install latest version of npm
 
 **Creating an Account**
 
-![](/readme/signup.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/signup.png)
 
 1. Go to Sign Up page.
    - From the homepage, enter your email and click 'Get Started'.
@@ -111,7 +111,7 @@ Install latest version of npm
 
 **Logging In**
 
-![](/readme/signin.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/signin.png)
 
 1. Go to Sign In page.
    - From the homepage, click 'Sign in' button.
@@ -122,7 +122,7 @@ Install latest version of npm
 
 **Searching for a Show**
 
-![](/readme/search.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/search.png)
 
 1. Log in and add a profile if you don't already have one or selected a profile.'
 2. Click the appropriate tab for your search.
@@ -134,7 +134,7 @@ Install latest version of npm
 
 **Adding User Profile**
 
-![](/images/readme/manage_profile.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/manage_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
@@ -146,7 +146,7 @@ Install latest version of npm
 
 **Editing User Profile**
 
-![](/readme/edit_profile.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/edit_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
@@ -155,7 +155,7 @@ Install latest version of npm
 
 **Deleting User Profile**
 
-![](/readme/delete_profile.png)
+![](https://github.com/Halmesn/Nextflix/blob/main/public/readme/delete_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
