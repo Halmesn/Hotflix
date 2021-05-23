@@ -65,7 +65,7 @@ Install latest version of npm
    ```sh
    npm install
    ```
-3. Create .env.local file
+3. Create a .env.local file
 4. Request an API key from TMDB and add it to .env.local file
    ```sh
    NEXT_PUBLIC_TMDB_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
