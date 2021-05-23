@@ -36,8 +36,6 @@ export default function Billboard({
   // data fetching
   useEffect(() => {
     setLoading(true);
-    setBanner(null);
-    setTrailer(null);
     async function fetchBillboard() {
       const banner = await getBanner(category);
       setBanner(banner);
