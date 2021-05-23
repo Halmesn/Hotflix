@@ -6,8 +6,8 @@
   },
   {
     "id": 2,
-    "header": "What techs dose Nextflix use?",
-    "body": "Nextflix uses React and Nextjs for it's javascript framework, styled-components for css style, NextAuth for authentication and route protection.\n\nIt also utilizes MongoDb along with localStorage to save and retrieve user data."
+    "header": "What tech is Nextflix built on?",
+    "body": "Nextflix uses React and Nextjs for its javascript framework, styled-components for css style, NextAuth for authentication and route protection.\n\nIt also utilizes MongoDb along with localStorage to save and retrieve user data."
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
   },
   {
     "id": 5,
-    "header": "Why bother building Nextflix?",
-    "body": "As a self-taught front-end developer who just started a few months ago, this is a perfect side project to test what I have learned and show the abilities of what I can achieve.\n\nI hope you like it!"
+    "header": "Why did I build Nextflix?",
+    "body": "I'm a recently started self taught front-end developer. I took on this project to showcase what I have learned, and demonstrate my abilities and an understanding of how modern web apps are created and implemented.\n\nI hope you like it!"
   }
 ]
