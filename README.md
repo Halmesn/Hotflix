@@ -91,7 +91,7 @@ Install latest version of npm
    ```
 9. Start the application
    ```sh
-   npm start
+   npm next start
    ```
 
 ## Usage
