@@ -106,20 +106,22 @@ export default function Details({
             <styled.CloseIcon />
           </styled.Close>
           <styled.Overlay />
-          <styled.ButtonWrapper>
-            <styled.PlayButton
-              onClick={() => {
-                setPlayerVideo({
-                  trailer,
-                  start: playerRef.current?.getCurrentTime() || 0,
-                });
-                setSelectedItem(null);
-              }}
-            >
-              <PlayIcon />
-              <span>Play</span>
-            </styled.PlayButton>
-          </styled.ButtonWrapper>
+          {trailer && (
+            <styled.ButtonWrapper>
+              <styled.PlayButton
+                onClick={() => {
+                  setPlayerVideo({
+                    trailer,
+                    start: playerRef.current?.getCurrentTime() || 0,
+                  });
+                  setSelectedItem(null);
+                }}
+              >
+                <PlayIcon />
+                <span>Play</span>
+              </styled.PlayButton>
+            </styled.ButtonWrapper>
+          )}
           <styled.Summary>
             <styled.Panel className="major-details">
               <styled.Title>

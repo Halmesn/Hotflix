@@ -25,22 +25,6 @@ export const Mute = styled(BillboardMute)`
   }
 `;
 
-export const Title = styled.h2`
-  padding-left: 5.6rem;
-  font-size: 2.76rem;
-  color: #fff;
-  font-weight: bold;
-
-  @media (max-width: 62.5em) {
-    font-size: 1.6rem;
-  }
-
-  @media (max-width: 37.5em) {
-    font-size: 1.44rem;
-    padding: 0 2.4rem 0;
-  }
-`;
-
 export const Poster = styled.div`
   width: 29.3rem;
   img {

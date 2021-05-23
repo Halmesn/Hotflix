@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import { positionCenter } from 'styles/mixins';
 
-import {
-  Row as SliderRow,
-  CardContainer as SliderCardContainer,
-} from './sliderStyles';
+import { CardContainer as ReusedCardContainer } from './cardStyles';
+import { BackButton as PlayerBackButton } from './playerStyles';
 
-export const SearchResults = styled.div``;
+import { Row as SliderRow } from './sliderStyles';
 
-export const CardContainer = styled(SliderCardContainer)``;
+export const SearchResults = styled.div`
+  background: #141414;
+  min-height: 100vh;
+`;
+
+export const CardContainer = styled(ReusedCardContainer)``;
 
 export const Row = styled(SliderRow)`
   display: grid;
   grid-template-columns: repeat(6, 28.4rem);
-  padding: 12.8rem 4.8rem;
-  grid-gap: 0.8rem;
+  padding: 14rem 4.8rem;
+  grid-gap: 1.8rem;
   place-content: center;
   margin-top: 0;
 
@@ -37,9 +41,15 @@ export const Row = styled(SliderRow)`
 `;
 
 export const NoMatch = styled.div`
-  margin: 16rem auto;
   max-width: 48rem;
   line-height: 1.5;
+  font-size: 1.44rem;
+  ${positionCenter};
+  top: 35%;
+
+  ul {
+    padding-left: 3rem;
+  }
   p {
     margin-bottom: 0.8rem;
   }
@@ -47,4 +57,9 @@ export const NoMatch = styled.div`
     max-width: 24rem;
     font-size: 1.28rem;
   }
+`;
+
+export const BackButton = styled(PlayerBackButton)`
+  top: 6%;
+  left: 2%;
 `;

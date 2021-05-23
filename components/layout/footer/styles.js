@@ -7,6 +7,12 @@ export const Footer = styled.footer`
   padding: 5rem 5%;
   box-sizing: content-box;
 
+  ${({ searchResults }) =>
+    searchResults &&
+    css`
+      display: none;
+    `}
+
   ${({ url }) =>
     url === '/browse' &&
     css`

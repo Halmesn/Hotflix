@@ -19,6 +19,7 @@ export default function Layout({ children }) {
   const [profile, setProfile] = useState();
   const [category, setCategory] = useState('TVShows');
   const [searchResults, setSearchResults] = useState(null);
+  const [searchInput, setSearchInput] = useState('');
 
   const userEmail = session?.user.email;
 
@@ -32,9 +33,13 @@ export default function Layout({ children }) {
     userEmail,
     searchResults,
     setSearchResults,
+    searchInput,
+    setSearchInput,
   };
 
   useEffect(() => setCategory('TVShows'), [selectedProfile]);
+
+  useEffect(() => setSearchInput(''), [selectedProfile, category]);
 
   //get or remove user's profile details from localStorage
   useEffect(() => {

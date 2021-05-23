@@ -1,9 +1,9 @@
 import * as styled from './cardStyles';
 
-import * as styled from './sliderStyles';
 import { MuteIcon, NotMuteIcon } from './billboardStyles';
 
 import { SliderContext } from 'components/browse/Content';
+import { ProfileContext } from 'components/layout/Layout';
 
 import {
   getGenres as fetchGenres,
@@ -15,9 +15,8 @@ import {
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
-import { isMobile } from 'react-device-detect';
 
-export default function Card({ item, section, mouseDown, dragging }) {
+export default function Card({ item, section, mouseDown, dragging, isMobile }) {
   const {
     mute,
     setMute,
@@ -26,6 +25,7 @@ export default function Card({ item, section, mouseDown, dragging }) {
     setShowTrailer,
     setSelectedItem,
   } = useContext(SliderContext);
+  const { category } = useContext(ProfileContext);
 
   const [genres, setGenres] = useState(null);
   const [sliderTrailer, setSliderTrailer] = useState(null);
@@ -62,6 +62,14 @@ export default function Card({ item, section, mouseDown, dragging }) {
   // isLoaded state: when the video player is loaded, hide poster
   const onTrailerReady = () =>
     sliderTrailer && setSliderTrailer({ ...sliderTrailer, isLoaded: true });
+
+  // when users dragging slider disables video playing
+  useEffect(() => {
+    if (dragging && mouseDown) {
+      clearTimeout(timer);
+      setSliderTrailer(null);
+    }
+  }, [dragging, mouseDown]);
 
   // data fetching
   useEffect(() => {

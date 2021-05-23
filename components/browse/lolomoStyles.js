@@ -8,8 +8,6 @@ export const Lolomo = styled.div`
   ${({ isLoading }) =>
     isLoading &&
     css`
-      position: absolute;
-      left: 0;
-      right: 0;
+      display: none;
     `}
 `;

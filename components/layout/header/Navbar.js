@@ -38,7 +38,7 @@ export default function Navbar({ url }) {
       </styled.Wrapper>
       {url === '/browse' && selectedProfile && (
         <styled.Wrapper className="secondary-nav">
-          <Search category={category} />
+          <Search />
           <UserMenu
             selectedProfile={selectedProfile}
             setSelectedProfile={setSelectedProfile}

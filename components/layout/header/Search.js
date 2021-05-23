@@ -6,18 +6,18 @@ import { ProfileContext } from 'components/layout/Layout';
 
 import { useState, useRef, useEffect, useContext } from 'react';
 
-export default function Search({ category }) {
-  const { setSearchResults } = useContext(ProfileContext);
+export default function Search() {
+  const { setSearchResults, searchInput, setSearchInput, category } =
+    useContext(ProfileContext);
   const [isActive, setIsActive] = useState(false);
-  const [input, setInput] = useState('');
-  const [debounceInput, setDebounceInput] = useState(input);
+  const [debounceInput, setDebounceInput] = useState(searchInput);
 
   const searchRef = useRef();
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebounceInput(input), 1000);
+    const timer = setTimeout(() => setDebounceInput(searchInput), 400);
     return () => clearTimeout(timer);
-  }, [input]);
+  }, [searchInput]);
 
   useEffect(() => {
     const getSearchResults = async () => {
@@ -47,8 +47,8 @@ export default function Search({ category }) {
       <styled.Input
         placeholder="Movie or TV show titles"
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
     </styled.Search>
   );

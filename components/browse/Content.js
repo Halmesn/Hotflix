@@ -87,7 +87,9 @@ export default function Content() {
         />
       )}
       {searchResults ? (
-        <SearchResults searchResults={searchResults} />
+        <SliderContext.Provider value={providerValue}>
+          <SearchResults />
+        </SliderContext.Provider>
       ) : (
         <>
           <Billboard
