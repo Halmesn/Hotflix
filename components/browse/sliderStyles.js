@@ -254,8 +254,15 @@ export const Row = styled.div`
   @media (max-width: 62.5em) {
     padding: 12.8rem 0 11.2rem 4.4rem;
   }
+
   @media (max-width: 37.5em) {
-    padding: 12.8rem 0 5.2rem 2.4rem;
+    padding: 12.8rem 0 4.8rem 2.4rem;
+
+    ${({ isMobile }) =>
+      isMobile &&
+      css`
+        padding-bottom: 2rem;
+      `}
   }
 
   &.normal {
