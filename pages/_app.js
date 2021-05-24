@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta
           property="og:image"
-          content="ihttps://github.com/Halmesn/Nextflix/blob/main/public/images/misc/background.jpg"
+          content="https://github.com/Halmesn/Nextflix/blob/main/public/images/misc/background.jpg"
         />
         <meta
           property="og:description"
