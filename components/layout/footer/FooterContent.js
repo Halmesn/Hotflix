@@ -18,7 +18,13 @@ export default function FooterContent() {
             </styled.Link>
           ))}
         </styled.LinkContainer>
-        <styled.Country>Nextfilx Australia</styled.Country>
+        <styled.Country>
+          ©Copyright by <a href="netflix.com">Netflix</a>. This website is for
+          learning and job hunting purpose only.{' '}
+          <i>
+            Logos, images, fonts and videos: Netflix, Inc. All Rights reserved.
+          </i>
+        </styled.Country>
       </styled.Wrapper>
     </styled.ContentContainer>
   );

@@ -89,7 +89,12 @@ export const Title = styled.p`
   }
 `;
 export const Country = styled.p`
+  color: white;
   font-size: 1.3rem;
   margin-top: 2.4rem;
   margin-bottom: 1.3rem;
+
+  a {
+    text-decoration: underline;
+  }
 `;
