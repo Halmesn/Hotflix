@@ -54,7 +54,7 @@ export const getTrailer = async (category, id) => {
     const trailerDetails = results.reverse().find(
       ({ site, type }) =>
         site === 'YouTube' &&
-        // get all the possible type
+        // get all possible types
         (type === 'Trailer' ||
           type === 'Featurette' ||
           type === 'Clip' ||

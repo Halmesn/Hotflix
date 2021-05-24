@@ -1,5 +1,5 @@
-import { hashPassword } from 'helpers/passwordHelps';
-import { connectDatabase, insertDocument } from 'helpers/databaseHelps';
+import { hashPassword } from 'helpers/passwordHelpers';
+import { connectDatabase, insertDocument } from 'helpers/databaseHelpers';
 
 async function handler(req, res) {
   const { email, password } = req.body;

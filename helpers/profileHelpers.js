@@ -27,9 +27,8 @@ export const clearAccount = (accounts) => {
   localStorage.setItem('nextflix-accounts', JSON.stringify(accounts));
 };
 
-export const getLocalAccounts = () => {
-  return JSON.parse(window.localStorage.getItem('nextflix-accounts')) || [];
-};
+export const getLocalAccounts = () =>
+  JSON.parse(window.localStorage.getItem('nextflix-accounts')) || [];
 
 export const resetProfilePage = (profile, setProfileState) => {
   if (!profile || profile.length === 0) {

@@ -6,7 +6,7 @@ import {
   updateAccount,
   clearAccount,
   getLocalAccounts,
-} from 'helpers/profileHelps';
+} from 'helpers/profileHelpers';
 
 import { useState, createContext, useEffect } from 'react';
 import { useSession } from 'next-auth/client';

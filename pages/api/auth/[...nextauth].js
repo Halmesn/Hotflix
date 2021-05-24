@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { verifyPassword } from 'helpers/passwordHelps';
-import { connectDatabase } from 'helpers/databaseHelps';
+import { verifyPassword } from 'helpers/passwordHelpers';
+import { connectDatabase } from 'helpers/databaseHelpers';
 
 export default NextAuth({
   session: {

@@ -1,7 +1,7 @@
 import * as styled from './profileStyles';
 
 import { ProfileContext } from 'components/layout/Layout';
-import { updateAccount, getLocalAccounts } from 'helpers/profileHelps';
+import { updateAccount, getLocalAccounts } from 'helpers/profileHelpers';
 
 import { useState, useContext } from 'react';
 import Image from 'next/image';
