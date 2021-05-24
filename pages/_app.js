@@ -15,10 +15,7 @@ export default function MyApp({ Component, pageProps }) {
           property="og:title"
           content="Nextfilx - watch TV shows online, watch movies online"
         />
-        <meta
-          property="og:image"
-          content="https://github.com/Halmesn/Nextflix/blob/main/public/images/misc/background.jpg"
-        />
+        <meta property="og:image" content="images/misc/background.jpg" />
         <meta
           property="og:description"
           content="Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers."
