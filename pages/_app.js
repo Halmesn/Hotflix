@@ -11,6 +11,22 @@ export default function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="images/favicon.ico" />
+        <meta
+          property="og:title"
+          content="Nextfilx - watch TV shows online, watch movies online"
+        />
+        <meta
+          property="og:image"
+          content="ihttps://github.com/Halmesn/Nextflix/blob/main/public/images/misc/background.jpg"
+        />
+        <meta
+          property="og:description"
+          content="Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers."
+        />
+        <meta
+          property="og:url"
+          content="https://nextflix-project.vercel.app/"
+        />
       </Head>
       <Provider session={pageProps.session}>
         <Layout>
