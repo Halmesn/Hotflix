@@ -16,7 +16,7 @@ export default function Hero() {
         <styled.Demo
           onClick={() =>
             signIn('credentials', {
-              email: 'guest@nextflix.com',
+              email: 'guest@hotflix.com',
               password: process.env.NEXT_PUBLIC_TRIAL_ACCOUNT_PASSWORD,
             })
           }

@@ -22,7 +22,7 @@ export default function Subscribe() {
   return (
     <styled.Subscribe onSubmit={onFormSubmit}>
       <styled.Title>
-        Ready to watch Nextflix? Enter your email and try it out today!
+        Ready to watch Hotflix? Enter your email and try it out today!
       </styled.Title>
       <styled.Wrapper>
         <styled.InputField>

@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "title": "Enjoy Nextflix on your TV.",
+    "title": "Enjoy Hotflix on your TV.",
     "subTitle": "Watch titles on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
     "image": "/images/feature/tv.jpg",
     "video": "/videos/tv.m4v",
-    "alt": "Nextflix on Tv",
+    "alt": "Hotflix on Tv",
     "direction": "row"
   },
   {
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "title": "Watch Nextflix everywhere.",
+    "title": "Watch Hotflix everywhere.",
     "subTitle": "Stream unlimited movies and TV shows on your phone, tablet, laptop and TV without paying more.",
     "image": "/images/feature/imac.jpg",
     "video": "/videos/imac.m4v",

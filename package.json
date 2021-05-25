@@ -1,7 +1,7 @@
 {
-  "name": "nextflix",
+  "name": "hotflix",
   "version": "0.1.0",
-  "description": "Nextflix: A Netflix clone application",
+  "description": "Hotflix: A Netflix clone application",
   "author": "Adrian Li",
   "private": true,
   "scripts": {

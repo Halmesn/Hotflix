@@ -10,23 +10,20 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="images/favicon.ico" />
+        <link rel="icon" href="images/favicon.png" />
         <meta
           property="og:title"
-          content="Nextfilx - watch TV shows online, watch movies online"
+          content="Hotflix - watch TV shows online, watch movies online"
         />
         <meta
           property="og:image"
-          content="https://nextflix-project.vercel.app/images/misc/background.jpg"
+          content="https://hotflix-movie.vercel.app/images/misc/background.jpg"
         />
         <meta
           property="og:description"
-          content="Nextflix is a Netflix clone that comes with all the basic functionalities Netflix offers."
+          content="Hotflix is a Netflix clone that comes with all the basic functionalities Netflix offers."
         />
-        <meta
-          property="og:url"
-          content="https://nextflix-project.vercel.app/"
-        />
+        <meta property="og:url" content="https://hotflix-movie.vercel.app/" />
       </Head>
       <Provider session={pageProps.session}>
         <Layout>

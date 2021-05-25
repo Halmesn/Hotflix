@@ -48,7 +48,7 @@ export default function UserMenu() {
             Manage Profiles
           </styled.DropdownOptions>
           <styled.DropdownOptions className="text" onClick={() => signOut()}>
-            Sign out of Nextflix
+            Sign out of Hotflix
           </styled.DropdownOptions>
         </styled.Dropdown>
         <styled.Caret className="caret"></styled.Caret>

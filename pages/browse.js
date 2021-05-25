@@ -1,9 +1,9 @@
-import Nextflix from 'components/browse/Nextflix';
+import Hotflix from 'components/browse/Hotflix';
 
 import { getSession } from 'next-auth/client';
 
 export default function Browse() {
-  return <Nextflix />;
+  return <Hotflix />;
 }
 
 export async function getServerSideProps(context) {

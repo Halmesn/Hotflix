@@ -1,15 +1,15 @@
 <br />
 <p align="center">
-  <h1 align="center">Nextflix: A Netflix Clone</h1>
-  <img src="https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/browse.png" alt="Nextflix Screenshot">
+  <h1 align="center">Hotflix: A Netflix Clone</h1>
+  <img src="https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/browse.png" alt="Hotflix Screenshot">
   <p align="center">
-    My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
+    My Next.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
-    <a href="https://nextflix-clone.vercel.app/"><strong>View Demo »</strong></a>
+    <a href="https://hotflix-movie.vercel.app/"><strong>View Demo »</strong></a>
     <br /><br />
-    <a href="https://github.com/Halmesn/Nextflix/issues">Report Bug</a>
+    <a href="https://github.com/Halmesn/Hotflix/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Halmesn/Nextflix/issues">Request Feature</a>
+    <a href="https://github.com/Halmesn/Hotflix/issues">Request Feature</a>
   </p>
 </p>
 
@@ -59,7 +59,7 @@ Install latest version of npm
 
 1. Clone the project
    ```sh
-   git clone https://github.com/Halmesn/Nextflix.git
+   git clone https://github.com/Halmesn/.git
    ```
 2. Go to project directory and Install NPM packages
    ```sh
@@ -98,7 +98,7 @@ Install latest version of npm
 
 **Creating an Account**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/signup.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/signup.png)
 
 1. Go to Sign Up page.
    - From the homepage, enter your email and click 'Get Started'.
@@ -111,7 +111,7 @@ Install latest version of npm
 
 **Logging In**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/signin.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/signin.png)
 
 1. Go to Sign In page.
    - From the homepage, click 'Sign in' button.
@@ -122,7 +122,7 @@ Install latest version of npm
 
 **Searching for a Show**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/search.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/search.png)
 
 1. Log in and add a profile if you don't already have one or selected a profile.'
 2. Click the appropriate tab for your search.
@@ -134,7 +134,7 @@ Install latest version of npm
 
 **Adding User Profile**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/manage_profile.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/manage_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
@@ -146,7 +146,7 @@ Install latest version of npm
 
 **Editing User Profile**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/edit_profile.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/edit_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
@@ -155,7 +155,7 @@ Install latest version of npm
 
 **Deleting User Profile**
 
-![](https://github.com/Halmesn/Nextflix/blob/main/public/images/readme/delete_profile.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/delete_profile.png)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.

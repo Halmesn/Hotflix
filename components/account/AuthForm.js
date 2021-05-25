@@ -29,7 +29,7 @@ export default function AuthForm({ formState }) {
   }, [mode]);
 
   const onTrialClick = () => {
-    setEnteredEmail('guest@nextflix.com');
+    setEnteredEmail('guest@hotflix.com');
     setEnteredPassword(process.env.NEXT_PUBLIC_TRIAL_ACCOUNT_PASSWORD);
     setMode('signin');
   };

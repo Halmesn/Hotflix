@@ -28,7 +28,7 @@ export const getInputProps = (input, enteredValue, errorFunc) => {
 
 export function getDisplayText(mode, forElement) {
   if (forElement === 'subtitle') {
-    return mode === 'signin' ? 'New to Nextflix? ' : 'Already a user? ';
+    return mode === 'signin' ? 'New to Hotflix? ' : 'Already a user? ';
   }
   if (forElement === 'switch') {
     return mode === 'signin' ? 'Sign up' : 'Sign in';

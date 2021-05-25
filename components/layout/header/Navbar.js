@@ -21,7 +21,7 @@ export default function Navbar({ url }) {
             <styled.Logo url={url}>
               <Image
                 src="/images/misc/logo.png"
-                alt="Nextflix logo"
+                alt="Hotflix logo"
                 width={200}
                 height={65}
                 layout="responsive"

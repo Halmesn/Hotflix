@@ -132,7 +132,7 @@ export default function Profile() {
         <styled.AvatarItem key={`${src}_grid`}>
           <Image
             src={src}
-            alt="nextflix avatar"
+            alt="hotflix avatar"
             width={200}
             height={200}
             className={`avatar ${isAvatarUsed}`}

@@ -5,7 +5,7 @@ import { ProfileContext } from 'components/layout/Layout';
 
 import { useContext } from 'react';
 
-export default function Nextflix() {
+export default function Hotflix() {
   const { selectedProfile, profile } = useContext(ProfileContext);
 
   return selectedProfile ? <Content /> : profile !== undefined && <Profile />;
