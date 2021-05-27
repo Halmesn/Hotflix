@@ -134,7 +134,7 @@ Install latest version of npm
 
 **Adding User Profile**
 
-![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/profile.gif)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/add_profile.gif)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
@@ -146,7 +146,7 @@ Install latest version of npm
 
 **Editing User Profile**
 
-![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/edit_profile.png)
+![](https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/edit_profile.gif)
 
 1. Log in to your account.
 2. Click 'Manage Profiles'.
