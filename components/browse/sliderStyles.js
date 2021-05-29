@@ -145,8 +145,8 @@ export const Row = styled.div`
 
     ${Video} {
       &.visible {
-        height: 450px;
-        width: 300px;
+        height: 45rem;
+        width: 30rem;
         border-radius: 0.35rem;
 
         @media (max-width: 62.5em) {
@@ -155,14 +155,14 @@ export const Row = styled.div`
         }
 
         @media (max-width: 37.5em) {
-          height: 256px;
-          width: 170.656px;
+          height: 25.6rem;
+          width: 17.0656rem;
         }
       }
       .card-trailer {
         > div {
-          height: 450px;
-          width: 300px;
+          height: 45rem;
+          width: 30rem;
           border-radius: 0.35rem;
 
           @media (max-width: 62.5em) {
@@ -171,25 +171,25 @@ export const Row = styled.div`
           }
 
           @media (max-width: 37.5em) {
-            height: 256px;
-            width: 170.656px;
+            height: 25.6rem;
+            width: 17.0656rem;
           }
         }
 
         iframe {
-          height: 650px;
-          width: 900px;
+          height: 65rem;
+          width: 90rem;
           transform: translate(-50%, -50%);
           border-radius: 0.35rem;
 
           @media (max-width: 62.5em) {
-            height: 478px;
-            width: 785px;
+            height: 47.8rem;
+            width: 78.5rem;
           }
 
           @media (max-width: 37.5em) {
-            height: 456px;
-            width: 770.656px;
+            height: 45.6rem;
+            width: 77.0656rem;
           }
         }
       }

@@ -135,21 +135,21 @@ export const Video = styled.div`
       position: absolute;
       top: 50%;
       left: 50%;
-      height: 253px;
-      width: 448px;
+      height: 25.3rem;
+      width: 44.8rem;
       pointer-events: none;
       z-index: -1;
       transform: translate(-50%, -55%);
       border-radius: 0.35rem 0.35rem 0 0;
 
       @media (max-width: 62.5em) {
-        height: 220px;
-        width: 390.219px;
+        height: 22rem;
+        width: 39.0219rem;
       }
 
       @media (max-width: 37.5em) {
-        height: 186px;
-        width: 227.4px;
+        height: 18.6rem;
+        width: 22.74rem;
       }
     }
   }
