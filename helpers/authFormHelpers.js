@@ -1,14 +1,11 @@
 /**
  * Return props for authForm input element.
  *
- * @function getInputProps
- *
- * @example
- * <Input {...getInputProps('email', enteredEmail, setError)}/>
- *
- * @param {input} string type of input element.
- * @param {enteredValue} string input value
- * @param {errorFunc} function a function to update error massage state.
+ * @param {String} input - type of input element.
+ * @param {String} enteredValue - input value
+ * @param {Function} errorFunc - a function to update error massage state.
+ * @return {Object} a object that can be spread as props
+ * @example <Input {...getInputProps('email', enteredEmail, setError)}/>
  */
 
 export const getInputProps = (input, enteredValue, errorFunc) => {
@@ -43,16 +40,11 @@ export const getInputProps = (input, enteredValue, errorFunc) => {
 /**
  * Return text children for authForm title.
  *
- * @function getDisplayText
- *
- * @example
- * <SubTitle>{getDisplayText(mode, 'subtitle')}</SubTitle>
- * <SubTitle>{getDisplayText(mode, 'switch')}now.</SubTitle>
- *
- * @param {mode} string state of authForm, could be 'signin' or 'signup'.
- * @param {forElement} string 3 use cases(subtitle,switch and option) on different authForm elements.
+ * @param {String} mode - string state of authForm, could be 'signin' or 'signup'.
+ * @param {String} forElement - string 3 use cases(subtitle,switch and option) on different authForm elements.
+ * @return {Object} a object that can be spread as props
+ * @example <SubTitle>{getDisplayText(mode, 'subtitle')}</SubTitle>
  */
-
 export function getDisplayText(mode, forElement) {
   switch (forElement) {
     case 'subtitle':

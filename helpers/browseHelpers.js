@@ -1,14 +1,36 @@
 import tmdb from '/data/tmdb';
 import { TMDB } from '/data/tmdbEndpoints';
 
+/**
+ * Return a random number that's less than data array's length.
+ *
+ * @param {Number} dataLength - data array's length.
+ * @return {Number} a random number less than data array's length.
+ * @example chooseRandomBanner(filteredResults.length)
+ */
 export const chooseRandomBanner = (dataLength) =>
   Math.floor(Math.random() * dataLength);
 
+/**
+ * Return shorter description
+ *
+ * @param {String} description - a string needed to be shortened
+ * @param {Number} length - desired length
+ * @return {String} a shortened string or original string depends on the length.
+ * @example shortDescription('long string!',2)
+ */
 export const shortDescription = (description, length) =>
   description.length > length
     ? description.substr(0, length - 1) + '...'
     : description;
 
+/**
+ * Return a boolean value to see whether the Tv show or movie is newly released or not.
+ *
+ * @param {String} date - a date string like "2016-01-25"
+ * @return {Boolean}
+ * @example isNewRelease('2016-01-25')
+ */
 export const isNewRelease = (date) => {
   const releaseDate = new Date(date);
   const currentDate = new Date();
@@ -16,6 +38,7 @@ export const isNewRelease = (date) => {
   return Math.ceil(gap / (1000 * 3600 * 24)) <= 30;
 };
 
+// below are fetch functions that are quite straightforward
 export const getBanner = async (category) => {
   const { data: data1 } = await tmdb.get(
     TMDB[category].sections[1].endpoint.replace('_pageNumber', 1)
