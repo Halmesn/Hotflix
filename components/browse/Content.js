@@ -8,8 +8,6 @@ import Loading from 'components/layout/background/Loading';
 import { ProfileContext } from 'components/layout/Layout';
 import { TMDB } from '/data/tmdbEndpoints';
 
-import useWindowDimensions from 'hooks/useWindowDimensions';
-
 import { useState, useContext, createContext, useEffect } from 'react';
 
 export const SliderContext = createContext();
@@ -18,10 +16,9 @@ export const SliderContext = createContext();
 
 // this Component serves a purpose of managing cross component's states
 export default function Content() {
-  const { category, selectedProfile, searchResults } =
+  const { category, selectedProfile, searchResults, windowWidth } =
     useContext(ProfileContext);
   const { avatar } = selectedProfile;
-  const { width } = useWindowDimensions();
 
   // states for visual effects
   const [loading, setLoading] = useState(true);
@@ -76,7 +73,7 @@ export default function Content() {
       )}
       {selectedItem && (
         <Details
-          width={width}
+          windowWidth={windowWidth}
           mute={mute}
           category={category}
           setMute={setMute}
@@ -94,7 +91,7 @@ export default function Content() {
         <>
           <Billboard
             avatar={avatar}
-            width={width}
+            windowWidth={windowWidth}
             category={category}
             mute={mute}
             setMute={setMute}

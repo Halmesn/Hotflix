@@ -1,17 +1,15 @@
 import * as styled from './styles';
 
 import { ProfileContext } from 'components/layout/Layout';
-import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { useContext } from 'react';
 import Image from 'next/image';
 import { signOut } from 'next-auth/client';
 
 export default function UserMenu() {
-  const { selectedProfile, setSelectedProfile, profile } =
+  const { selectedProfile, setSelectedProfile, profile, windowWidth } =
     useContext(ProfileContext);
   const { avatar: profileAvatar, name: profileName } = selectedProfile;
-  const { width } = useWindowDimensions();
 
   return (
     <styled.Wrapper className="menu">
@@ -19,8 +17,8 @@ export default function UserMenu() {
         <Image
           src={profileAvatar}
           alt={`${profileName}'s avatar`}
-          width={width < 600 ? 28 : 32}
-          height={width < 600 ? 28 : 32}
+          width={windowWidth < 600 ? 28 : 32}
+          height={windowWidth < 600 ? 28 : 32}
         />
         <styled.Dropdown className="dropdown">
           {profile.map(({ name, avatar }) => (
@@ -34,8 +32,8 @@ export default function UserMenu() {
                 <Image
                   src={avatar}
                   alt={`${name}'s avatar`}
-                  width={width < 600 ? 28 : 32}
-                  height={width < 600 ? 28 : 32}
+                  width={windowWidth < 600 ? 28 : 32}
+                  height={windowWidth < 600 ? 28 : 32}
                 />
               </styled.Wrapper>
               {name}

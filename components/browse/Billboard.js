@@ -13,13 +13,13 @@ import ReactPlayer from 'react-player/youtube';
 
 export default function Billboard({
   mute,
-  width,
   avatar,
   setMute,
   category,
   donePlay,
   setLoading,
   distracted,
+  windowWidth,
   showTrailer,
   setDonePlay,
   setDistracted,
@@ -71,16 +71,16 @@ export default function Billboard({
   // for delaying video playing
   useEffect(() => {
     setShowTrailer(false);
-    if (!trailer || width <= 600) return;
+    if (!trailer || windowWidth <= 600) return;
     const delayPlay = setTimeout(() => setShowTrailer(true), 2000);
 
     if (distracted) clearTimeout(delayPlay);
     return () => clearTimeout(delayPlay);
-  }, [category, distracted, avatar, trailer, width]);
+  }, [category, distracted, avatar, trailer, windowWidth]);
 
   return (
     <styled.Billboard>
-      {showTrailer && trailer && width > 600 && (
+      {showTrailer && trailer && windowWidth > 600 && (
         <styled.Video>
           <ReactPlayer
             ref={playerRef}
@@ -106,14 +106,18 @@ export default function Billboard({
           <styled.Banner>
             <Image
               src={`https://image.tmdb.org/t/p/${
-                width <= 600 ? 'w780' : width <= 1000 ? 'w1280' : 'original'
+                windowWidth <= 600
+                  ? 'w780'
+                  : windowWidth <= 1000
+                  ? 'w1280'
+                  : 'original'
               }${banner.backdrop_path}`}
               alt={banner.title}
               layout="fill"
               objectFit="cover"
             />
           </styled.Banner>
-          {donePlay && width > 600 && (
+          {donePlay && windowWidth > 600 && (
             <styled.Replay
               onClick={() => {
                 setDonePlay(false);
@@ -131,12 +135,14 @@ export default function Billboard({
           <styled.Title
             className={showTrailer && 'small'}
             style={{
-              '--height': `${descriptionHeight + (width <= 1000 ? 25 : 65)}px`,
+              '--height': `${
+                descriptionHeight + (windowWidth <= 1000 ? 25 : 65)
+              }px`,
             }}
           >
             {banner.name || banner.title || banner.original_name}
           </styled.Title>
-          {width > 600 && (
+          {windowWidth > 600 && (
             <styled.Description
               className={showTrailer && 'no-desc'}
               ref={descriptionRef}

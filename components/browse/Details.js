@@ -12,9 +12,9 @@ import Image from 'next/image';
 
 export default function Details({
   mute,
-  width,
   setMute,
   category,
+  windowWidth,
   selectedItem,
   setShowTrailer,
   setPlayerVideo,
@@ -94,7 +94,11 @@ export default function Details({
             <styled.Banner>
               <Image
                 src={`https://image.tmdb.org/t/p/${
-                  width <= 600 ? 'w780' : width <= 1000 ? 'w1280' : 'original'
+                  windowWidth <= 600
+                    ? 'w780'
+                    : windowWidth <= 1000
+                    ? 'w1280'
+                    : 'original'
                 }${details.backdrop_path}`}
                 alt={details.title}
                 layout="fill"
