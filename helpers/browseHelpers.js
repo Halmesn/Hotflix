@@ -29,7 +29,7 @@ export const getBanner = async (category) => {
   const filteredResults = resultsPools.filter(
     ({ original_language, original_name, original_title }) =>
       original_language === 'en' &&
-      // get rid of items that the video can't be played
+      // get rid of items that its video can't be played
       (original_name || original_title) !== 'Mortal Kombat' &&
       (original_name || original_title) !== 'The Walking Dead' &&
       (original_name || original_title) !== 'Superman & Lois' &&

@@ -4,9 +4,9 @@ import { MuteIcon, NotMuteIcon } from './billboardStyles';
 
 import { SliderContext } from 'components/browse/Content';
 import { ProfileContext } from 'components/layout/Layout';
+import { GenresContext } from 'pages/browse';
 
 import {
-  getGenres as fetchGenres,
   getTrailer as fetchTrailer,
   isNewRelease,
   playerConfig,
@@ -26,8 +26,9 @@ export default function Card({ item, section, mouseDown, dragging, isMobile }) {
     setSelectedItem,
   } = useContext(SliderContext);
   const { category } = useContext(ProfileContext);
+  const { TvGenres, MovieGenres } = useContext(GenresContext);
 
-  const [genres, setGenres] = useState(null);
+  // const [genres, setGenres] = useState(null);
   const [sliderTrailer, setSliderTrailer] = useState(null);
 
   // for delay video play
@@ -70,15 +71,6 @@ export default function Card({ item, section, mouseDown, dragging, isMobile }) {
       setSliderTrailer(null);
     }
   }, [dragging, mouseDown]);
-
-  // data fetching
-  useEffect(() => {
-    const getGenres = async () => {
-      const genres = await fetchGenres(category);
-      setGenres(genres);
-    };
-    getGenres();
-  }, [category]);
 
   const onPosterClick = (e, item) => {
     if (e.clientX !== clientXonMouseDown) return;
@@ -155,18 +147,17 @@ export default function Card({ item, section, mouseDown, dragging, isMobile }) {
           </styled.Rating>
           <br />
           <styled.Genre>
-            {genres &&
-              genres.length > 0 &&
-              item.genre_ids.map((genreId, i) => {
-                if (i > 2) return null;
-                const genreDetails = genres.find(({ id }) => id === genreId);
-                return (
-                  <React.Fragment key={genreId}>
-                    {i !== 0 && <span className="genre-dot">&bull;</span>}
-                    <span>{`${genreDetails && genreDetails.name}`}</span>
-                  </React.Fragment>
-                );
-              })}
+            {item.genre_ids.map((genreId, i) => {
+              if (i > 2) return null;
+              const genres = category === 'TVShows' ? TvGenres : MovieGenres;
+              const genreDetails = genres.find(({ id }) => id === genreId);
+              return (
+                <React.Fragment key={genreId}>
+                  {i !== 0 && <span className="genre-dot">&bull;</span>}
+                  <span>{`${genreDetails && genreDetails.name}`}</span>
+                </React.Fragment>
+              );
+            })}
           </styled.Genre>
         </styled.Details>
       </styled.Card>
