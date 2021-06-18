@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SubmitBtn as SubscribeBtn } from 'components/home/subscribe/styles';
 
 export const Hero = styled.section`
@@ -26,7 +26,18 @@ export const Text = styled.div`
   transform: translateY(5rem);
 `;
 
-export const Demo = styled(SubscribeBtn)``;
+export const Demo = styled(SubscribeBtn)`
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      filter: brightness(0.6);
+      padding: 2.2rem 8.5rem;
+
+      @media only screen and (max-width: 59.375em) {
+        padding: 0.8rem 4.5rem;
+      }
+    `}
+`;
 
 export const Title = styled.h1`
   font-size: 6.4rem;
