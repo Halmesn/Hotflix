@@ -7,7 +7,7 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Nextfilx - create or sign in your account</title>
+        <title>Hotfilx - create or sign in your account</title>
       </Head>
       <Authentication />
     </>

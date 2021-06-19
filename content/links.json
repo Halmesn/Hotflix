@@ -1,43 +1,38 @@
 [
-  { "id": 1, "href": "https://help.netflix.com/support/412", "text": "FAQ" },
-  { "id": 2, "href": "https://help.netflix.com", "text": "Help Centre" },
-  { "id": 3, "href": "/youraccount", "text": "Account" },
-  { "id": 4, "href": "https://media.netflix.com/", "text": "Media Centre" },
-  { "id": 5, "href": "http://ir.netflix.com/", "text": "Investor relations" },
-  { "id": 6, "href": "https://jobs.netflix.com/jobs", "text": "Jobs" },
-  { "id": 7, "href": "/redeem", "text": "Redeem gift cards" },
-  { "id": 8, "href": "/gift-cards", "text": "Buy gift cards" },
-  { "id": 9, "href": "/watch", "text": "Ways to watch" },
+  { "id": 1, "text": "FAQ" },
+  { "id": 2, "text": "Help Centre" },
+  { "id": 3, "text": "Account" },
+  { "id": 4, "text": "Media Centre" },
+  { "id": 5, "text": "Investor relations" },
+  { "id": 6, "text": "Jobs" },
+  { "id": 7, "text": "Redeem gift cards" },
+  { "id": 8, "text": "Buy gift cards" },
+  { "id": 9, "text": "Ways to watch" },
   {
     "id": 10,
-    "href": "https://help.netflix.com/legal/termsofuse",
+
     "text": "Terms of Use"
   },
   {
     "id": 11,
-    "href": "https://help.netflix.com/legal/privacy",
     "text": "Privacy"
   },
-  { "id": 12, "href": "#", "text": "Cookie preferences" },
+  { "id": 12, "text": "Cookie preferences" },
   {
     "id": 13,
-    "href": "https://help.netflix.com/legal/corpinfo",
     "text": "Corporate information"
   },
   {
     "id": 14,
-    "href": "https://help.netflix.com/contactus",
     "text": "Contact us"
   },
-  { "id": 15, "href": "https://fast.com", "text": "Speed test" },
+  { "id": 15, "text": "Speed test" },
   {
     "id": 16,
-    "href": "https://help.netflix.com/legal/notices",
     "text": "Legal notices"
   },
   {
     "id": 17,
-    "href": "https://www.netflix.com/au/browse/genre/839338",
-    "text": "Netflix Originals"
+    "text": "Hotflix Originals"
   }
 ]

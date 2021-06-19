@@ -10,9 +10,9 @@ export default function FooterContent() {
           <a href="mailto:xiaxi.li.syd@gmail.com">email</a>
         </styled.Title>
         <styled.LinkContainer>
-          {links.map(({ id, href, text }) => (
+          {links.map(({ id, text }) => (
             <styled.Link key={id}>
-              <a href={href}>
+              <a href="#">
                 <span>{text}</span>
               </a>
             </styled.Link>
