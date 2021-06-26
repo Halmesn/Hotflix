@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Hotfilx - watch TV shows online, watch movies online</title>
+        <title>Hotflix - watch TV shows online, watch movies online</title>
       </Head>
       <Hero />
       <Feature />
