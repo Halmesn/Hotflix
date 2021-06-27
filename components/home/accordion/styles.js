@@ -27,7 +27,6 @@ export const Title = styled(title)``;
 export const ItemContainer = styled.ul`
   max-width: 81.5rem;
   margin: 2.25rem auto;
-  list-style: none;
   padding: 0;
 
   @media only screen and (min-width: 34.375em) {

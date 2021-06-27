@@ -13,9 +13,7 @@ export default function AuthState() {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
 
-  useEffect(() => {
-    if (subscriberEmail) setEnteredEmail(subscriberEmail);
-  }, []);
+  useEffect(() => subscriberEmail && setEnteredEmail(subscriberEmail), []);
 
   const formState = {
     enteredEmail,

@@ -153,7 +153,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Category = styled.ul`
-  list-style: none;
   display: flex;
   align-items: center;
   font-size: 1.4rem;
@@ -275,7 +274,6 @@ export const Caret = styled.span`
 `;
 
 export const Dropdown = styled.ul`
-  list-style: none;
   opacity: 0;
   position: absolute;
   top: 5.5rem;

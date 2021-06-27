@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import * as mixins from 'styles/mixins';
 
-export const Feature = styled.section``;
-
 export const Wrapper = styled.div`
   ${mixins.flexBetween}
   flex-direction: ${({ direction }) => direction};
