@@ -22,7 +22,7 @@ export default function Layout({ children }) {
   const [profile, setProfile] = useState();
   const [category, setCategory] = useState('TVShows');
   const [searchResults, setSearchResults] = useState(null);
-  const [searchInput, setSearchInput, debounceInput] = useState();
+  const [searchInput, setSearchInput, debounceInput] = useDebounceInput();
   const windowWidth = useWindowWidth();
 
   const userEmail = session?.user.email;
