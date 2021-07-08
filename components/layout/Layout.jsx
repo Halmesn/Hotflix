@@ -8,7 +8,8 @@ import {
   getLocalAccounts,
 } from 'helpers/profileHelpers';
 
-import { useWindowWidth } from 'hooks/useWindowWidth';
+import useWindowWidth from 'hooks/useWindowWidth';
+import useDebounceInput from 'hooks/useDebounceInput';
 
 import { useState, createContext, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
@@ -21,7 +22,7 @@ export default function Layout({ children }) {
   const [profile, setProfile] = useState();
   const [category, setCategory] = useState('TVShows');
   const [searchResults, setSearchResults] = useState(null);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput, debounceInput] = useState();
   const windowWidth = useWindowWidth();
 
   const userEmail = session?.user.email;
@@ -39,6 +40,7 @@ export default function Layout({ children }) {
     setSearchResults,
     searchInput,
     setSearchInput,
+    debounceInput,
   };
 
   useEffect(() => setCategory('TVShows'), [selectedProfile]);

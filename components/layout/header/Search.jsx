@@ -7,17 +7,16 @@ import { ProfileContext } from 'components/layout/Layout';
 import { useState, useRef, useEffect, useContext } from 'react';
 
 export default function Search() {
-  const { setSearchResults, searchInput, setSearchInput, category } =
-    useContext(ProfileContext);
+  const {
+    setSearchResults,
+    searchInput,
+    setSearchInput,
+    debounceInput,
+    category,
+  } = useContext(ProfileContext);
   const [isActive, setIsActive] = useState(false);
-  const [debounceInput, setDebounceInput] = useState(searchInput);
 
   const searchRef = useRef();
-
-  useEffect(() => {
-    const timer = setTimeout(() => setDebounceInput(searchInput), 400);
-    return () => clearTimeout(timer);
-  }, [searchInput]);
 
   useEffect(() => {
     const getSearchResults = async () => {
