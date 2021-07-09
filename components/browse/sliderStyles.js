@@ -42,10 +42,12 @@ export const Title = styled.h2`
 
 export const Row = styled.div`
   display: flex;
-  overflow: hidden;
+  overflow: auto;
   padding: 12.8rem 0 15rem 5.6rem;
   margin-top: -11.2rem;
   z-index: 1;
+
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;

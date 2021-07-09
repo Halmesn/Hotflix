@@ -18,8 +18,6 @@ export default function Search() {
 
   const searchRef = useRef();
 
-  console.log(debounceInput);
-
   useEffect(() => {
     const getSearchResults = async () => {
       const data = await fetchSearchResults(category, debounceInput);
