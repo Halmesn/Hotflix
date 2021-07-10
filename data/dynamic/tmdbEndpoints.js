@@ -1,3 +1,11 @@
+/* I chose to use NEXT_PUBLIC here because this post on TMDB website:
+https://www.themoviedb.org/talk/582744abc3a3683601019dcc
+
+'TMDB api keys aren't intended for authentication, 
+so don't worry too much about making it public 
+since you can get API keys for free. 
+And there's very little motivation for anyone to steal it.
+*/
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 export const TMDB = {

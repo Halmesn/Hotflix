@@ -2,7 +2,7 @@ import * as styled from './lolomoStyles';
 
 import Slider from './Slider';
 
-import { TMDB } from 'data/tmdbEndpoints';
+import { TMDB } from 'data/dynamic/tmdbEndpoints';
 
 export default function Lolomo({ loading, category, rowsShown }) {
   return (

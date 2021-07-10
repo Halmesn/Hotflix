@@ -1,5 +1,5 @@
 import * as styled from './styles';
-import links from 'content/links';
+import links from 'data/static/links';
 
 export default function FooterContent() {
   return (

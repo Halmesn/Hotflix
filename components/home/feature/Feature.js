@@ -1,6 +1,6 @@
 import FeatureCard from './FeatureCard';
 
-import featureData from 'content/feature';
+import featureData from 'data/static/feature';
 
 export default function Feature() {
   return (

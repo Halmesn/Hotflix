@@ -1,5 +1,5 @@
-import tmdb from '/data/tmdb';
-import { TMDB } from '/data/tmdbEndpoints';
+import tmdb from 'data/dynamic/tmdb';
+import { TMDB } from 'data/dynamic/tmdbEndpoints';
 
 /**
  * Return a random number that's less than data array's length.

@@ -3,7 +3,7 @@ import * as styled from './styles';
 import AccordionItem from './AccordionItem';
 import Subscribe from '../subscribe/Subscribe';
 
-import faqsData from 'content/faqs';
+import faqsData from 'data/static/faqs';
 
 export default function Accordion() {
   return (
