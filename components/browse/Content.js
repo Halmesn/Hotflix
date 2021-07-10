@@ -6,7 +6,7 @@ import SearchResults from './SearchResults';
 import Loading from 'components/layout/background/Loading';
 
 import { ProfileContext } from 'components/layout/Layout';
-import { TMDB } from '/data/tmdbEndpoints';
+import { TMDB } from 'data/dynamic/tmdbEndpoints';
 
 import { useState, useContext, createContext, useEffect } from 'react';
 
