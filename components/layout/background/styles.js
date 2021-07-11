@@ -30,6 +30,12 @@ export const Gradient = styled.div`
   );
 `;
 
+export const FullScreenWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const Spinner = styled.div`
   position: fixed;
   width: 100%;
@@ -65,7 +71,7 @@ export const Spinner = styled.div`
 
 export const Loading = createGlobalStyle`
   body {
-  overflow: hidden;
+    overflow: hidden;
   }
 `;
 

@@ -2,13 +2,13 @@ import * as styled from './styles';
 
 export default function Loading({ src, ...restProps }) {
   return (
-    <styled.Spinner {...restProps}>
-      <styled.Loading />
-      <styled.Avatar src={src} alt="your avatar" />
-    </styled.Spinner>
+    <styled.FullScreenWrapper>
+      <styled.Spinner {...restProps}>
+        <styled.Loading />
+        <styled.Avatar src={src} alt="your avatar" />
+      </styled.Spinner>
+    </styled.FullScreenWrapper>
   );
 }
 
-Loading.Finished = () => {
-  return <styled.Finished />;
-};
+Loading.Finished = () => <styled.Finished />;
