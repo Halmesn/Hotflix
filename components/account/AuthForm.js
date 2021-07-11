@@ -5,13 +5,35 @@ import { signIn } from 'next-auth/client';
 
 import { getInputProps, getDisplayText } from 'helpers/authFormHelpers';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
 import { useRouter } from 'next/router';
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'idle':
+      return { error: null };
+    case 'pending': {
+      return { status: 'pending', error: null };
+    }
+    case 'resolved': {
+      return { status: 'resolved', error: null };
+    }
+    case 'rejected': {
+      return { status: 'rejected', error: action.error };
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+};
+
 export default function AuthForm({ formState }) {
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, dispatch] = useReducer(reducer, {
+    status: 'idle',
+    error: null,
+  });
+  const { status, error } = state;
+
   const router = useRouter();
 
   const {
@@ -23,10 +45,7 @@ export default function AuthForm({ formState }) {
     setMode,
   } = formState;
 
-  useEffect(() => {
-    setError(null);
-    setSuccess(null);
-  }, [mode]);
+  useEffect(() => dispatch({ type: 'idle' }), [mode]);
 
   const onTrialClick = () => {
     setEnteredEmail('guest@hotflix.com');
@@ -42,42 +61,33 @@ export default function AuthForm({ formState }) {
       password: enteredPassword,
     };
 
+    dispatch({ type: 'pending' });
+
     if (mode === 'signup') {
-      setIsLoading(true);
-      try {
-        const response = await fetch('/api/signup', {
-          method: 'POST',
-          body: JSON.stringify(formData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (!response.ok) {
-          const data = await response.json();
-          setIsLoading(false);
-          throw new Error(data.message);
-        }
-        setIsLoading(false);
-        setSuccess(true);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-        setSuccess(null);
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        dispatch({ type: 'rejected', error: data.message });
+        return;
       }
+      dispatch({ type: 'resolved' });
     }
 
     if (mode === 'signin') {
-      setIsLoading(true);
       const result = await signIn('credentials', {
         redirect: false,
         ...formData,
       });
       if (result.error) {
-        setError(result.error);
-        setIsLoading(false);
+        dispatch({ type: 'rejected', error: result.error });
         return;
       }
-      setError(null);
       router.replace('/browse');
     }
   };
@@ -87,7 +97,7 @@ export default function AuthForm({ formState }) {
       <styled.MainForm onSubmit={onFormSubmit}>
         <styled.Title>{getDisplayText(mode)}</styled.Title>
         {error && <styled.Error>{error}</styled.Error>}
-        {success && (
+        {status === 'resolved' && mode === 'signup' && (
           <styled.Success>
             Successfully signed up! Now you can{' '}
             <span onClick={() => setMode('signin')}>sign in.</span>
@@ -96,20 +106,20 @@ export default function AuthForm({ formState }) {
         <styled.Form>
           <styled.InputField>
             <styled.Input
-              {...getInputProps('email', enteredEmail, setError)}
+              {...getInputProps('email', enteredEmail, dispatch)}
               onChange={({ target }) => setEnteredEmail(target.value)}
             />
             <styled.Label htmlFor="email">Email address</styled.Label>
           </styled.InputField>
           <styled.InputField>
             <styled.Input
-              {...getInputProps('password', enteredPassword, setError)}
+              {...getInputProps('password', enteredPassword, dispatch)}
               onChange={({ target }) => setEnteredPassword(target.value)}
             />
             <styled.Label htmlFor="password">Password</styled.Label>
           </styled.InputField>
-          <styled.AuthButton disabled={isLoading}>
-            {isLoading ? <FormSpinner /> : getDisplayText(mode)}
+          <styled.AuthButton disabled={status === 'pending'}>
+            {status === 'pending' ? <FormSpinner /> : getDisplayText(mode)}
           </styled.AuthButton>
         </styled.Form>
       </styled.MainForm>

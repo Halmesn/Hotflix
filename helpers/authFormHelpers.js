@@ -3,12 +3,12 @@
  *
  * @param {String} input - type of input element.
  * @param {String} enteredValue - input value
- * @param {Function} errorFunc - a function to update error massage state.
+ * @param {Function} dispatch - a function coming from useReducer hook to update state.
  * @return {Object} a object that can be spread as props
- * @example <Input {...getInputProps('email', enteredEmail, setError)}/>
+ * @example <Input {...getInputProps('email', enteredEmail, dispatch)}/>
  */
 
-export const getInputProps = (input, enteredValue, errorFunc) => {
+export const getInputProps = (input, enteredValue, dispatch) => {
   switch (input) {
     case 'email':
       return {
@@ -18,9 +18,7 @@ export const getInputProps = (input, enteredValue, errorFunc) => {
         minLength: '5',
         required: 'required',
         value: enteredValue,
-        onFocus: function () {
-          errorFunc(null);
-        },
+        onFocus: () => dispatch({ type: 'idle' }),
       };
 
     case 'password':
@@ -30,9 +28,7 @@ export const getInputProps = (input, enteredValue, errorFunc) => {
         minLength: '4',
         required: 'required',
         value: enteredValue,
-        onFocus: function () {
-          errorFunc(null);
-        },
+        onFocus: () => dispatch({ type: 'idle' }),
       };
   }
 };
