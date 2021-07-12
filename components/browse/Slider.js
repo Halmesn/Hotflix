@@ -3,6 +3,7 @@ import * as styled from './sliderStyles';
 import Card from './Card';
 
 import { getSliderItems as fetchSliderItems } from 'helpers/browseHelpers';
+import useSafeMounted from 'hooks/useSafeMounted';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
@@ -17,6 +18,7 @@ export default function Slider({ section, category }) {
   const [dragging, setDragging] = useState(false);
 
   const sliderRef = useRef();
+  const mountRef = useSafeMounted();
 
   // data fetching
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function Slider({ section, category }) {
           original_language === 'en' && backdrop_path && poster_path
       );
 
-      setSliderItems(filteredItems);
+      mountRef.current && setSliderItems(filteredItems);
     };
     getSliderItems();
   }, [section.endpoint, category]);

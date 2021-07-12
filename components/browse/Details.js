@@ -5,6 +5,7 @@ import Episode from './Episode';
 import Recommendation from './Recommendation';
 
 import { getDetails as fetchDetails } from 'helpers/browseHelpers';
+import useSafeMounted from 'hooks/useSafeMounted';
 
 import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/youtube';
@@ -30,35 +31,28 @@ export default function Details({
   const playerRef = useRef(null);
   const modalRef = useRef();
 
+  const mountRef = useSafeMounted();
+
   useEffect(() => {
-    // prevent memory leaks if users open and close modal super quickly
-    let mounted = true;
-    mounted && setShowTrailer(false);
+    mountRef.current && setShowTrailer(false);
 
     const onOutsideClick = (e) =>
       (modalRef.current && modalRef.current.contains(e.target)) ||
-      (mounted && setSelectedItem(null));
+      (mountRef.current && setSelectedItem(null));
 
     document.body.addEventListener('mousedown', onOutsideClick);
 
-    return () => {
-      mounted = false;
-      document.body.removeEventListener('mousedown', onOutsideClick);
-    };
+    return () => document.body.removeEventListener('mousedown', onOutsideClick);
   }, []);
 
   useEffect(() => {
-    let mounted = true;
-
     const getDetails = async () => {
       const { details, cast, trailer } = await fetchDetails(category, id);
-      mounted && setDetails(details);
-      mounted && setCast(cast);
-      if (trailer) mounted && setTrailer(trailer);
+      mountRef.current && setDetails(details);
+      mountRef.current && setCast(cast);
+      if (trailer) mountRef.current && setTrailer(trailer);
     };
     getDetails();
-
-    return () => (mounted = false);
   }, [selectedItem]);
 
   return (
@@ -71,7 +65,7 @@ export default function Details({
             <styled.Video>
               <ReactPlayer
                 ref={playerRef}
-                url={`https://www.youtube.com/watch?v=${trailer}`}
+                url={`https://www.youtube-nocookie.com/embed/${trailer}`}
                 className="details"
                 width="100%"
                 height="100%"

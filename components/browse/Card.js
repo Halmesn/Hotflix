@@ -99,7 +99,7 @@ export default function Card({ item, section, mouseDown, dragging, isMobile }) {
           <styled.Video className={sliderTrailer.isLoaded ? 'visible' : ''}>
             <ReactPlayer
               ref={playerRef}
-              url={`https://www.youtube.com/watch?v=${sliderTrailer.url}`}
+              url={`https://www.youtube-nocookie.com/embed/${sliderTrailer.url}`}
               width="100%"
               height="100%"
               playing

@@ -8,7 +8,7 @@ export default function Player({ playerVideo, setPlayerVideo }) {
     <styled.Player>
       <styled.Wrapper>
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${trailer}`}
+          url={`https://www.youtube-nocookie.com/embed/${trailer}`}
           width="100%"
           height="100%"
           playing

@@ -35,7 +35,10 @@ export default function Billboard({
 
   // data fetching
   useEffect(() => {
+    setDistracted(false);
+    setDonePlay(false);
     setLoading(true);
+
     async function fetchBillboard() {
       const banner = await getBanner(category);
       setBanner(banner);
@@ -62,12 +65,6 @@ export default function Billboard({
       setDescriptionHeight(descriptionRef.current?.clientHeight);
   });
 
-  // reset player related states
-  useEffect(() => {
-    setDistracted(false);
-    setDonePlay(false);
-  }, [category, avatar]);
-
   // for delaying video playing
   useEffect(() => {
     setShowTrailer(false);
@@ -84,7 +81,7 @@ export default function Billboard({
         <styled.Video>
           <ReactPlayer
             ref={playerRef}
-            url={`https://www.youtube.com/watch?v=${trailer}`}
+            url={`https://www.youtube-nocookie.com/embed/${trailer}`}
             className="trailer"
             width="100%"
             height="100%"

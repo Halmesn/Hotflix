@@ -6,6 +6,7 @@ import {
   getRecommendations as fetchRecommendations,
 } from 'helpers/browseHelpers';
 import { onShowMoreClick } from './Episode';
+import useSafeMounted from 'hooks/useSafeMounted';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -14,16 +15,14 @@ export default function Recommendation({ category, id, placeholder }) {
   const [recommendations, setRecommendations] = useState();
   const [showAll, setShowAll] = useState(false);
 
+  const mountRef = useSafeMounted();
+
   useEffect(() => {
-    // prevent memory leaks if users open and close modal super quickly
-    let mounted = true;
     const getRecommendations = async () => {
       const recommendations = await fetchRecommendations(category, id);
-      mounted && setRecommendations(recommendations);
+      mountRef.current && setRecommendations(recommendations);
     };
     getRecommendations();
-
-    return () => (mounted = false);
   }, [id, category]);
 
   return recommendations && recommendations.length > 0 ? (

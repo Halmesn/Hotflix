@@ -4,6 +4,7 @@ import {
   shortDescription,
   getEpisodes as fetchEpisodes,
 } from 'helpers/browseHelpers';
+import useSafeMounted from 'hooks/useSafeMounted';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -18,16 +19,14 @@ export default function Episode({ id, seasons, placeholder }) {
   const [episodes, setEpisodes] = useState();
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    let mounted = true;
+  const mountRef = useSafeMounted();
 
+  useEffect(() => {
     const getEpisodes = async () => {
       const episodes = await fetchEpisodes(season, id);
-      mounted && setEpisodes(episodes);
+      mountRef.current && setEpisodes(episodes);
     };
     getEpisodes();
-
-    return () => (mounted = false);
   }, [id, season]);
 
   return (
