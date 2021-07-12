@@ -7,7 +7,7 @@ import {
   playerConfig,
 } from 'helpers/browseHelpers';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player/youtube';
 
@@ -60,10 +60,10 @@ export default function Billboard({
 
   // description animation
   const [descriptionHeight, setDescriptionHeight] = useState(0);
-  useEffect(() => {
-    descriptionRef.current?.clientHeight !== 0 &&
-      setDescriptionHeight(descriptionRef.current?.clientHeight);
-  });
+  useLayoutEffect(
+    () => setDescriptionHeight(descriptionRef.current?.clientHeight || 0),
+    [banner]
+  );
 
   // for delaying video playing
   useEffect(() => {
