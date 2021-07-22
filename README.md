@@ -5,7 +5,7 @@
   <p align="center">
     My Next.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
-    <a href="https://hotflix-movie.vercel.app/"><strong>View Demo »</strong></a>
+    <a href="https://hotflix-clone.vercel.app/"><strong>View Demo »</strong></a>
     <br /><br />
     <a href="https://github.com/Halmesn/Hotflix/issues">Report Bug</a>
     ·
