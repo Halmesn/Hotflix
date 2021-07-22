@@ -133,28 +133,14 @@ export default function AuthForm({ formState }) {
             {getDisplayText(mode, 'switch')} now.
           </span>
         </styled.SubTitle>
-        <styled.SubTitle center>
-          {getDisplayText(mode, 'option')}
-        </styled.SubTitle>
-        {mode === 'signin' ? (
-          <styled.BtnContainer>
-            <styled.OthersBtn onClick={() => signIn('google')}>
-              <styled.GoogleIcon />
-              Google
-            </styled.OthersBtn>
-            <styled.OthersBtn onClick={() => signIn('facebook')}>
-              <styled.FacebookIcon />
-              Facebook
-            </styled.OthersBtn>
-          </styled.BtnContainer>
-        ) : (
-          <styled.BtnContainer center>
-            <styled.OthersBtn onClick={onTrialClick}>
-              <styled.UserIcon />
-              Use our trial account!
-            </styled.OthersBtn>
-          </styled.BtnContainer>
-        )}
+        <styled.SubTitle center>Don't want to be bothered?</styled.SubTitle>
+
+        <styled.BtnContainer center>
+          <styled.OthersBtn onClick={onTrialClick}>
+            <styled.UserIcon />
+            Use trial account
+          </styled.OthersBtn>
+        </styled.BtnContainer>
       </styled.SubForm>
     </styled.FormWrapper>
   );

@@ -49,11 +49,6 @@ export function getDisplayText(mode, forElement) {
     case 'switch':
       return mode === 'signin' ? 'Sign up' : 'Sign in';
 
-    case 'option':
-      return mode === 'signin'
-        ? 'Or sign in with'
-        : "Don't want to be bothered?";
-
     default:
       return mode === 'signin' ? 'Sign in' : 'Sign up';
   }
