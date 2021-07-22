@@ -1,10 +1,9 @@
 <br />
 <p align="center">
   <h1 align="center">Hotflix: A Netflix Clone</h1>
-  <img src="https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/hotflix.gif" alt="Hotflix main page">
   <p align="center">
-    My Next.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
-    <br /><br />
+    <strong>🔥This project got 3.6k upvotes on <a href="https://www.reddit.com/r/learnprogramming/comments/nj6ccv">Reddit</a> and landed me an interview with <a href="https://www.reddit.com/r/webdev/comments/o7gg1p">Netflix</a>🔥</strong>
+     <br /><br />
     <a href="https://hotflix-clone.vercel.app/"><strong>View Demo »</strong></a>
     <br /><br />
     <a href="https://github.com/Halmesn/Hotflix/issues">Report Bug</a>
@@ -12,6 +11,8 @@
     <a href="https://github.com/Halmesn/Hotflix/issues">Request Feature</a>
   </p>
 </p>
+
+<img src="https://github.com/Halmesn/Hotflix/blob/main/public/images/readme/hotflix.gif" alt="Hotflix main page">
 
 <h2 style="display: inline-block">Table of Contents</h2>
 <ol>
@@ -36,11 +37,11 @@
 
 ### Built With
 
-- **[React](https://reactjs.org/)**
-- **[Next.js](https://nextjs.org/)**
+- [Next.js](https://nextjs.org/)
 - [NextAuth](https://next-auth.js.org/)
 - [styled-components](https://styled-components.com/)
 - [MongoDB](https://www.mongodb.com/)
+- [TMDb API](https://www.themoviedb.org/)
 
 ## Getting Started
 
@@ -82,14 +83,7 @@ Install latest version of npm
    ```sh
    NEXT_PUBLIC_TRIAL_ACCOUNT_PASSWORD=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
-8. Add Google and Facebook client id and secret to .env.local file
-   ```sh
-   GOOGLE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   GOOGLE_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   FACEBOOK_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   FACEBOOK_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   ```
-9. Start the application
+8. Start the application
    ```sh
    npm next start
    ```
