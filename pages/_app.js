@@ -17,13 +17,13 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta
           property="og:image"
-          content="https://hotflix-movie.vercel.app/images/misc/background.jpg"
+          content="https://hotflix-clone.vercel.app/images/misc/background.jpg"
         />
         <meta
           property="og:description"
           content="Hotflix is a Netflix clone that comes with all the basic functionalities Netflix offers."
         />
-        <meta property="og:url" content="https://hotflix-movie.vercel.app/" />
+        <meta property="og:url" content="https://hotflix-clone.vercel.app/" />
       </Head>
       <Provider session={pageProps.session}>
         <Layout>
